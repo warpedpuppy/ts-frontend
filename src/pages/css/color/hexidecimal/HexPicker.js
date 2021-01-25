@@ -6,10 +6,14 @@ export default class HexPicker extends Component {
   }
 
   render() {
+      let style = {
+          width: `${this.props.boxSize}px`,
+          height: `${this.props.boxSize}px`
+      }
     return (
       <div className="hex-picker"> 
          {
-             this.state.arr.map((item, index) => <div onClick={() => this.props.clickHandler(item)} key={index}>{item}</div>)
+             this.state.arr.map((item, index) => <div style={style} onClick={(e) => this.props.clickHandler(e, index, item, this.props.n)} key={index}>{item}</div>)
          }
       </div>
     );

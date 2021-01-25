@@ -1,3 +1,7 @@
+.hexidecimal-page {
+    display: flex;
+}
+
 .hexidecimal {
     display: flex;
     position: relative;
@@ -8,4 +12,9 @@
     height: 40px;
     border: 2px solid blue;
     position: absolute;
+}
+
+.hexidecimal-color {
+    width: 300px;
+    height: 300px;
 }
