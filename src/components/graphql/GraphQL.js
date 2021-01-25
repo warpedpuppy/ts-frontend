@@ -14,7 +14,7 @@ export default class GraphQL extends Component {
         this.client.query({
             query: gql`
               query GetCharacters {
-                characters {
+             gi   characters {
                   id
                   name
                   color

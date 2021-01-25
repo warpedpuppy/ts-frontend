@@ -1,0 +1,11 @@
+.hexidecimal {
+    display: flex;
+    position: relative;
+}
+
+.hexidecimal-window {
+    width: 240px;
+    height: 40px;
+    border: 2px solid blue;
+    position: absolute;
+}
