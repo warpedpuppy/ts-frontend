@@ -16,16 +16,16 @@ class Menu extends Component {
 
         return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-            <Navbar.Brand as={Link} to={'/'}>TS</Navbar.Brand>
+            <Navbar.Brand as={Link} to={'/'}>trying something</Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse className="justify-content-end">
               
-                  
+{/*                   
                     <>
                         <Nav.Link as={Link} to={'/memoirs'}>memoirs</Nav.Link> 
                         <Nav.Link as={Link} to={'/resources'}>recources</Nav.Link>
                         <Nav.Link as={Link} to={'/users'}>users</Nav.Link>
-                    </>
+                    </> */}
                    
                 
             </Navbar.Collapse>

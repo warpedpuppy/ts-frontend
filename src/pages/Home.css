@@ -1,0 +1,28 @@
+.main-menu-ul {
+    position: relative;
+    top: 300px;
+}
+
+.main-menu-ul h3 {
+    font-size: 50px;
+    text-align: right;
+    background-color: black;
+    color: white;
+    padding-right: 20px;
+    cursor: pointer;
+    margin: 0;
+}
+
+.sub-categories {
+    /* transform: scaleY(0);
+    font-size: 0;
+    margin: 0; */
+    list-style-type: none;
+    transition: all 1s;
+}
+
+.sub-categories.open {
+    transform: scaleY(1);
+    font-size: 12px;
+    margin: auto;
+}

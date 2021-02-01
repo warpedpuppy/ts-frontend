@@ -1,0 +1,29 @@
+.css-page {
+    display: flex;
+}
+
+.css-page-heading {
+    border-bottom: 2px solid black;
+    margin-bottom: 0;
+    padding: 10px;
+}
+
+.css-page-menu {
+    height: 100vh;
+    border-right: 2px solid black;
+    margin-right: 20px;
+}
+
+.css-page-menu div {
+    border-bottom: 1px solid black;
+    padding: 10px 10px 10px 100px;
+    text-align: right;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.5s
+}
+
+.css-page-menu div:hover {
+    background-color: grey;
+    color: white;
+}
