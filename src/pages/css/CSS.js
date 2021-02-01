@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './CSS.css';
 import Hexidecimal from './color/hexidecimal/Hexidecimal';
 import HSL from './color/hsl/HSL';
+import RGB from './color/rgb/RGB';
 export default class CSS extends Component {
   state = {
     active: 'hexadecimal'
@@ -16,6 +17,8 @@ export default class CSS extends Component {
       active = <Hexidecimal />
     } else if (this.state.active === 'hsl') {
       active = <HSL />
+    } else {
+      active = <RGB />
     }
     return (
       <>
