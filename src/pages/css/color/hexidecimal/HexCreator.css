@@ -1,4 +1,18 @@
 .hexidecimal-creator {
     display: flex;
+    flex-direction: column;
+    align-items: flex-end;
     position: relative;
+    background-color: black;
+}
+
+.hexidecimal-creator-inner {
+    position: relative;
+    margin: 10px;
+}
+
+.hexidecimal-window {
+    border: 4px solid white;
+    position: absolute;
+    z-index: 1;
 }

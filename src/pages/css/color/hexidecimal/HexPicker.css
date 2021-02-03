@@ -1,5 +1,6 @@
 .hex-picker {
     position: relative;
+    display: flex;
 }
 
 .hex-picker div {
@@ -10,6 +11,7 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    font-weight: bold;
 }
 
 .hex-picker div:hover {

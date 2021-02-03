@@ -1,24 +1,10 @@
-.hex-creator {
-    margin-top: 300px;
-}
-
-.hexidecimal-page .hex-creator {
+.hexidecimal-page .hex-creator-container {
     display: flex;
+    margin-top: 100px;
     width: 100%;
     justify-content: center;
-}
-
-.hexidecimal-window {
-    width: 240px;
-    height: 40px;
-    border: 4px solid blue;
-    position: absolute;
-}
-
-.hexidecimal-color {
-    width: 200px;
-    height: 200px;
-    position: relative;
-    top: -100px;
-    margin: 20px;
+    border-top: 5px solid black;
+    border-bottom: 5px solid black;
+    padding: 50px;
+    transition: background-color 0.5s;
 }

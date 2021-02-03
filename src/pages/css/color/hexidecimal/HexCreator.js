@@ -4,13 +4,15 @@ import './HexCreator.css';
 export default class HexCreator extends Component {
 
 
-  render() {
-    let windowStyle = {
-        height: `${this.props.windowStyle.boxSize}px`,
-        width: `${this.props.windowStyle.width}px`,
-      }
+  render() { 
+   
+    let containerStyle = {
+     
+        width: `${this.props.backgroundWidth}px`
+    }
     return (
-      <div className="hexidecimal-creator">
+      <div className="hexidecimal-creator" style={containerStyle}>
+        <div className="hexidecimal-creator-inner">
           <div className="hexidecimal-window" style={this.props.windowStyle}></div>
           {
             this.props.currentHex.split('').map( (item, index) => {
@@ -23,6 +25,7 @@ export default class HexCreator extends Component {
                         color={['red', 'red', 'green', 'green', 'blue', 'blue'][index]} /> 
             })
           }
+          </div>
       </div>
     );
   }

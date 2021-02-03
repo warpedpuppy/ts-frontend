@@ -5,8 +5,7 @@ export default class HexPicker extends Component {
       arr: '0123456789ABCDEF'.split('')
   }
 
-  render() {
-    console.log(this.props.boxSize, this.state.arr.indexOf(this.props.currentHexValue))
+  render() { 
     let topValue = this.props.boxSize * this.state.arr.indexOf(this.props.currentHexValue);
       let style = {
           width: `${this.props.boxSize}px`,
@@ -15,7 +14,7 @@ export default class HexPicker extends Component {
           backgroundColor: this.props.color
       }
       let style2 = {
-        top: `-${topValue}px`
+        left: `-${topValue}px`
       }
     return (
       
