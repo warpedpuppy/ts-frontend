@@ -85,7 +85,7 @@ export default class Hexidecimal extends Component {
             checked={activeState === 'random' ? 'checked' : ''} 
             label={`choose random`} 
             />
-            { this.state.activeState === 'random' ?   <Button onClick={this.chooseRandomHex} variant="outline-success">choose new random color</Button> : ''}
+            { this.state.activeState === 'random' ?   <Button size="sm" onClick={this.chooseRandomHex} variant="outline-success">choose new random color</Button> : ''}
         </Form>
         <div  style={style} className="hex-creator-container">
           <HexCreator 

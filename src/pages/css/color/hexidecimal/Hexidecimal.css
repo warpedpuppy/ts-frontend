@@ -1,6 +1,13 @@
+.hexidecimal-page form {
+    margin: 20px auto 20px;
+    border: 1px solid grey;
+    width: 300px;
+    padding: 30px;
+    border-radius: 20px;
+}
+
 .hexidecimal-page .hex-creator-container {
     display: flex;
-    margin-top: 100px;
     width: 100%;
     justify-content: center;
     border-top: 5px solid black;

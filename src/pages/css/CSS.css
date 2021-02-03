@@ -1,5 +1,6 @@
 .css-page {
     display: flex;
+    flex-direction: column;
 }
 
 .css-page-heading {
@@ -9,14 +10,14 @@
 }
 
 .css-page-menu {
-    height: 100vh;
-    border-right: 2px solid black;
+    display: flex;
+    justify-content: space-evenly;
+    border-bottom: 2px solid black;
 }
 
 .css-page-menu div {
-    border-bottom: 1px solid black;
-    padding: 10px 10px 10px 100px;
-    text-align: right;
+    width: 33.33%;
+    text-align: center;
     cursor: pointer;
     font-weight: bold;
     transition: background-color 0.5s
@@ -29,4 +30,29 @@
 
 .css-page-content {
     width: 100%;
+}
+
+@media (min-width: 1000px) {
+    .css-page {
+        flex-direction: row;
+    }
+    .css-page-menu {
+        height: 100vh;
+        flex-direction: column;
+        justify-content: normal;
+        border-right: 2px solid black;
+    }
+    .css-page-menu div {
+        width: auto;
+        border-bottom: 1px solid black;
+        padding: 10px 10px 10px 100px;
+        text-align: right;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background-color 0.5s
+    }
+    .css-page-menu {
+        height: 100vh;
+        border-right: 2px solid black;
+    }
 }
