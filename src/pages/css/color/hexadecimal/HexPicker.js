@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import AppContext from '../../../../AppContext';
 import './HexPicker.css';
 export default class HexPicker extends Component {
   state = {
@@ -14,7 +15,8 @@ export default class HexPicker extends Component {
           backgroundColor: this.props.color
       }
       let style2 = {
-        left: `-${topValue}px`
+        left: this.context.browserWidth > 800 ? `-${topValue}px` : `0`,
+        top: this.context.browserWidth > 800 ? 0 : `-${topValue}px`
       }
     return (
       
@@ -26,3 +28,4 @@ export default class HexPicker extends Component {
     );
   }
 }
+HexPicker.contextType = AppContext;

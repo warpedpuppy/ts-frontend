@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import HexPicker from './HexPicker';
-import './Hexidecimal.css'
+import './Hexadecimal.css'
 import HexCreator from './HexCreator';
 import {Form, Button} from 'react-bootstrap'
-export default class Hexidecimal extends Component {
+import AppContext from '../../../../AppContext';
+export default class Hexadecimal extends Component {
   state = {
     hex: "FF00FF",
     boxSize: 20,
@@ -13,7 +14,8 @@ export default class Hexidecimal extends Component {
   clickHandler = (e, index, value, n) => {
     if (this.state.activeState !== 'manual') return
     let val = index * this.state.boxSize;
-    e.target.parentElement.style.left = `-${val}px`;
+    let property = this.context.browserWidth > 800 ? 'left' : 'top' ;
+    e.target.parentElement.style[property] = `-${val}px`;
     let arr = this.state.hex.split('')
     arr[parseInt(n, 10)] = value;
     let str = arr.join('')
@@ -46,16 +48,16 @@ export default class Hexidecimal extends Component {
     }
    
     let width = 6 * this.state.boxSize;
-    let backgroundWidth = 32 * this.state.boxSize;
+   
 
     let windowStyle = {
-      height: `${width}px`,
-      width: `${this.state.boxSize}px`,
+      height: this.context.browserWidth > 800 ? `${width}px` : `${this.state.boxSize}px`,
+      width:  this.context.browserWidth > 800 ? `${this.state.boxSize}px` : `${width}px`,
     }
     const {activeState } = this.state;
    
     return (
-      <div className="hexidecimal-page">
+      <div className="hexadecimal-page" style={style}>
         <Form>
             <Form.Check 
             type='radio' 
@@ -87,9 +89,8 @@ export default class Hexidecimal extends Component {
             />
             { this.state.activeState === 'random' ?   <Button size="sm" onClick={this.chooseRandomHex} variant="outline-success">choose new random color</Button> : ''}
         </Form>
-        <div  style={style} className="hex-creator-container">
+        <div className="hex-creator-container">
           <HexCreator 
-            backgroundWidth={backgroundWidth}
             currentHex={this.state.hex} 
             windowStyle={windowStyle} 
             boxSize={this.state.boxSize} 
@@ -101,3 +102,4 @@ export default class Hexidecimal extends Component {
     );
   }
 }
+Hexadecimal.contextType = AppContext;

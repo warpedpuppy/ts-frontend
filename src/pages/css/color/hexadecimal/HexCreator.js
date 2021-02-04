@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import HexPicker from './HexPicker';
 import './HexCreator.css';
+import AppContext from '../../../../AppContext';
 export default class HexCreator extends Component {
 
 
   render() { 
-   
     let containerStyle = {
-     
-        width: `${this.props.backgroundWidth}px`
+        width: this.context.browserWidth > 800 ? `${31 * this.props.boxSize}px` : `${6 * this.props.boxSize}px`,
+        height: this.context.browserWidth > 800 ? `${6 * this.props.boxSize}px` : `${31 * this.props.boxSize}px`
     }
     return (
-      <div className="hexidecimal-creator" style={containerStyle}>
-        <div className="hexidecimal-creator-inner">
-          <div className="hexidecimal-window" style={this.props.windowStyle}></div>
+      <div className="hexadecimal-creator" style={containerStyle}>
+        <div className="hexadecimal-creator-inner">
+          <div className="hexadecimal-window" style={this.props.windowStyle}></div>
           {
             this.props.currentHex.split('').map( (item, index) => {
               return <HexPicker
@@ -30,3 +30,4 @@ export default class HexCreator extends Component {
     );
   }
 }
+HexCreator.contextType = AppContext

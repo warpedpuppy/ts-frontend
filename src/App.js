@@ -5,24 +5,41 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import Menu from './components/Menu';
-
-import Hexidecimal from './pages/css/color/hexidecimal/Hexidecimal';
-import HSL from './pages/css/color/hsl/HSL';
 import CSS from './pages/css/CSS';
+import AppContext from './AppContext';
 class App extends React.Component {
 
-
+   state = {
+      browserWidth: 0,
+      browserHeight: 0
+   }
+   componentDidMount = () => {
+      this.resizeHandler();
+      window.addEventListener('resize', this.resizeHandler)
+   }
+   componentWillUnmount = () => {
+      window.removeEventListener('resize', this.resizeHandler)
+   }
+   resizeHandler = () => {
+      this.setState({
+         browserWidth: document.documentElement.clientWidth,
+         browserHeight: document.documentElement.clientHeight
+      })
+   }
+   
   render () {
-    
+   const contextValue = { 
+      browserWidth: this.state.browserWidth, 
+      browserHeight: this.state.browserHeight, 
+    }
      return (
+        <AppContext.Provider value={contextValue}>
         <BrowserRouter>
         <header><Menu /></header>
         <main>
            <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/css" component={CSS} />
-              {/* <Route exact path="/css/color/hexidecimal" component={Hexidecimal} />
-              <Route exact path="/css/color/hsl" component={HSL} /> */}
               <Route path="*" component={NotFound} />
 {/*               
                 <div className="App">
@@ -35,7 +52,7 @@ class App extends React.Component {
         
         <footer></footer>
         </BrowserRouter>
-      
+        </AppContext.Provider>
       );
   }
  

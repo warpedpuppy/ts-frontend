@@ -1,6 +1,7 @@
 .hex-picker {
     position: relative;
     display: flex;
+    flex-direction: column;
 }
 
 .hex-picker div {
@@ -17,4 +18,10 @@
 .hex-picker div:hover {
     background-color: grey;
     color: white;
+}
+
+@media (min-width: 800px) {
+    .hex-picker {
+        flex-direction: row;
+    }
 }

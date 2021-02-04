@@ -5,14 +5,14 @@ export default class HSL extends Component {
   state = {
     hueRotation: 0,
     saturation: 50,
-    lightness: 0,
+    lightness: 100,
     hueSpinObject: undefined
   }
   spinHandler = () => {
     this.setState({
         hueRotation: this.state.hueRotation <= 360 ? this.state.hueRotation + 1 : 0,
-        saturation: this.state.saturation <= 100 ? this.state.saturation + 1 : 0,
-        lightness: this.state.lightness <= 100 ? this.state.lightness + 0.5 : 0,
+        saturation: 100,
+        lightness: 50,
     })
     // document.querySelector("body").style.backgroundColor = `hsl(${this.state.hueRotation}, ${this.state.saturation}%, ${this.state.lightness}%)`
   }  
@@ -36,7 +36,7 @@ export default class HSL extends Component {
         backgroundColor: `hsl(${this.state.hueRotation}, ${this.state.saturation}%, ${this.state.lightness}%)`
     }
     return (
-      <div>
+      <div className="hsl-container" style={colorProduct}>
         <section className="hsl-controls">
             <fieldset><legend>hue</legend>
                 <div className="hue-spinner" style={hueStyle}>
@@ -48,7 +48,7 @@ export default class HSL extends Component {
                 <div className="saturation-bar">
                     <div style={saturationStyle}></div>
                 </div>
-                <div>{this.state.saturation}</div>  
+                <div>{Math.floor(this.state.saturation)}</div>  
             </fieldset>
             <fieldset><legend>lightness</legend>
                 <div className="saturation-bar">
@@ -57,7 +57,7 @@ export default class HSL extends Component {
                 <div>{Math.floor(this.state.lightness)}</div>  
             </fieldset>
         </section>
-        <div className="color-result" style={colorProduct}></div>
+        <div className="color-result" ></div>
       </div>
     );
   }
