@@ -8,8 +8,11 @@ export default class Hexadecimal extends Component {
   state = {
     hex: "FF00FF",
     boxSize: 20,
-    activeState: 'manual',
+    activeState: 'change',
     timerObject: undefined
+  }
+  componentDidMount = () => {
+    this.change({target: {value: this.state.activeState}})
   }
   clickHandler = (e, index, value, n) => {
     if (this.state.activeState !== 'manual') return
