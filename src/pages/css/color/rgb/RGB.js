@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
 import './RGB.css'
-import RBGSlider from './RBGSlider';
 export default class RGB extends Component {
   state = {r:0, g: 0, b: 0}
   arr = [...Array(251).keys()]
   componentDidMount = () => {
       this.setState({r: this.random(), g: this.random(), b: this.random()})
   }
-  changeColor = (id, val) => {
-      console.log(val, id)
-      let newObj = Object.assign(this.state)
-      newObj[id] = parseInt(val, 10)
-     this.setState(newObj, () => console.log(this.state))
-     // this.setState({rgb: })
+  changeColor = (e) => {
+     let obj = {};
+     obj[e.target.name] = parseInt(e.target.value, 10);
+     this.setState(obj)
+     
   }
   random = () =>{
       return Math.floor(Math.random() * 250)
@@ -23,11 +21,16 @@ export default class RGB extends Component {
         backgroundColor: `rgb(${r},${g},${b})`
     }
     return (
-      <div> RGB 
-          <RBGSlider arr={this.arr} id="r" color={r} changeColor={this.changeColor} />
-          <RBGSlider arr={this.arr} id="g" color={g} changeColor={this.changeColor} />
-          <RBGSlider arr={this.arr} id="b" color={b} changeColor={this.changeColor} />
-          <div className="rgb-product" style={style}></div>
+      <div className="rgb-page" style={style}> 
+        <div className="rgb-controls">
+          <h4>RGB</h4>
+          <label>red:</label>
+          <input value={r} type='number' min="0" max="255" name="r" onChange={this.changeColor} />
+          <label>green:</label>
+          <input value={g} type='number' min="0" max="255" name="g" onChange={this.changeColor} />
+          <label>blue:</label>
+          <input value={b} type='number' min="0" max="255" name="b" onChange={this.changeColor} />
+        </div>
       </div>
     );
   }

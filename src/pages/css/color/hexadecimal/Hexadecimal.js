@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import HexPicker from './HexPicker';
 import './Hexadecimal.css'
 import HexCreator from './HexCreator';
 import {Form, Button} from 'react-bootstrap'
@@ -29,7 +28,7 @@ export default class Hexadecimal extends Component {
         this.chooseRandomHex();
         clearInterval(this.state.timerObject)
       } else if (e.target.value === 'change') {
-        let obj = setInterval(() => this.chooseRandomHex(), 1000)
+        let obj = setInterval(() => this.chooseRandomHex(), 2000)
         this.setState({timerObject: obj})
       } else {
         clearInterval(this.state.timerObject)
@@ -78,7 +77,7 @@ export default class Hexadecimal extends Component {
             id='change'
             onChange={this.change}
             checked={activeState === 'change' ? 'checked' : ''} 
-            label={`change every second`} 
+            label={`change every two seconds`} 
             />
 
             <Form.Check 

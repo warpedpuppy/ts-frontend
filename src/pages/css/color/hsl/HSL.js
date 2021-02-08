@@ -9,7 +9,7 @@ export default class HSL extends Component {
     hueSpinObject: undefined
   }
   componentDidMount = () => {
-    this.state.hueSpinObject = setInterval(this.spinHandler, 50)
+    this.setState({hueSpinObject: setInterval(this.spinHandler, 50)})
   }
   componentWillUnmount = () => {
     clearInterval(this.state.hueSpinObject);
@@ -20,6 +20,11 @@ export default class HSL extends Component {
     })
     // document.querySelector("body").style.backgroundColor = `hsl(${this.state.hueRotation}, ${this.state.saturation}%, ${this.state.lightness}%)`
   }  
+  changeHandler = (e, str) => {
+    let obj ={};
+    obj[str] = e.target.value;
+    this.setState(obj)
+  }
 
   render() {
     let hueStyle = {
@@ -47,22 +52,30 @@ export default class HSL extends Component {
                 <div className="saturation-bar">
                     <div style={saturationStyle}></div>
                 </div>
-                <select>
+                <select onChange={e => this.changeHandler(e, 'saturation')}>
                   {
                     [...Array(100).keys()].map( item => {
                       let adjusted = item + 1;
                       let selected = adjusted === this.state.saturation ? true : false
-                      return <option value={adjusted} key={adjusted} selected={selected}>{adjusted}</option>
+                      return <option defaultValue={adjusted} key={adjusted} selected={selected}>{adjusted}</option>
                     })
                   }
                 </select>
-                <div>{Math.floor(this.state.saturation)}</div>  
+            
             </fieldset>
             <fieldset><legend>lightness</legend>
                 <div className="saturation-bar">
                     <div style={lightnessStyle}></div>
                 </div>
-                <div>{Math.floor(this.state.lightness)}</div>  
+                <select onChange={e => this.changeHandler(e, 'lightness')}>
+                  {
+                    [...Array(100).keys()].map( item => {
+                      let adjusted = item + 1;
+                      let selected = adjusted === this.state.lightness ? true : false
+                      return <option defaultValue={adjusted} key={adjusted} selected={selected}>{adjusted}</option>
+                    })
+                  }
+                </select>
             </fieldset>
         </section>
         <div className="color-result" ></div>
