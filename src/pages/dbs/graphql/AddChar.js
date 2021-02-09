@@ -1,18 +1,21 @@
 import React from 'react'
 import { gql, useMutation } from '@apollo/client';
+import { Button } from 'react-bootstrap';
+import Utils from '../../../services/Utils';
+import Faker from 'faker';
 export default function AddChar(props) {
 
     const ADD_CHARS = gql`
     mutation createCharacter {
         createCharacter(input: {
-            name: "testName${Math.floor(Math.random()*1000).toString()}",
-            color: "purple"
+            name: "${Faker.name.findName()}",
+            color: "${ Utils.randomHex() }"
         }) {
             name
             color
         }
     }`;
-    const [addChar, { data }] = useMutation(ADD_CHARS, {
+    const [addChar] = useMutation(ADD_CHARS, {
         refetchQueries: [
             {
                 query: props.GET_CHARS
@@ -22,7 +25,7 @@ export default function AddChar(props) {
 
     return (
         <div>
-            <button onClick={e => addChar()}>click me</button>
+            <Button onClick={e => addChar()}>click me to add a character</Button>
         </div>
     )
 }

@@ -12,7 +12,6 @@
 .page-menu {
     display: flex;
     justify-content: space-evenly;
-    border-bottom: 2px solid black;
 }
 
 .page-menu div {
@@ -45,7 +44,10 @@
         width: 300px;
         flex-direction: column;
         justify-content: normal;
-        border-right: 2px solid black;
+    }
+    .page-content {
+        border-left: 2px solid black;
+        padding-bottom: 100px;
     }
     .page-menu div {
         width: auto;
@@ -58,6 +60,5 @@
     }
     .page-menu {
         height: 100vh;
-        border-right: 2px solid black;
     }
 }
