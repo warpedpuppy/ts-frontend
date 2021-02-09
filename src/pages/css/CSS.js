@@ -1,46 +1,21 @@
 import React, { Component } from 'react';
 import './CSS.css';
-import Hexadecimal from './color/hexadecimal/Hexadecimal';
-import HSL from './color/hsl/HSL';
-import RGB from './color/rgb/RGB';
+import Color from './color/Color';
+import Layout from './layout/Layout';
 export default class CSS extends Component {
-  state = {
-    active: 'hexadecimal',
-    buttons: ['hexadecimal', 'hsl', 'rgb']
-  }
-  onChange = (e) => {
-   this.setState({active: e.target.innerHTML})
+  state = {active: 'color'}
+  clickHandler = (e) => {
+    this.setState({active: e.target.innerHTML})
   }
   render() {
-
-    let active;
-    if (this.state.active === 'hexadecimal') {
-      active = <Hexadecimal />
-    } else if (this.state.active === 'hsl') {
-      active = <HSL />
-    } else {
-      active = <RGB />
-    }
+    let active = this.state.active === 'color' ?  <Color />  : <Layout /> ;
     return (
-      <>
-      <h1 className="css-page-heading">color units</h1>
-      <div className="css-page"> 
-     
-        <aside className="css-page-menu">
-          {
-            this.state.buttons.map( (item, index) => {
-              console.log("here", item, this.state.active);
-              return <div key={index} className={ item === this.state.active ? `active` : `` } onClick={this.onChange}>{item}</div>
-            })
-          }
-          
-        </aside>
-        <main className="css-page-content">
-          { active }
-        </main>
-      
-       </div>
-       </>
+      <section className="css-page">
+        <h1>css</h1>
+        <div className="css-buttons" onClick={this.clickHandler}>color</div>
+        <div className="css-buttons" onClick={this.clickHandler}>layout</div>
+        { active }
+      </section>
     );
   }
 }
