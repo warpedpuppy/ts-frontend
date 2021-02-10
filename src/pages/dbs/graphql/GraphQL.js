@@ -5,6 +5,7 @@ import DisplayChars from './DisplayChars';
 import Config from '../../../config';
 import Utils from '../../../services/Utils';
 import Faker from 'faker';
+import Mutations from './services/mutations';
 export default class GraphQL extends Component {
 
     constructor(){
@@ -14,6 +15,7 @@ export default class GraphQL extends Component {
           uri: `${Config.API_URL}/graphql`,
           cache: new InMemoryCache()
         });
+        Mutations.setClient(this.client);
       }
 
       componentDidMount = async () => {
@@ -55,30 +57,12 @@ export default class GraphQL extends Component {
           console.error(e)
         } 
       }
-
-      deleteCharacter = async (id) => {
-        console.log(id)
-      
-        try {
-          let result = await this.client.mutate({
-          mutation: gql`
-            mutation deleteCharacter {
-              deleteCharacter(input:{
-                id:  "${id}"
-              }) 
-            }`
-        })
-        console.log(result)
-      
-      } catch(e) {
-        console.error(e)
-      } 
-      }
+    
 
   render() {
     return (
         <ApolloProvider client={this.client}>
-        { this.state.loaded ?  <DisplayChars deleteCharacter={this.deleteCharacter} /> : ''}
+        { this.state.loaded ?  <DisplayChars client={this.client} editCharacter={this.editCharacter} /> : ''}
         </ApolloProvider>
     );
   }
