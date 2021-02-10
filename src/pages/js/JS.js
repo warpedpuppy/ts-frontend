@@ -4,7 +4,7 @@ import '../../sitewide-css/page-layout-with-menu.css';
 export default class DBS extends Component {
   state = {
     active: 'operators',
-    buttons: ['operators', 'isNaN']
+    buttons: ['operators', 'isNaN', 'current target v target']
   }
   onChange = (e) => {   
    this.setState({active: e.target.innerHTML})

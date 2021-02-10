@@ -23,9 +23,10 @@ export default function AddChar(props) {
         ]
     });
 
+
     return (
         <div>
-            <Button onClick={e => addChar()}>click me to add a character</Button>
+            <Button onClick={e => addChar()}>create</Button>
         </div>
     )
 }
