@@ -1,26 +1,20 @@
 import React from 'react'
-import Mutations from './services/mutations';
 export default class EditChar extends React.Component {
    
 
-    constructor (props) {
-        super(props)
-        this.state = {name: ''}
-    }
-    componentDidMount = () => {
-        this.setState({name: this.props.name})
-    }
-    onChangeHandler = (e) => {
-        this.setState({name: e.target.name.value})
+    updateName = async (e) => {
+          e.preventDefault();
+          let bool = await this.props.updateCharacter(this.props.id, e.target.name.value, this.props.color) 
+          if (bool) {
+            let classList = e.target.parentElement.parentElement.classList;
+            if (!classList.contains("edit")){classList.add('edit')} else {classList.remove('edit')}
+          }
     }
     render () {
         return (
-            <form onSubmit={ e => {
-                e.preventDefault();
-                Mutations.updateName(this.props.id, e.target.name.value)
-            }}>
-                <div>name:{this.state.name} </div>
-                <input type="text" name="name" value={this.state.name} onChange={this.onChangeHandler} />
+            <form onSubmit={this.updateName}>
+                <div>name:{this.props.name} </div>
+                <input type="text" name="name" defaultValue={this.props.name} />
                 <input type="submit"></input>
             </form>
         )

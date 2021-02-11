@@ -1,52 +1,64 @@
 import React from 'react';
-import { useQuery, gql, NetworkStatus } from '@apollo/client';
-import AddChar from './AddChar';
-
-import DeleteChar from './DeleteChar';
-import EditChar from './EditChar';
-import {Button} from 'react-bootstrap';
-import './DisplayChars.css';
 import Mutations from './services/mutations';
+import EditChar from './EditChar';
+import { Button } from 'react-bootstrap';
+import './DisplayChars.css';
 export default class DisplayChars extends React.Component {
-
-    state = {characters: []}
-
-    componentDidMount = async () => {
-        let result = await Mutations.getChars();
-        console.log(result)
-       this.setState({characters: result.data.characters});
-
+    state = {characters: []};
+    addCharacter = async () => {
+      try {
+        let result = await Mutations.addChar(); 
+        this.setState({characters: result})
+      } catch(e) {
+        console.error(e)
+      } 
+    }
+    deleteCharacter = async (id) => {
+      try {
+       let result = await Mutations.deleteChar(id); 
+       this.setState({characters: result})
+      } catch(e) {
+        console.error(e)
+      } 
+    }
+    updateCharacter = async (id, name, color) => {
+      try {
+        let result = await Mutations.updateName(id, name, color);
+        this.setState({characters: result});
+        return result ? true : false;
+      } catch (e) {
+          console.error(e)
+      }
     }
 
-
-   edit (e, id) {
+   showEditForm (e) {
       e.preventDefault();
       let classList = e.target.parentElement.parentElement.classList;
       if (!classList.contains("edit")){classList.add('edit')} else {classList.remove('edit')}
-      //props.editCharacter(e, id)
     }
-   render(){
+
+   render () {
+    const { characters } = this.state;
     return (
         <>
-          {/* <Button onClick={() => refetch()}>Refetch!</Button> */}
-          <AddChar />
+          <Button onClick={e => this.addCharacter()}>create</Button>
+          <div className="graphql-fish-tank"></div>
           <div className="character-grid">
-            {this.state.characters.map(c => {
-              console.log("HERE")
-            let style={backgroundColor: `${c.color}`}
-            return (
-              <div className="character" style={style} key={c.id} >
-               <div className="character-name"> {c.name} </div>
-                <div>
-                  <DeleteChar id={c.id} />
-                  <Button onClick={(e) => this.edit(e, c.id)}>edit</Button>
-                  <EditChar client={this.props.client} id={c.id} name={c.name} />
-                </div>
-              </div> )
-            })
+            {characters.map(c => {
+              let style={backgroundColor: `${c.color}`}
+              return (
+                <div className="character" style={style} key={c.id} >
+                <div className="character-name"> {c.name} </div>
+                  <div>
+                    <Button onClick={ e => this.deleteCharacter(c.id) }>delete</Button>
+                    <Button onClick={this.showEditForm}>edit</Button>
+                    <EditChar updateCharacter={this.updateCharacter} {...c}/>
+                  </div>
+                </div> )
+              })
             }
           </div>
         </>
         )
-          }
+    }
 }

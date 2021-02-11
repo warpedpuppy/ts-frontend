@@ -18,13 +18,12 @@ const Mutations = {
                 }
               }`
           })
-          console.log(result)
           return result;
         } catch(e) {
-          console.error(e)
+          // console.error(e)
         } 
     },
-    addChar: async function(id, name) {
+    addChar: async function() {
         try {
             let result = await this.client.mutate({
             mutation: gql`
@@ -33,55 +32,70 @@ const Mutations = {
                     name: "${Faker.name.findName()}",
                     color: "${ Utils.randomHex() }"
                 }) {
+                    id
                     name
                     color
                 }
             }`
           })
-          console.log(result)
+          return result.data.createCharacter;
         } catch(e) {
-          console.error(e)
+          // console.error(e)
         } 
     },
-    updateName: async function(id, name) {
+    updateName: async function(id, name, color) {
         try {
             let result = await this.client.mutate({
-            mutation: gql`
-            mutation updateCharacter {
-                updateCharacter(input: {
-                    id:  "${id}",
-                    name: "${name}", 
-                    color: "orange"
-                    }) {
-                    id
-                    name
-                    color
-                    }
-            }`
-          })
-          console.log(result)
+                mutation: gql`
+                mutation updateCharacter {
+                    updateCharacter(input: {
+                          id:  "${id}",
+                          name: "${name}", 
+                          color: "${color}"
+                        }) {
+                          id
+                          name
+                          color
+                        }
+                }`
+              })
+          return result.data.updateCharacter;
         } catch(e) {
-          console.error(e)
+          // console.error("update error", e)
         } 
     },
     deleteChar: async function (id) {
         try {
             let result = await this.client.mutate({
-            mutation: gql`
-            mutation deleteCharacter {
-                deleteCharacter(input:{
-                id:  "${id}"
-                }) {
-                id
-                name
-                color
-                }
-            }`
-          })
-          console.log(result)
+                mutation: gql`
+                mutation deleteCharacter {
+                    deleteCharacter(input:{
+                    id:  "${id}"
+                    }) {
+                    id
+                    name
+                    color
+                    }
+                }`
+              })
+           return result.data.deleteCharacter;
         } catch(e) {
-          console.error(e)
+          // console.error(e)
         } 
-    }
+    },
+    deleteAllCharacters: async function() {
+        try {
+            return await this.client.mutate({
+            mutation: gql`
+                mutation deleteAllCharacters {
+                  deleteAllCharacters(input:{
+                    empty:  true
+                  }) 
+                }`
+          })
+        } catch(e) {
+          // console.error(e)
+        } 
+      }
 }
 export default Mutations;

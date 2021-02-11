@@ -41,10 +41,10 @@ class App extends React.Component {
             <main>
                <Switch>
                   <Route exact path="/" component={ Home } />
-                  <Route exact path="/css" component={ CSS } />
-                  <Route exact path="/dbs" component={ DBS } />
-                  <Route exact path="/js" component={ JS } />
-                  <Route path="*" component={ NotFound } />
+                   <Route exact path="/css" component={ CSS } />
+                 <Route exact path="/dbs" component={ DBS } />
+                 <Route exact path="/js" component={ JS } />
+              <Route path="*" component={ NotFound } /> 
                </Switch>
             </main>
             <footer></footer>
