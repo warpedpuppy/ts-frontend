@@ -8,7 +8,7 @@ export default class DisplayChars extends React.Component {
     addCharacter = async () => {
       try {
         let result = await Mutations.addChar(); 
-        this.setState({characters: result})
+       this.setState({characters: result})
       } catch(e) {
         console.error(e)
       } 
