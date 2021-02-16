@@ -1,39 +1,30 @@
 import React, { Component } from 'react';
 import '../../sitewide-css/page-layout-with-menu.css';
-import GraphQL from './graphql/GraphQL';
-import Mongo from './mongo/Mongo';
+import Submenu from '../../components/SubMenu';
+import CRUD from './CRUD';
+import JoinPopulate from './JoinPopulate';
 export default class DBS extends Component {
   state = {
-    active: 'mongo',
-    buttons: ['graphql', 'postresql', 'mongo']
+    active: 'crud',
+    categories: ['crud', 'join/populate']
   }
   onChange = (e) => {   
+    console.log(e.target.innerHTML);
    this.setState({active: e.target.innerHTML})
   }
+
   render() {
 
     let active;
-    if (this.state.active === 'graphql') {
-      active = <GraphQL />
-    } else if (this.state.active === 'mongo') {
-      active = <Mongo />
+    if (this.state.active === 'crud') {
+      active = <CRUD />
+    } else if (this.state.active === 'join/populate') {
+      active = <JoinPopulate />
     }
     return (
       <>
-      <h1 className="page-heading">dbs</h1>
-      <div className="page"> 
-        <aside className="page-menu">
-          {
-            this.state.buttons.map( (item, index) => {
-              return <div key={index} className={ item === this.state.active ? `active` : `` } onClick={this.onChange}>{item}</div>
-            })
-          }
-        </aside>
-        <main className="page-content">
-          { active }
-        </main>
-      
-       </div>
+      <Submenu title={`dbs - ${this.state.active}`} menuItems={this.state.categories} onChange={this.onChange} />
+      { active }
        </>
     );
   }
