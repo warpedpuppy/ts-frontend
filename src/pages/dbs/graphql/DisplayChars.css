@@ -1,27 +1,42 @@
-.character-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 30px;
+#pixi-space {
+    overflow: hidden;
 }
 
-.character-grid div {
-    border: 5px solid grey;
-    border-radius: 10px;
+.edit-form {
+    position: relative;
+    margin: 20px auto;
     padding: 20px;
-    color: white;
+    border: 2px solid lightgrey;
+    border-radius: 20px;
+    display: inline-block
+}
+
+.edit-form .close-button {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-weight: bold;
+    background-color: #FF0000;
+    color: white;
+    border-radius: 3px;
     cursor: pointer;
 }
 
-.character-name {
-    background: black;
-    padding: 10px;
-}
-
-.character form {
-    display: none;
-}
-
-.character.edit form {
+ol.show-all {
     display: block;
+    margin: 0 auto;
+}
+
+ol.show-all li {
+    display: block;
+    margin-left: 100px;
+}
+
+ol.show-all ul {
+    margin: 10px;
 }

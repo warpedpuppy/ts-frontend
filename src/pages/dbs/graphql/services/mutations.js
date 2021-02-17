@@ -3,6 +3,10 @@ import Faker from 'faker';
 import Utils from '../../../../services/Utils';
 const Mutations = {
     client: undefined,
+    userid: undefined,
+    setUserID: function (id) {
+      this.userid = id;
+    },
     setClient: function (client) {
         this.client = client;
     },
@@ -11,10 +15,13 @@ const Mutations = {
             let result = await this.client.mutate({
             mutation: gql`
             query GetCharacters {
-                characters {
+                characters(input: {
+                  userid:"${this.userid}",
+                })  {
                   id
                   name
                   color
+
                 }
               }`
           })
@@ -29,6 +36,7 @@ const Mutations = {
             mutation: gql`
             mutation createCharacter {
                 createCharacter(input: {
+                    userid: "${this.userid}",
                     name: "${Faker.name.findName()}",
                     color: "${ Utils.randomHex() }"
                 }) {
@@ -43,7 +51,7 @@ const Mutations = {
           // console.error(e)
         } 
     },
-    updateName: async function(id, name, color) {
+    updateChar: async function(id, name, color) {
         try {
             let result = await this.client.mutate({
                 mutation: gql`
@@ -70,7 +78,7 @@ const Mutations = {
                 mutation: gql`
                 mutation deleteCharacter {
                     deleteCharacter(input:{
-                    id:  "${id}"
+                     id:  "${id}"
                     }) {
                     id
                     name
@@ -89,6 +97,7 @@ const Mutations = {
             mutation: gql`
                 mutation deleteAllCharacters {
                   deleteAllCharacters(input:{
+                    userid: "${this.userid}",
                     empty:  true
                   }) 
                 }`
