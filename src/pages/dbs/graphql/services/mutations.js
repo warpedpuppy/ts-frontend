@@ -19,9 +19,10 @@ const Mutations = {
                   userid:"${this.userid}",
                 })  {
                   id
-                  name
-                  color
-
+                  character_name
+                  character_color
+                  createdAt
+                  updatedAt
                 }
               }`
           })
@@ -37,12 +38,12 @@ const Mutations = {
             mutation createCharacter {
                 createCharacter(input: {
                     userid: "${this.userid}",
-                    name: "${Faker.name.findName()}",
-                    color: "${ Utils.randomHex() }"
+                    character_name: "${Faker.name.findName()}",
+                    character_color: "${ Utils.randomHex() }"
                 }) {
                     id
-                    name
-                    color
+                    character_name
+                    character_color
                     createdAt
                     updatedAt
                 }
@@ -60,12 +61,12 @@ const Mutations = {
                 mutation updateCharacter {
                     updateCharacter(input: {
                           id:  "${id}",
-                          name: "${name}", 
-                          color: "${color}"
+                          character_name: "${name}", 
+                          character_color: "${color}"
                         }) {
                           id
-                          name
-                          color
+                          character_name
+                          character_color
                         }
                 }`
               })
@@ -81,11 +82,7 @@ const Mutations = {
                 mutation deleteCharacter {
                     deleteCharacter(input:{
                      id:  "${id}"
-                    }) {
-                    id
-                    name
-                    color
-                    }
+                    }) 
                 }`
               })
            return result.data.deleteCharacter;

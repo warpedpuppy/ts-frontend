@@ -14,8 +14,8 @@ export default function  SubMenu (props) {
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse className="justify-content-end">
                 {
-                    props.menuItems.map( item => {
-                        return <Nav.Link onClick={clickHandler}>{item}</Nav.Link> 
+                    props.menuItems.map( (item, index) => {
+                        return <Nav.Link key={index} onClick={clickHandler}>{item}</Nav.Link> 
                     })
                 }
       

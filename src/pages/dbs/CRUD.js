@@ -13,7 +13,7 @@ export default class CRUD extends React.Component {
     render() {
         let active;
         if (this.state.active === 'graphql') {
-          active = <GraphQL />
+          active = <GraphQL client={this.props.client} />
         } else if (this.state.active === 'mongo') {
           active = <Mongo />
         } else if (this.state.active === 'postgresql') {

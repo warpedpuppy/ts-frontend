@@ -1,0 +1,15 @@
+.character-module {
+    margin: 20px;
+    padding: 20px;
+    border: 2px solid lightgrey;
+    border-radius: 10px;
+}
+
+.character-module ul {
+    list-style-type: none;
+}
+
+.character-module ul li {
+    background-color: grey;
+    color: white;
+}

@@ -5,6 +5,7 @@ import Faker from 'faker';
 import { v4 as uuidv4 } from 'uuid';
 import Utils from '../../../services/Utils';
 export default class PostgresQL extends Component {
+  state = {characters: [], activeCharacter: undefined}
 
   componentDidMount = () => {
     this.uuid = uuidv4();
@@ -43,10 +44,17 @@ export default class PostgresQL extends Component {
     let response = await fetch(`${Config.API_URL}/postgresql-restful/${this.uuid}`)
     let responseJson = await response.json();
     console.log(responseJson)
+  
+   this.setState({characters: responseJson.result, activeCharacter: responseJson.result[0]})
   }
-  update = async (e, obj) => {
+  update = async (e) => {
     e.preventDefault();
-
+    if (!this.state.activeCharacter) return;
+    let obj = {
+      id: this.state.activeCharacter.id,
+      character_color: Utils.randomHex(),
+      character_name: this.state.activeCharacter.character_name
+    }
     let response = await fetch(`${Config.API_URL}/postgresql-restful`, {
       method: "PUT",
       headers: {
@@ -55,11 +63,13 @@ export default class PostgresQL extends Component {
       body: JSON.stringify(obj)
     })
     let responseJson = await response.json();
-    console.log(responseJson)
   }
-  delete = async (e, obj) => {
+  delete = async (e) => {
     e.preventDefault();
-  
+    if (!this.state.activeCharacter) return;
+    let obj = {
+      id: this.state.activeCharacter.id
+    }
     let response = await fetch(`${Config.API_URL}/postgresql-restful`, {
       method: "DELETE",
       headers: {
@@ -68,13 +78,27 @@ export default class PostgresQL extends Component {
       body: JSON.stringify(obj)
     })
     let responseJson = await response.json();
-    console.log(responseJson)
+    console.log(obj.id, responseJson)
   }
   
   render() {
-      console.log("postgres")
     return (
+      <>
       <CrudButtons create={this.create} read={this.read} update={this.update} delete={this.delete} />
+      <ul>
+        {
+          this.state.characters.map ( (item, index) => {
+            return (<li key={index}>
+              <ul>
+                <li>{item.id}</li>
+                <li>{item.character_color}</li>
+                <li>{item.character_name}</li>
+              </ul>
+            </li>)
+          })
+        }
+      </ul>
+      </>
     );
   }
 }
