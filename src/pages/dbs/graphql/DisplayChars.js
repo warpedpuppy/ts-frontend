@@ -7,7 +7,7 @@ import Utils from '../../../services/Utils';
 import { v4 as uuidv4 } from 'uuid';
 export default class DisplayChars extends React.Component {
     state = {activeCharacter: undefined, instructions: '', mode: undefined, getAll: []};
-    canvasWidth = 600;
+    canvasWidth = 800;
     canvasHeight = 200;
     characters = [];
     stage = undefined;
@@ -25,29 +25,33 @@ export default class DisplayChars extends React.Component {
       this.characters = null;
       this.app.destroy();
     }
-    cosWave (startPoint, differential, speed) {
-      // place in an onEnterFrame Handler0.0015
   
-      const currentDate = new Date()
-      return startPoint + (Math.cos(currentDate.getTime() * speed) * differential)
-    }
     moveCharacters = () => {
       if (this.state.activeCharacter) return;
       this.characters.forEach( character => {
-        character.x += character.vx;
+        if (this.state.mode !== 'update') {
+             character.x += character.vx;
         character.y += character.vy;
-        character.points[0].y = this.cosWave(0, 40, 0.01)
-        character.points[2].y = this.cosWave(0, 40, 0.01)
-        character.points[4].y = this.cosWave(0, -3, 0.01)
+        }
+     
+        character.rotation = Math.atan2(character.vy, character.vx)
+        character.points[0].y = Utils.cosWave(0, 10, 0.01)
+        character.points[2].y = Utils.cosWave(0, 15, 0.01)
+        character.points[4].y = Utils.cosWave(0, -3, 0.01)
        
   
-        if (character.x > this.canvasWidth || character.x < 0) character.vx *= -1;
-        if (character.y > this.canvasHeight || character.y < 0) character.vy *= -1;
+        if ((character.x > this.canvasWidth || character.x < 0) ||
+       (character.y > this.canvasHeight || character.y < 0) ){character.vy *= -1;character.vx *= -1;}
       })
     }
     addCharacter = async () => {
       try {
         let character = await Mutations.addChar(); 
+        let arr = [];
+        for (let key in character) {
+          arr.push(`<li>${key}} ${character[key]}</li>`)
+        }
+        this.setState({getAll: [character]})
 
         let points = [];
         for (let i = 0; i < 6; i++) {
@@ -56,15 +60,14 @@ export default class DisplayChars extends React.Component {
         let texture = new PIXI.Texture.from('/bmps/transparentKoi.png')
         let newItem = new PIXI.SimpleRope(texture, points)
         newItem.points = points;
-        //let newItem = new PIXI.Sprite.from('/bmps/transparentKoi.png');
         newItem.tint = `0x${character.color.substring(1)}`
         newItem.name = character.name;
         newItem.id = character.id;
         newItem.buttonMode = true;
         newItem.interactive = true;
         newItem.on('click', e => this.chooseCharacter(e))
-       newItem.scale.set(0.5)
-      //  newItem.anchor.set(0.5);
+        newItem.scale.set(0.5)
+        newItem.pivot.set(0.5)
         let xVal =  Math.random() * this.canvasWidth;
         let yVal = Math.random() * this.canvasHeight;
         newItem.vx = 1;
@@ -96,8 +99,9 @@ export default class DisplayChars extends React.Component {
       }  else if (this.state.mode === 'update') {
         this.setState({activeCharacter: e.target, instructions: ''})
         let temp = this.state.activeCharacter;
+        temp.rotation = 0;
         temp.scale.set(1);
-        temp.x = this.canvasWidth / 2;
+        temp.x = (this.canvasWidth / 2) - (temp.width / 2);
         temp.y = this.canvasHeight / 2;
       }
     
@@ -113,7 +117,6 @@ export default class DisplayChars extends React.Component {
     }
     getCharacters = async () => {
       let result = await Mutations.getChars();
-      console.log(result, result.characters)
       if (!result.data.characters.length) {
         this.setState({instructions: "db is empty!"})
       } else {
@@ -151,11 +154,15 @@ export default class DisplayChars extends React.Component {
       }
     }
     cancelEdit = (e) => {
-      e.preventDefault();
-      this.state.activeCharacter.scale.set(0.5);
-      this.setState({activeCharacter: undefined})
+      if (e) e.preventDefault();
+      if (this.state.activeCharacter) {
+         this.state.activeCharacter.scale.set(0.5);
+          this.setState({activeCharacter: undefined, mode: ''})
+      }
+     
     }
     crudButtonsHandler = (e) => {
+      this.cancelEdit();
       let text = e.target.innerHTML;
       this.setState({instructions: '', mode: '', getAll: []})
       if (text === 'Create') {
@@ -191,22 +198,25 @@ export default class DisplayChars extends React.Component {
       return (
         <li key={index}>
           <ul>
-          <li>{item.id}</li>
-            <li>{item.name}</li>
-            <li style={tempStyle}>{item.color}</li>
+            <li>character: </li>
+            <li>name: {item.name}</li>
+            <li style={tempStyle}>color: {item.color}</li>
+            <li style={tempStyle}>created at: {item.createdAt}</li>
+            <li style={tempStyle}>updated at: {item.updatedAt}</li>
           </ul>
         </li>
       )
     })
     return (
         <>
-          <Button onClick={this.crudButtonsHandler}>Create</Button>
-          <Button variant="success" onClick={this.crudButtonsHandler}>Read</Button>
-          <Button variant="warning" onClick={this.crudButtonsHandler}>Update</Button>
-          <Button variant="danger" onClick={this.crudButtonsHandler}>Delete</Button>
+          <div className="button-group">
+            <Button onClick={this.crudButtonsHandler}>Create</Button>
+            <Button variant="success" onClick={this.crudButtonsHandler}>Read</Button>
+            <Button variant="warning" onClick={this.crudButtonsHandler}>Update</Button>
+            <Button variant="danger" onClick={this.crudButtonsHandler}>Delete</Button>
+          </div>
           <div id="pixi-space" style={style}></div>
-          <div>{ instructions }</div>
-
+          <div className="instructions">{ instructions }</div>
           <ol className="show-all">{getAll}</ol>
           <div className="edit-form" style={formStyle}>
             <div className="close-button" onClick={this.cancelEdit}>x</div>

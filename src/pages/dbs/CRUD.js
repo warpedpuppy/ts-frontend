@@ -1,10 +1,11 @@
 import React from 'react'
 import GraphQL from './graphql/GraphQL';
 import Mongo from './mongo/Mongo';
+import PostgresQL from './postresql/PostgresQL';
 export default class CRUD extends React.Component {
     state = {
         active: 'graphql',
-        buttons: ['graphql', 'postresql', 'mongo']
+        buttons: ['graphql', 'postgresql', 'mongo']
       }
       onChange = (e) => {   
        this.setState({active: e.target.innerHTML})
@@ -15,6 +16,8 @@ export default class CRUD extends React.Component {
           active = <GraphQL />
         } else if (this.state.active === 'mongo') {
           active = <Mongo />
+        } else if (this.state.active === 'postgresql') {
+          active = <PostgresQL />
         }
          return (
             <div className="page"> 

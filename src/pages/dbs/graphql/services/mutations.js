@@ -43,6 +43,8 @@ const Mutations = {
                     id
                     name
                     color
+                    createdAt
+                    updatedAt
                 }
             }`
           })

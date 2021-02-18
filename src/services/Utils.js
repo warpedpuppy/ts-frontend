@@ -6,6 +6,10 @@ const Utils = {
             returnString += this.hexArray[Math.floor(Math.random()*this.hexArray.length)]
         }
         return returnString;
+    },
+    cosWave (startPoint, differential, speed) {
+        const currentDate = new Date()
+        return startPoint + (Math.cos(currentDate.getTime() * speed) * differential)
     }
 }
 export default Utils;

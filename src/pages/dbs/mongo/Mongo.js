@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
 import MongoServices from './services/mongo-services';
-
+import CrudButtons from '../components/CrudButtons';
 export default class Mongo extends Component {
 
   state = {characters: []}
@@ -29,8 +29,7 @@ export default class Mongo extends Component {
   render() {
     return (
         <>
-      <div> Mongo </div>
-        <Button onClick={this.create}>create character</Button>
+      <CrudButtons />
         <ul>
             {
                 this.state.characters.map ( (c, i) => {

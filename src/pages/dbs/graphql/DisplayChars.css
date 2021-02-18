@@ -2,6 +2,29 @@
     overflow: hidden;
 }
 
+.button-group {
+    display: flex;
+    justify-content: center;
+}
+
+.button-group button {
+    margin: 10px;
+}
+
+#pixi-space {
+    margin: 0 auto;
+}
+
+#pixi-space canvas {
+    display: block;
+    margin: 0 auto;
+}
+
+.instructions {
+    text-align: center;
+    font-weight: bold;
+}
+
 .edit-form {
     position: relative;
     margin: 20px auto;
