@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 import Faker from 'faker';
-import Utils from '../../../../services/Utils';
+import Utils from '../../../../../services/Utils';
 const Mutations = {
     client: undefined,
     userid: undefined,
@@ -10,7 +10,7 @@ const Mutations = {
     setClient: function (client) {
         this.client = client;
     },
-    getChars: async function (id) {
+    read: async function (id) {
         try {
             let result = await this.client.mutate({
             mutation: gql`
@@ -31,7 +31,7 @@ const Mutations = {
           // console.error(e)
         } 
     },
-    addChar: async function() {
+    create: async function() {
         try {
             let result = await this.client.mutate({
             mutation: gql`
@@ -54,7 +54,7 @@ const Mutations = {
           // console.error(e)
         } 
     },
-    updateChar: async function(id, name, color) {
+    update: async function(id, name, color) {
         try {
             let result = await this.client.mutate({
                 mutation: gql`
@@ -75,7 +75,7 @@ const Mutations = {
           // console.error("update error", e)
         } 
     },
-    deleteChar: async function (id) {
+    delete: async function (id) {
         try {
             let result = await this.client.mutate({
                 mutation: gql`

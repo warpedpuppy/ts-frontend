@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import '../../sitewide-css/page-layout-with-menu.css';
 import Submenu from '../../components/SubMenu';
-import CRUD from './CRUD';
+import CRUD from './crud/CRUD';
 import JoinPopulate from './JoinPopulate';
-import Config from '../../config';
 
-import Mutations from './graphql/services/mutations';
 export default class DBS extends Component {
   state = {
     active: 'crud',

@@ -1,0 +1,9 @@
+#pixi-space {
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+#pixi-space canvas {
+    display: block;
+    margin: 0 auto;
+}

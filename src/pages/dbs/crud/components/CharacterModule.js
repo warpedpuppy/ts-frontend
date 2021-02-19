@@ -1,6 +1,6 @@
 import React from 'react';
 import './CharacterModule.css';
-import Button from 'react-bootstrap/Button'
+
 export default function CharacterModule(props) {
     let colorStyle = {backgroundColor: props.character_color}
     let showButtonStyle = { display: props.mode === 'update' ? 'block' : 'none'}

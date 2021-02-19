@@ -1,12 +1,12 @@
 import React from 'react';
 import Mutations from './services/mutations';
-import './DisplayChars.css';
+import './FishTank.css';
 import * as PIXI from 'pixi.js'
 import Utils from '../../../services/Utils';
 import { v4 as uuidv4 } from 'uuid';
 import CrudButtons from '../components/CrudButtons';
 
-export default class DisplayChars extends React.Component {
+export default class FishTank extends React.Component {
     state = {activeCharacter: undefined, instructions: '', mode: undefined, getAll: []};
     canvasWidth = 800;
     canvasHeight = 200;

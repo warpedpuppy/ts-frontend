@@ -1,6 +1,6 @@
 import React from 'react'
-import GraphQL from './graphql/GraphQL';
-import Mongo from './mongo/Mongo';
+import GraphQL from './crud/graphql/GraphQL';
+import Mongo from './crud/mongo/Mongo';
 export default class JoinPopulate extends React.Component {
     state = {
         active: 'graphql',
