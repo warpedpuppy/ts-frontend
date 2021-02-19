@@ -20,6 +20,6 @@ PageLayout.propTypes = {
     activeString: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
     buttons: PropTypes.array.isRequired,
-    active: PropTypes.func.isRequired
+    // active: PropTypes.func.isRequired
 
   }

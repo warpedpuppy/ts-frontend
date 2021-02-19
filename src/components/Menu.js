@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 import TokenService from '../services/TokenService';
 import { withRouter } from 'react-router-dom';
 class Menu extends Component {
-
+    
     logOutHandler = (e) => {
         e.preventDefault();
         TokenService.deleteToken();
