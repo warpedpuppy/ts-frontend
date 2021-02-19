@@ -1,6 +1,9 @@
 #pixi-space {
     margin: 0 auto;
     overflow: hidden;
+    width: 600px;
+    height: 200px;
+    border: 1px solid black;
 }
 
 #pixi-space canvas {

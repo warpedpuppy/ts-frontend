@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../../../sitewide-css/page-layout-with-menu.css';
 import Grid from './grid/Grid';
 import Flex from './flex/Flex';
+import PageLayout from '../../../components/PageLayout';
 export default class Layout extends Component {
   state = {
     active: 'flex',
@@ -18,23 +19,6 @@ export default class Layout extends Component {
     } else {
       active = <Grid />
     }
-    return (
-      <>
-      <h1 className="page-heading">layout</h1>
-      <div className="page"> 
-        <aside className="page-menu">
-          {
-            this.state.buttons.map( (item, index) => {
-              return <div key={index} className={ item === this.state.active ? `active` : `` } onClick={this.onChange}>{item}</div>
-            })
-          }
-        </aside>
-        <main className="page-content">
-          { active }
-        </main>
-      
-       </div>
-       </>
-    );
+    return  <PageLayout activeString={this.state.active} buttons={this.state.buttons} active={active} onChange={this.onChange} />
   }
 }

@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import CrudButtons from './CrudButtons';
 import './CrudBody.css';
 import CharacterModule from './CharacterModule';
+import FishTank from './FishTank';
 
 export default class CrudBody extends React.Component {
     state = {activeCharacter: undefined, instructions: 'db is empty!', mode: undefined, characters: []};
@@ -21,8 +22,13 @@ export default class CrudBody extends React.Component {
     }
     create = async (e) => {
       e.preventDefault();
+      this.setState({mode: 'create'})
+      if (this.state.characters.length >= 5) {
+        this.setState({instructions: 'only 5 allowed!'})
+        return;
+      }
       try {
-        let character = await this.props.service.create(); 
+        let character = await this.props.service.create(this.state.characters.length); 
         this.setState({characters: [...this.state.characters, character], instructions: ''})
       } catch(e) {
         console.error(e)
@@ -30,6 +36,7 @@ export default class CrudBody extends React.Component {
     }
     read = async (e) => {
       e.preventDefault();
+      this.setState({mode: 'read'})
       let result = await this.props.service.read();
       let characters = Array.isArray(result) ? result : result.data.characters;
       if (!characters.length) {
@@ -82,10 +89,9 @@ export default class CrudBody extends React.Component {
 
     deleteHandler = async (id) => {
       try {
-       let result = await this.props.service.delete(id); 
-       if (result) {
         this.setState({characters: this.state.characters.filter(c => c.id !== id)})
-       }
+        this.setState({instructions: '', mode: ''})
+        await this.props.service.delete(id); 
       } catch(e) {
         console.error(e)
       } 
@@ -97,7 +103,7 @@ export default class CrudBody extends React.Component {
       <>
           <CrudButtons create={this.create} read={this.read} update={this.update} delete={this.delete} />
           <div className="instructions">{ instructions }</div>
-          <div className="character-div">
+          <div className={`character-div ${this.state.mode}`}>
             {
               this.state.characters.map((item, index) => <CharacterModule 
               key={index} 
@@ -107,6 +113,7 @@ export default class CrudBody extends React.Component {
               {...item} /> )
             }
           </div>
+          <FishTank characters={this.state.characters} />
           </>
         )
     }

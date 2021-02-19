@@ -1,18 +1,17 @@
 import Config from '../../../../../config';
-import Faker from 'faker';
 import Utils from '../../../../../services/Utils';
 const MongoServices = {
     userid: undefined,
     setUserID: function (id) {
       this.userid = id;
     },
-    create: async function () {
+    create: async function (q) {
         let result = await fetch(`${Config.API_URL}/mongo-restful`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({character_name: Faker.name.findName(), character_color: Utils.randomHex(), userid: this.userid})
+            body: JSON.stringify({character_name: `Fish ${q+1}`, character_color: Utils.randomHex(), userid: this.userid})
         })
         return result.ok ? await result.json() : result.ok ; 
     },

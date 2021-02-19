@@ -1,4 +1,3 @@
-import Faker from 'faker';
 import Utils from '../../../../../services/Utils';
 import Config from '../../../../../config';
 const PostgresqlServices = {
@@ -6,10 +5,10 @@ const PostgresqlServices = {
     setUserID: function (id) {
       this.userid = id;
     },
-    create: async function () {
+    create: async function (q) {
         let obj = {
             userid: this.userid,
-            character_name: Faker.name.findName(),
+            character_name: `Fish ${q + 1}`,
             character_color: Utils.randomHex()
         }
   

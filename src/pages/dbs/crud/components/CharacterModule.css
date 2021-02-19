@@ -1,18 +1,17 @@
 .character-module {
-    margin: 20px;
-    border: 1px solid lightgrey;
+    margin: 10px;
+    border: 3px solid lightgrey;
     border-radius: 10px;
     position: relative;
-    min-height: 200px;
     overflow: hidden;
-    width: 200px;
+    width: 150px;
     cursor: pointer;
+    min-height: 150px;
 }
 
 .character-module-background {
     opacity: 0.75;
     position: absolute;
-    border-radius: 10px;
     width: 100%;
     height: 100%;
     top: 0;
@@ -22,7 +21,7 @@
 }
 
 .character-module-header {
-    padding: 10px 20px 3px;
+    padding: 5px;
     font-weight: bolder;
     color: white;
     border-bottom: 2px solid grey;
@@ -30,7 +29,7 @@
 
 .character-module-color {
     font-weight: bold;
-    font-size: 20px;
+    font-size: 15px;
     text-align: center;
     margin: 15px auto;
     color: white;
@@ -49,3 +48,40 @@
     width: 100%;
     border: none;
 }
+
+.character-module-update,
+.character-module-delete {
+    font-weight: bolder;
+    text-align: center;
+    color: white;
+    font-size: 15px;
+    margin: 3px;
+    padding: 3px;
+    border-radius: 3px;
+    /* background-color: grey;
+    box-shadow: 0 10px 5px rgba(0, 0, 0, 0.5); */
+}
+
+.delete .character-module {
+    animation-name: burn;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+
+.update .character-module {
+    border-color: orange;
+}
+
+@keyframes burn {
+    0% {
+        border-color: lightgrey;
+    }
+    50% {
+        border-color: red;
+    }
+    100% {
+        border-color: lightgrey;
+    }
+}
+
+@media (min-width: 1000px) {}

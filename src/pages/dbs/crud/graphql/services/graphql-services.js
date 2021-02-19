@@ -1,5 +1,4 @@
 import { gql } from '@apollo/client';
-import Faker from 'faker';
 import Utils from '../../../../../services/Utils';
 const Mutations = {
     client: undefined,
@@ -31,14 +30,15 @@ const Mutations = {
           // console.error(e)
         } 
     },
-    create: async function() {
+    create: async function(q) {
+       let character_name = `Fish ${q + 1}`;
         try {
             let result = await this.client.mutate({
             mutation: gql`
             mutation createCharacter {
                 createCharacter(input: {
                     userid: "${this.userid}",
-                    character_name: "${Faker.name.findName()}",
+                    character_name: "${character_name}",
                     character_color: "${ Utils.randomHex() }"
                 }) {
                     id

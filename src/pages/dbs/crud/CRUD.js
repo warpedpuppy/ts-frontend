@@ -1,4 +1,5 @@
 import React from 'react'
+import PageLayout from '../../../components/PageLayout';
 import GraphQL from './graphql/GraphQL';
 import Mongo from './mongo/Mongo';
 import PostgresQL from './postresql/PostgresQL';
@@ -20,21 +21,7 @@ export default class CRUD extends React.Component {
           active = <PostgresQL />
         }
          return (
-            <div className="page"> 
-            <aside className="page-menu">
-    
-                  {
-                    this.state.buttons.map( (item, index) => {
-                      return <div key={index} className={ item === this.state.active ? `active` : `` } onClick={this.onChange}>{item}</div>
-                    })
-             
-                  }
-            </aside>
-            <main className="page-content">
-              { active }
-            </main>
-          
-           </div>
+           <PageLayout activeString={this.state.active} buttons={this.state.buttons} onChange={this.onChange} active={active}/>
         )
     }
    
