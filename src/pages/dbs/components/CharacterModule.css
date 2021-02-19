@@ -1,15 +1,51 @@
 .character-module {
     margin: 20px;
-    padding: 20px;
-    border: 2px solid lightgrey;
+    border: 1px solid lightgrey;
     border-radius: 10px;
+    position: relative;
+    min-height: 200px;
+    overflow: hidden;
+    width: 200px;
+    cursor: pointer;
+}
+
+.character-module-background {
+    opacity: 0.75;
+    position: absolute;
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: black;
+    z-index: -1;
+}
+
+.character-module-header {
+    padding: 10px 20px 3px;
+    font-weight: bolder;
+    color: white;
+    border-bottom: 2px solid grey;
+}
+
+.character-module-color {
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    margin: 15px auto;
+    color: white;
 }
 
 .character-module ul {
     list-style-type: none;
 }
 
-.character-module ul li {
-    background-color: grey;
+.character-module button {
+    position: absolute;
+    bottom: 0;
+    font-size: 12px;
+    background: rgba(0, 0, 0, 0.5);
     color: white;
+    width: 100%;
+    border: none;
 }

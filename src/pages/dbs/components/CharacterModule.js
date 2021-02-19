@@ -12,12 +12,11 @@ export default function CharacterModule(props) {
         return;
     }
     return (
-        <div className="character-module" style={colorStyle} onClick={deleteHandler}>
-            <ul>
-                <li>{props.character_name}</li>
-                <li>{props.character_color}</li>
-                <li style={showButtonStyle}><Button onClick={e => props.changeColor(e, props.id, props.character_name)}>change color?</Button></li>
-            </ul>
+        <div className="character-module" onClick={deleteHandler}>
+            <div className="character-module-header" style={colorStyle} >{props.character_name}</div>
+            <div className="character-module-background" style={colorStyle}></div>
+            <div className="character-module-color">{props.character_color}</div>
+            <button style={showButtonStyle} onClick={e => props.changeColor(e, props.id, props.character_name)}>change color?</button>
         </div>
     )
 }
