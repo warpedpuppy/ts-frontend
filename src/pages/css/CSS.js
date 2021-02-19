@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './CSS.css';
 import Color from './color/Color';
 import Layout from './layout/Layout';
-import Submenu from '../../components/SubMenu';
+import Submenu from '../../components/layout-templates/SubMenu';
 export default class CSS extends Component {
   state = {
     active: 'color',

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../../sitewide-css/page-layout-with-menu.css';
-import Submenu from '../../components/SubMenu';
+import Submenu from '../../components/layout-templates/SubMenu';
 import CRUD from './crud/CRUD';
 import JoinPopulate from './JoinPopulate';
 

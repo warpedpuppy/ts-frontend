@@ -3,7 +3,7 @@ import '../../../sitewide-css/page-layout-with-menu.css';
 import Hexadecimal from './hexadecimal/Hexadecimal';
 import HSL from './hsl/HSL';
 import RGB from './rgb/RGB';
-import PageLayout from '../../../components/PageLayout';
+import PageLayout from '../../../components/layout-templates/PageLayout';
 export default class Color extends Component {
   state = {
     active: 'hexadecimal',

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../../../sitewide-css/page-layout-with-menu.css';
 import Grid from './grid/Grid';
 import Flex from './flex/Flex';
-import PageLayout from '../../../components/PageLayout';
+import PageLayout from '../../../components/layout-templates/PageLayout';
 export default class Layout extends Component {
   state = {
     active: 'flex',

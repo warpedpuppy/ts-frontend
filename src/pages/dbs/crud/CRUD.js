@@ -1,5 +1,5 @@
 import React from 'react'
-import PageLayout from '../../../components/PageLayout';
+import PageLayout from '../../../components/layout-templates/PageLayout';
 import GraphQL from './graphql/GraphQL';
 import Mongo from './mongo/Mongo';
 import PostgresQL from './postresql/PostgresQL';
