@@ -58,7 +58,6 @@ export default class FishTank extends React.Component {
 
       this.water2.x += this.water2.vx;
       this.water2.y += this.water2.vy;
-      console.log(this.water2.x)
        if (this.water2.x < -(this.water2.width - this.canvasWidth) || this.water2.x > 0 ) this.water2.vx *= -1;
        if (this.water2.y < -(this.water2.height - this.canvasHeight) || this.water2.y > 0) this.water2.vy *= -1;
     }
