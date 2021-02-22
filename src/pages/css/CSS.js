@@ -5,8 +5,8 @@ import Layout from './layout/Layout';
 import Submenu from '../../components/layout-templates/SubMenu';
 export default class CSS extends Component {
   state = {
-    active: 'color',
-    categories: ['color', 'layout']
+    active: 'layout',
+    categories: ['color', 'layout', 'font size units']
   }
   clickHandler = (e) => {
     this.setState({active: e.target.innerHTML})
