@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
 import './Grid.css';
 export default class Grid extends Component {
+
+  arr = [1,2,3,4,5,6,7,8,9,10,11,12]
   render() {
     return (
       <div>
       <div className="grid-parent">
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>
-        <div>4</div>
-        <div>5</div>
-        <div>6</div>
-        <div>7</div>
-        <div>8</div>
+        {
+          this.arr.map( (item, index) => {
+            return <div key={index}>{item}</div>
+          })
+        }
       </div>
     </div>
     );

@@ -1,9 +1,11 @@
 .flex-container {
     display: flex;
-    border: 1px solid #DFE2EA;
+    border: 1px solid grey;
+    border-radius: 5px;
     min-height: 400px;
     position: relative;
     padding: 20px;
+    margin: 0 20px;
 }
 
 .flex-container::before {
@@ -11,6 +13,7 @@
     position: absolute;
     top: 0;
     left: calc(50% - 30px);
+    color: orange;
 }
 
 .flex-container::after {
@@ -19,6 +22,7 @@
     transform: rotate(-90deg);
     left: -30px;
     top: calc(50% - 30px);
+    color: orange;
 }
 
 .flex-container.flex-row::before {
@@ -38,7 +42,7 @@
 }
 
 .flex-container div {
-    border: 1px solid #DFE2EA;
+    border: 1px solid grey;
     text-align: center;
     display: flex;
     justify-content: center;
@@ -56,8 +60,13 @@
     justify-content: space-evenly;
 }
 
-.flex-control-panel>* {
-    flex: 1 1 50%;
+.flex-control-panel div:first-child {
+    flex: 25% 1 1;
+    margin: 10px;
+}
+
+.flex-control-panel div:last-child {
+    flex: 75% 1 1;
     margin: 10px;
 }
 

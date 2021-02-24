@@ -1,5 +1,5 @@
 .grid-parent {
-    display: flex;
+    display: grid;
     border: 1px solid #DFE2EA;
 }
 
