@@ -5,7 +5,7 @@ import Flex from './flex/Flex';
 import PageLayout from '../../../components/layout-templates/PageLayout';
 export default class Layout extends Component {
   state = {
-    active: 'flex',
+    active: 'grid',
     buttons: ['flex', 'grid']
   }
   onChange = (e) => {   
