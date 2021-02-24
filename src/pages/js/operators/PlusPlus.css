@@ -1,33 +1,33 @@
-.table.table-striped.table-bordered {
+.plusplus-container .table.table-striped.table-bordered {
     margin: 20px auto;
     max-width: 50%;
 }
 
-.table.table-striped.table-bordered th {
+.plusplus-container .table.table-striped.table-bordered th {
     text-align: center;
 }
 
-.table.table-striped.table-bordered td input {
+.plusplus-container .table.table-striped.table-bordered td input {
     width: calc(1.5em + .75rem + 2px);
     display: block;
     margin: 0 auto;
 }
 
-.table.table-striped.table-bordered td input.wrong {
+.plusplus-container .table.table-striped.table-bordered td input.wrong {
     outline: 2px solid red;
 }
 
-.table.table-striped.table-bordered td input.correct {
+.plusplus-container .table.table-striped.table-bordered td input.correct {
     outline: 2px solid green;
 }
 
-.table.table-striped.table-bordered td:nth-child(2),
-.table.table-striped.table-bordered td:nth-child(3) {
+.plusplus-container .table.table-striped.table-bordered td:nth-child(2),
+.plusplus-container .table.table-striped.table-bordered td:nth-child(3) {
     width: 100px;
     text-align: center;
 }
 
-.table.table-striped.table-bordered td button {
+.plusplus-container .table.table-striped.table-bordered td button {
     float: right;
 }
 

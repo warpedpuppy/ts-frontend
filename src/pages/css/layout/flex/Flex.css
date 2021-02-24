@@ -1,16 +1,66 @@
-.flex-parent {
+.flex-container {
     display: flex;
     border: 1px solid #DFE2EA;
+    min-height: 400px;
+    position: relative;
+    padding: 20px;
 }
 
-.flex-parent div {
+.flex-container::before {
+    font-weight: bold;
+    position: absolute;
+    top: 0;
+    left: calc(50% - 30px);
+}
+
+.flex-container::after {
+    position: absolute;
+    font-weight: bold;
+    transform: rotate(-90deg);
+    left: -30px;
+    top: calc(50% - 30px);
+}
+
+.flex-container.flex-row::before {
+    content: "main axis";
+}
+
+.flex-container.flex-column::before {
+    content: "cross axis";
+}
+
+.flex-container.flex-row::after {
+    content: "cross axis";
+}
+
+.flex-container.flex-column::after {
+    content: "main axis";
+}
+
+.flex-container div {
     border: 1px solid #DFE2EA;
-    width: 50px;
-    height: 50px;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 20px;
     border-radius: 4px;
+}
+
+.flex-container div.selected {
+    background-color: lightblue;
+}
+
+.flex-control-panel {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.flex-control-panel>* {
+    flex: 1 1 50%;
+    margin: 10px;
+}
+
+.table.table-striped.table-bordered {
+    max-width: 100%;
 }

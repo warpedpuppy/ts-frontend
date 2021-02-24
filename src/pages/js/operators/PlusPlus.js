@@ -25,7 +25,7 @@ export default class PlusPlus extends React.Component {
         const { revealAnswers } = this.state;
         this.answerClass = revealAnswers ? this.answerClass = 'plusplus-answer reveal' : this.answerClass = 'plusplus-answer' ;
         return (
-            <div>
+            <div className="plusplus-container">
                 <pre>
                     <Table striped bordered >
                         <thead>
