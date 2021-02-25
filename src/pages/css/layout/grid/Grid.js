@@ -20,24 +20,16 @@ export default class Grid extends Component {
 
     const rowQ = this.arr.length / this.state.gridTemplateColumns.split(" ").length;
     const colQ =  this.state.gridTemplateColumns.split(" ").length;
-
     let gridRows = {};
     let gridColumns = {};
-    let row = 1;
-    let col = 1;
-    this.arr.forEach( (item, index) => {
-  
-      col ++;
-      if (col > colQ) {
-        col = 0;
-        row ++;
+    let item = 1;
+    for (let row = 1; row <= rowQ; row ++){
+      for (let col = 1; col <= colQ; col ++){
+        gridRows[item] = [row, row];
+        gridColumns[item] = [col, col];
+        item++;
       }
-      gridRows[item] = [row, row];
-
-      gridColumns[item] = [col, col];
-    })
-  console.log(gridRows)
-
+    }
     const rowEnd = [];
     for (let i = 1; i <= rowQ; i ++ ) {
       rowEnd.push(i)
@@ -151,9 +143,7 @@ export default class Grid extends Component {
                     <Form.Control as="select" onChange={this.changeGridRow} data-index="0" value={activeItemRowStart}>
                         {
                           [...new Array(this.state.rowQ).keys()].map( (item, index) => {
-                                  let value = item + 1;
-                                  let selected =  (value === activeItemRowStart) ? true : false;
-                                  return <option value={value} key={index}>{value}</option>
+                                  return <option value={item + 1} key={index}>{item + 1}</option>
                                 })
                         }
                     </Form.Control>
@@ -207,12 +197,13 @@ export default class Grid extends Component {
         {
           this.arr.map( (item, index) => {
             
-            let rowStart = this.state.gridRows[index] ? this.state.gridRows[index][0] : item ;
-            let rowEnd = this.state.gridRows[index] ? this.state.gridRows[index][1] +1 : item + 1 ;
-            let colStart = this.state.gridColumns[index] ? this.state.gridColumns[index][0] : item ;
-            let colEnd = this.state.gridColumns[index] ? this.state.gridColumns[index][1] + 1: item + 1;
+            let rowStart = this.state.gridRows[item] ? this.state.gridRows[item][0] : item ;
+            let rowEnd = this.state.gridRows[item] ? this.state.gridRows[item][1]: item ;
+            let colStart = this.state.gridColumns[item] ? this.state.gridColumns[item][0] : item ;
+            let colEnd = this.state.gridColumns[item] ? this.state.gridColumns[item][1]: item ;
             let gridItemStyle = {
-              gridArea: `${rowStart} / ${colStart} / ${rowEnd} / ${colEnd}`
+              gridRow: `${rowStart} / ${rowEnd}`,
+              gridColumn: `${colStart} / ${colEnd}`
             }
             return <div key={index} style={gridItemStyle}> {item}</div>
           })

@@ -1,10 +1,11 @@
 .grid-parent {
     display: grid;
-    border: 1px solid #DFE2EA;
+    /* border: 1px solid #DFE2EA; */
+    grid-gap: 20px;
 }
 
 .grid-parent div {
-    border: 1px solid #DFE2EA;
+    border: 1px solid grey;
     text-align: center;
     display: flex;
     justify-content: center;
