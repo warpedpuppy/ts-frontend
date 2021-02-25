@@ -17,15 +17,27 @@ export default class Grid extends Component {
   arr = [1,2,3,4,5,6,7,8,9,10,11,12]
 
   componentDidMount = () => {
-    let gridRows = {};
-    let gridColumns = {};
-    this.arr.forEach( item => {
-      gridRows[item] = [item, item];
-      gridColumns[item] = [item, item];
-    })
 
     const rowQ = this.arr.length / this.state.gridTemplateColumns.split(" ").length;
     const colQ =  this.state.gridTemplateColumns.split(" ").length;
+
+    let gridRows = {};
+    let gridColumns = {};
+    let row = 1;
+    let col = 1;
+    this.arr.forEach( (item, index) => {
+  
+      col ++;
+      if (col > colQ) {
+        col = 0;
+        row ++;
+      }
+      gridRows[item] = [row, row];
+
+      gridColumns[item] = [col, col];
+    })
+  console.log(gridRows)
+
     const rowEnd = [];
     for (let i = 1; i <= rowQ; i ++ ) {
       rowEnd.push(i)
@@ -202,7 +214,6 @@ export default class Grid extends Component {
             let gridItemStyle = {
               gridArea: `${rowStart} / ${colStart} / ${rowEnd} / ${colEnd}`
             }
-            console.log(item, rowStart, rowEnd, colStart, colEnd, gridItemStyle)
             return <div key={index} style={gridItemStyle}> {item}</div>
           })
         }
