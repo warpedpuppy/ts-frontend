@@ -75,7 +75,10 @@ export default class Grid extends Component {
   render() {
     const {gridTemplateRows, gridTemplateColumns} = this.state;
     const parentStyle = {gridTemplateRows, gridTemplateColumns }
-   console.log(this.state.colEnd)
+    const activeItemRowStart = this.state.gridRows[this.state.activeGridItem] ? this.state.gridRows[this.state.activeGridItem][0] : 1;
+    const activeItemRowEnd = this.state.gridRows[this.state.activeGridItem] ? this.state.gridRows[this.state.activeGridItem][1] : 1;
+    const activeItemColStart = this.state.gridColumns[this.state.activeGridItem] ? this.state.gridColumns[this.state.activeGridItem][0] : 1;
+    const activeItemColEnd = this.state.gridColumns[this.state.activeGridItem] ? this.state.gridColumns[this.state.activeGridItem][1] : 1;
 
     return (
       <div>
@@ -121,7 +124,7 @@ export default class Grid extends Component {
                 <tbody>
                   <tr>
                     <td rowSpan="2">
-                    <Form.Control as="select">
+                    <Form.Control as="select" onChange={ e => this.setState({activeGridItem: Number(e.target.value)})} >
                         {
                               this.arr.map( (item, index) => {
                                   return <option value={item} key={index}>{item}</option>
@@ -133,18 +136,21 @@ export default class Grid extends Component {
                       grid-row
                     </td>
                     <td>
-                    <Form.Control as="select" onChange={this.changeGridRow} data-index="0">
+                    <Form.Control as="select" onChange={this.changeGridRow} data-index="0" value={activeItemRowStart}>
                         {
                           [...new Array(this.state.rowQ).keys()].map( (item, index) => {
-                                  return <option value={item + 1} key={index}>{item + 1}</option>
+                                  let value = item + 1;
+                                  let selected =  (value === activeItemRowStart) ? true : false;
+                                  return <option value={value} key={index}>{value}</option>
                                 })
                         }
                     </Form.Control>
                     </td>
                     <td>
-                    <Form.Control as="select" onChange={this.changeGridRow} data-index="1">
+                    <Form.Control as="select" onChange={this.changeGridRow} data-index="1" value={activeItemRowEnd}>
                         { 
                               this.state.rowEnd.map( (item, index) => {
+  
                                   return <option value={item} key={index}>{item}</option>
                                 })
                         }
@@ -156,7 +162,7 @@ export default class Grid extends Component {
                       grid-column
                     </td>
                     <td>
-                    <Form.Control as="select" onChange={this.changeGridColumn} data-index="0">
+                    <Form.Control as="select" onChange={this.changeGridColumn} data-index="0" value={activeItemColStart}>
                     {
                           [...new Array(this.state.colQ).keys()].map( (item, index) => {
                                   return <option value={item + 1} key={index}>{item + 1}</option>
@@ -165,7 +171,7 @@ export default class Grid extends Component {
                     </Form.Control>
                     </td>
                     <td>
-                    <Form.Control as="select" onChange={this.changeGridColumn} data-index="1">
+                    <Form.Control as="select" onChange={this.changeGridColumn} data-index="1" value={activeItemColEnd}>
                     { 
                               this.state.colEnd.map( (item, index) => {
                                   return <option value={item} key={index}>{item}</option>
@@ -188,7 +194,16 @@ export default class Grid extends Component {
       <div className="grid-parent" style={parentStyle}>
         {
           this.arr.map( (item, index) => {
-            return <div key={index}> {item}</div>
+            
+            let rowStart = this.state.gridRows[index] ? this.state.gridRows[index][0] : item ;
+            let rowEnd = this.state.gridRows[index] ? this.state.gridRows[index][1] +1 : item + 1 ;
+            let colStart = this.state.gridColumns[index] ? this.state.gridColumns[index][0] : item ;
+            let colEnd = this.state.gridColumns[index] ? this.state.gridColumns[index][1] + 1: item + 1;
+            let gridItemStyle = {
+              gridArea: `${rowStart} / ${colStart} / ${rowEnd} / ${colEnd}`
+            }
+            console.log(item, rowStart, rowEnd, colStart, colEnd, gridItemStyle)
+            return <div key={index} style={gridItemStyle}> {item}</div>
           })
         }
       </div>
