@@ -3,7 +3,7 @@
     margin: 10px;
 }
 
-.grid-parent div {
+.grid-parent>div {
     border: 1px solid grey;
     text-align: center;
     display: flex;
@@ -11,6 +11,25 @@
     align-items: center;
     border-radius: 4px;
     position: relative;
+}
+
+.grid-parent>div>div {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 0;
+}
+
+.grid-parent>div>span {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    padding: 10px;
+    color: black;
+    font-weight: bold;
+    background-color: white;
+    border-radius: 5px;
+    border: 3px solid grey;
 }
 
 .grid-controls {

@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import './Flex.css';
 import { Form, Table } from 'react-bootstrap';
+import Utils from '../../../../services/Utils';
 export default class Flex extends Component {
   state = {flexDirection: "row", justifyContent: "inherit", alignItems: 'inherit', flexProperties: {}}
   arr = [1,2,3,4]
+  colors = [];
   componentDidMount = () => {
     let obj = {};
     this.arr.forEach( (item, index) => {
       obj[index] = {flexBasis: "auto", flexGrow: "1", flexShrink: "1"}
+      this.colors.push(Utils.randomHex())
     })
     this.setState({flexProperties: obj})
   }
@@ -127,7 +130,8 @@ export default class Flex extends Component {
           {
             this.arr.map( (item, index) => {
               let tempClass = this.state.flexProperties[index] ? this.state.flexProperties[index] : {} ;
-              return <div key={index} style={tempClass}>{item}</div>
+              let innerDivStyle = {backgroundColor: this.colors[index]}
+              return <div key={index} style={tempClass}><div style={innerDivStyle}></div><span>{item}</span></div>
             })
           }
         </div>
