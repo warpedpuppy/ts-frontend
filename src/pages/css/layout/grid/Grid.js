@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Grid.css';
-import {Form, InputGroup, Table, FormControl} from 'react-bootstrap';
+import {Form, InputGroup, Table } from 'react-bootstrap';
+import Utils from '../../../../services/Utils';
 export default class Grid extends Component {
   state = {
     gridTemplateColumns: "1fr 1fr 1fr", 
@@ -12,33 +13,62 @@ export default class Grid extends Component {
     rowEnd: [],
     rowQ: 0,
     colEnd: [],
-    colQ: 0
+    colQ: 0,
+    gridGap: "20px"
   }
   arr = [1,2,3,4,5,6,7,8,9,10,11,12]
+  colors = [];
+  potentialColumns = [1,2,3,4,5,6];
+  gaps = ["10px", "20px", "30px", "40px", "50px"]
 
   componentDidMount = () => {
 
-    const rowQ = this.arr.length / this.state.gridTemplateColumns.split(" ").length;
+    
     const colQ =  this.state.gridTemplateColumns.split(" ").length;
+    const rowQ = Math.ceil(this.arr.length / colQ);
     let gridRows = {};
     let gridColumns = {};
     let item = 1;
     for (let row = 1; row <= rowQ; row ++){
       for (let col = 1; col <= colQ; col ++){
-        gridRows[item] = [row, row];
-        gridColumns[item] = [col, col];
+        gridRows[item] = [row, row + 1];
+        gridColumns[item] = [col, col + 1];
+        this.colors.push(Utils.randomHex())
         item++;
       }
     }
     const rowEnd = [];
-    for (let i = 1; i <= rowQ; i ++ ) {
+    for (let i = 1; i <= rowQ + 1; i ++ ) {
       rowEnd.push(i)
     }
     const colEnd = [];
-    for (let i = 1; i <= colQ; i ++ ) {
+    for (let i = 1; i <= colQ + 1; i ++ ) {
       colEnd.push(i)
     }
     this.setState({gridRows, gridColumns, rowEnd, colEnd, rowQ, colQ})
+  }
+  changeColQ = e => {
+    let colQ = Number(e.target.value);
+    let gridTemplateColumns = '';
+    const colEnd = [];
+    for (let i = 0; i < colQ; i ++) {
+      gridTemplateColumns += '1fr ';
+      colEnd.push(i + 1)
+    }
+    const rowQ = Math.ceil(this.arr.length / colQ);
+    let gridRows = {};
+    let gridColumns = {};
+    let item = 1;
+    for (let row = 1; row <= rowQ; row ++){
+      for (let col = 1; col <= colQ; col ++){
+        gridRows[item] = [row, row + 1];
+        gridColumns[item] = [col, col + 1];
+        item++;
+      }
+    }
+
+
+    this.setState({gridTemplateColumns, colQ, gridRows, gridColumns, colEnd})
   }
   changeCategory = e => {
     console.log(e.target)
@@ -78,7 +108,7 @@ export default class Grid extends Component {
 
   render() {
     const {gridTemplateRows, gridTemplateColumns} = this.state;
-    const parentStyle = {gridTemplateRows, gridTemplateColumns }
+    const parentStyle = {gridTemplateRows, gridTemplateColumns, gridGap: this.state.gridGap }
     const activeItemRowStart = this.state.gridRows[this.state.activeGridItem] ? this.state.gridRows[this.state.activeGridItem][0] : 1;
     const activeItemRowEnd = this.state.gridRows[this.state.activeGridItem] ? this.state.gridRows[this.state.activeGridItem][1] : 1;
     const activeItemColStart = this.state.gridColumns[this.state.activeGridItem] ? this.state.gridColumns[this.state.activeGridItem][0] : 1;
@@ -88,34 +118,43 @@ export default class Grid extends Component {
       <div>
       <div className="grid-controls">
         <Form>
+          <h3>Grid Parent</h3>
           <Form.Group>
-            <Form.Check type="radio" name="category" label="grid container" id="gridContainer" onChange={this.changeCategory} />
-           
-            { this.state.category === "gridContainer" &&  
-            <div>
-              <InputGroup className="mb-3">
-            <InputGroup.Prepend>
-            <InputGroup.Text id="basic-addon3">
-            grid-template-rows:
-            </InputGroup.Text>
-            </InputGroup.Prepend>
-            <FormControl id="basic-url" aria-describedby="basic-addon3" />
-            </InputGroup>
-
+            
             <InputGroup className="mb-3">
             <InputGroup.Prepend>
             <InputGroup.Text id="basic-addon3">
             grid-template-columns:
             </InputGroup.Text>
             </InputGroup.Prepend>
-            <FormControl id="basic-url" aria-describedby="basic-addon3" />
+            <Form.Control as="select" onChange={this.changeColQ} value={this.state.colQ}>
+            {
+                  this.potentialColumns.map( (item, index) => {
+                      return <option value={item} key={index}>{item}</option>
+                    })
+            }
+            </Form.Control>
             </InputGroup>
-            </div>}
-             
+
+            <InputGroup className="mb-3">
+            <InputGroup.Prepend>
+            <InputGroup.Text id="basic-addon3">
+            grid-gap:
+            </InputGroup.Text>
+            </InputGroup.Prepend>
+            <Form.Control as="select" value={this.state.gridGap} onChange={ e => this.setState({gridGap: e.target.value})} >
+                {
+                      this.gaps.map( (item, index) => {
+                          return <option value={item} key={index}>{item}</option>
+                        })
+                }
+            </Form.Control>
+            </InputGroup>
             </Form.Group>
-           
+           </Form>
+           <Form>
+           <h3>Grid Children</h3>
           <Form.Group>
-            <Form.Check type="radio"  name="category" label="grid items" id="gridItems" onChange={this.changeCategory} />
             <Table>
               <thead>
                 <tr>
@@ -184,11 +223,6 @@ export default class Grid extends Component {
                   </tr>
                 </tbody>
             </Table>
-           
-               
-           
-         
-          
           </Form.Group>
         </Form>
 
@@ -201,9 +235,12 @@ export default class Grid extends Component {
             let rowEnd = this.state.gridRows[item] ? this.state.gridRows[item][1]: item ;
             let colStart = this.state.gridColumns[item] ? this.state.gridColumns[item][0] : item ;
             let colEnd = this.state.gridColumns[item] ? this.state.gridColumns[item][1]: item ;
+            let zIndex = item ===this.state.activeGridItem ? 1 : -1 ;
             let gridItemStyle = {
               gridRow: `${rowStart} / ${rowEnd}`,
-              gridColumn: `${colStart} / ${colEnd}`
+              gridColumn: `${colStart} / ${colEnd}`,
+              backgroundColor: this.colors[index],
+              zIndex
             }
             return <div key={index} style={gridItemStyle}> {item}</div>
           })
