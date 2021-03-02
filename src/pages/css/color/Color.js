@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import '../../../sitewide-css/page-layout-with-menu.css';
 import Hexadecimal from './hexadecimal/Hexadecimal';
 import HSL from './hsl/HSL';
 import RGB from './rgb/RGB';

@@ -1,0 +1,21 @@
+.relative-units ul {
+    display: flex;
+    justify-content: space-evenly;
+    list-style-type: none;
+    border-bottom: 1px solid black;
+}
+
+.relative-units ul li {
+    padding: 3px 0;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+}
+
+.relative-units ul li:hover {
+    background-color: grey;
+}
+
+.relative-units ul li.active-unit::after {
+    content: '\02193';
+}

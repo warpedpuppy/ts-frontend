@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import '../../sitewide-css/page-layout-with-menu.css';
 import PageLayout from '../../components/layout-templates/PageLayout';
 import Operators from './operators/Operators';
 

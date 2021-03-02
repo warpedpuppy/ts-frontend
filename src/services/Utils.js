@@ -23,6 +23,16 @@ const Utils = {
     cosWave (startPoint, differential, speed) {
         const currentDate = new Date()
         return startPoint + (Math.cos(currentDate.getTime() * speed) * differential)
+    },
+    parseURLVars: function (str) {
+        str = str.substring(1);
+        let arr = str.split("&");
+        let obj = {};
+        arr.forEach(item => {
+            let tempArr = item.split("=");
+            obj[tempArr[0]] = tempArr[1];
+        })
+        return obj;
     }
 }
 export default Utils;

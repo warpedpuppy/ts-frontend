@@ -1,0 +1,72 @@
+.absolute-units ul {
+    display: flex;
+    justify-content: space-evenly;
+    list-style-type: none;
+    border-bottom: 1px solid black;
+}
+
+.absolute-units ul li {
+    padding: 3px 0;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+}
+
+.absolute-units ul li:hover {
+    background-color: grey;
+}
+
+.absolute-units ul li.active-unit::after {
+    content: '\02193';
+}
+
+.unit-explanation {
+    text-align: center;
+}
+
+.unit-guide {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.unit-guide div.inch {
+    width: 1in;
+    display: block;
+    border-bottom: 5px solid black;
+}
+
+.unit-guide div.cm {
+    width: 1cm;
+    display: block;
+    border-bottom: 5px solid black;
+}
+
+.unit-guide div.mm {
+    width: 1mm;
+    display: block;
+    border-bottom: 5px solid black;
+}
+
+.unit-guide div.q {
+    width: 1q;
+    display: block;
+    border-bottom: 5px solid black;
+}
+
+.unit-guide div.pt {
+    width: 1pt;
+    display: block;
+    border-bottom: 5px solid black;
+}
+
+.unit-guide div.pc {
+    width: 1pc;
+    display: block;
+    border-bottom: 5px solid black;
+}
+
+.unit-guide div.px {
+    width: 1px;
+    display: block;
+    border-bottom: 5px solid black;
+}

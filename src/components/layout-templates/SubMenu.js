@@ -2,10 +2,16 @@ import React from 'react'
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import {Link} from 'react-router-dom';
+import { useHistory } from "react-router";
 import './SubMenu.css';
 export default function  SubMenu (props) {
+    let history = useHistory();
     function clickHandler(e) {
         e.preventDefault();
+        
+        history.push({
+            search: `?category=${e.target.innerHTML}`
+          })
         props.onChange(e)
     }
     return (

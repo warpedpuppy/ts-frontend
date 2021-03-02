@@ -6,7 +6,7 @@ import PostgresQL from './postresql/PostgresQL';
 export default class CRUD extends React.Component {
     state = {
         active: 'graphql',
-        buttons: ['graphql', 'postgresql', 'mongo']
+        buttons: ['graphql', 'postgresql', 'mongo', 'serverless - aws']
       }
       onChange = (e) => {   
        this.setState({active: e.target.innerHTML})

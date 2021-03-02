@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import Grid from './grid/Grid';
-import Flex from './flex/Flex';
 import PageLayout from '../../../components/layout-templates/PageLayout';
-export default class Layout extends Component {
+import AbsoluteUnits from './absolute/AbsoluteUnits';
+import RelativeUnits from './relative/RelativeUnits';
+
+export default class UnitsOfMeasurement extends Component {
   state = {
-    active: 'grid',
-    buttons: ['flex', 'grid']
+    active: 'absolute units',
+    buttons: ['absolute units', 'relative units']
   }
   onChange = (e) => {   
    this.setState({active: e.target.innerHTML})
@@ -13,10 +14,10 @@ export default class Layout extends Component {
   render() {
 
     let active;
-    if (this.state.active === 'flex') {
-      active = <Flex />
+    if (this.state.active === 'absolute units') {
+      active = <AbsoluteUnits />
     } else {
-      active = <Grid />
+      active = <RelativeUnits />
     }
     return  <PageLayout activeString={this.state.active} buttons={this.state.buttons} active={active} onChange={this.onChange} />
   }

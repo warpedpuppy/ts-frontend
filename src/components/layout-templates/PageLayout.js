@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import './PageLayout.css';
 export default function PageLayout(props) {
     return (
         <div className="page"> 
