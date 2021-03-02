@@ -8,8 +8,8 @@ export default class DBS extends Component {
     buttons: ['operators', 'isNaN', 'current target v target', 'functional v OOP', 'maze solver code']
   }
 
-  onChange = (e) => {   
-   this.setState({active: e.target.innerHTML})
+  onChange = (active) => {   
+   this.setState({active})
   }
   render() {
     let active;

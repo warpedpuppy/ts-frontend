@@ -8,20 +8,25 @@ export default class CRUD extends React.Component {
         active: 'graphql',
         buttons: ['graphql', 'postgresql', 'mongo', 'serverless - aws']
       }
-      onChange = (e) => {   
-       this.setState({active: e.target.innerHTML})
+      onChange = (active) => {   
+       this.setState({active})
       }
     render() {
-        let active;
+        let activeComponent;
         if (this.state.active === 'graphql') {
-          active = <GraphQL client={this.props.client} />
+          activeComponent = <GraphQL client={this.props.client} />
         } else if (this.state.active === 'mongo') {
-          active = <Mongo />
+          activeComponent = <Mongo />
         } else if (this.state.active === 'postgresql') {
-          active = <PostgresQL />
+          activeComponent = <PostgresQL />
         }
          return (
-           <PageLayout activeString={this.state.active} buttons={this.state.buttons} onChange={this.onChange} active={active}/>
+           <PageLayout 
+            activeString={this.state.active} 
+            buttons={this.state.buttons} 
+            onChange={this.onChange} 
+            activeComponent={activeComponent}
+            />
         )
     }
    

@@ -41,7 +41,7 @@ class App extends React.Component {
             <main>
                <Switch>
                   <Route exact path="/" component={ Home } />
-                   <Route exact path="/css" component={ CSS } />
+                   <Route exact path="/css" render={ history => <CSS history={history} />} />
                  <Route exact path="/dbs" component={ DBS } />
                  <Route exact path="/js" component={ JS } />
               <Route path="*" component={ NotFound } /> 

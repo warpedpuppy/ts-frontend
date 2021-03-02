@@ -8,18 +8,18 @@ export default class Color extends Component {
     active: 'hexadecimal',
     buttons: ['hexadecimal', 'hsl', 'rgb']
   }
-  onChange = (e) => {   
-   this.setState({active: e.target.innerHTML})
+  onChange = (active) => {   
+   this.setState({active})
   }
   render() {
-    let active;
+    let activeComponent;
     if (this.state.active === 'hexadecimal') {
-      active = <Hexadecimal />
+      activeComponent = <Hexadecimal />
     } else if (this.state.active === 'hsl') {
-      active = <HSL />
+      activeComponent = <HSL />
     } else {
-      active = <RGB />
+      activeComponent = <RGB />
     }
-    return <PageLayout activeString={this.state.active} buttons={this.state.buttons} onChange={this.onChange} active={active} />
+    return <PageLayout activeString={this.state.active} buttons={this.state.buttons} onChange={this.onChange} activeComponent={activeComponent} />
   }
 }

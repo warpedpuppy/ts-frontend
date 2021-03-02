@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './RelativeUnits.css'
 export default function RelativeUnits() {
     const [active, setActive] = useState('em');
-    const [expl, setExpl] = useState('centimeters');
+    const [expl, setExpl] = useState('Font size of the parent, in the case of typographical properties like font-size, and font size of the element itself, in the case of other properties like width.');
     const [fontSize, setFontSize] = useState('1cm')
     let arr = ['em', 'ex', 'ch', 'rem', 'lh', 'vw', 'vh', 'vmin', 'vmax'];
     let explanations = [
@@ -33,6 +33,7 @@ export default function RelativeUnits() {
         }
         </ul>
         <div className="unit-explanation">{ expl }</div>
+        <div style={style}>hello</div>
     </div>
     )
 }

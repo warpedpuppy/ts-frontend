@@ -7,17 +7,17 @@ export default class Layout extends Component {
     active: 'grid',
     buttons: ['flex', 'grid']
   }
-  onChange = (e) => {   
-   this.setState({active: e.target.innerHTML})
+  onChange = (string) => {   
+   this.setState({active: string})
   }
   render() {
 
-    let active;
+    let activeComponent;
     if (this.state.active === 'flex') {
-      active = <Flex />
+      activeComponent = <Flex />
     } else {
-      active = <Grid />
+      activeComponent = <Grid />
     }
-    return  <PageLayout activeString={this.state.active} buttons={this.state.buttons} active={active} onChange={this.onChange} />
+    return  <PageLayout activeString={this.state.active} buttons={this.state.buttons} activeComponent={activeComponent} onChange={this.onChange} />
   }
 }

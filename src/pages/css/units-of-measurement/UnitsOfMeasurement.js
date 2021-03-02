@@ -8,17 +8,17 @@ export default class UnitsOfMeasurement extends Component {
     active: 'absolute units',
     buttons: ['absolute units', 'relative units']
   }
-  onChange = (e) => {   
-   this.setState({active: e.target.innerHTML})
+  onChange = (active) => {   
+   this.setState({active})
   }
   render() {
 
-    let active;
+    let activeComponent;
     if (this.state.active === 'absolute units') {
-      active = <AbsoluteUnits />
+      activeComponent = <AbsoluteUnits />
     } else {
-      active = <RelativeUnits />
+      activeComponent = <RelativeUnits />
     }
-    return  <PageLayout activeString={this.state.active} buttons={this.state.buttons} active={active} onChange={this.onChange} />
+    return  <PageLayout activeString={this.state.active} buttons={this.state.buttons} activeComponent={activeComponent} onChange={this.onChange} />
   }
 }

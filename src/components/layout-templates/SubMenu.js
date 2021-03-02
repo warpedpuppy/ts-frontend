@@ -1,32 +1,42 @@
 import React from 'react'
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
-import {Link} from 'react-router-dom';
-import { useHistory } from "react-router";
+import { Link } from 'react-router-dom';
 import './SubMenu.css';
-export default function  SubMenu (props) {
-    let history = useHistory();
-    function clickHandler(e) {
+import { withRouter } from 'react-router-dom';
+import Utils from '../../services/Utils';
+class SubMenu extends React.Component {
+
+    componentDidMount = () => {
+        let obj = Utils.parseURLVars(this.props.history.location.search)
+        if (!obj.category) {
+            this.props.history.push({
+                search: `?category=${this.props.active}`
+            })
+        }
+    }
+    clickHandler = (e) => {
         e.preventDefault();
-        
-        history.push({
+        this.props.history.push({
             search: `?category=${e.target.innerHTML}`
           })
-        props.onChange(e)
+        this.props.onChange(e)
     }
-    return (
-        <Navbar collapseOnSelect expand="lg" >
-            <Navbar.Brand as={Link} to={'/'}>{props.title}</Navbar.Brand>
-            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-            <Navbar.Collapse className="justify-content-end">
-                {
-                    props.menuItems.map( (item, index) => {
-                        return <Nav.Link key={index} onClick={clickHandler}>{item}</Nav.Link> 
-                    })
-                }
-      
-            </Navbar.Collapse>
-        </Navbar>
-    )
+    render () {
+        return (
+            <Navbar collapseOnSelect expand="lg" >
+                <Navbar.Brand as={Link} to={'/'}>{ this.props.title}</Navbar.Brand>
+                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <Navbar.Collapse className="justify-content-end">
+                    {
+                         this.props.menuItems.map( (item, index) => {
+                            return <Nav.Link key={index} onClick={this.clickHandler}>{item}</Nav.Link> 
+                        })
+                    }
+                </Navbar.Collapse>
+            </Navbar>
+        )
+    }
+    
 }
-
+export default withRouter(SubMenu);
