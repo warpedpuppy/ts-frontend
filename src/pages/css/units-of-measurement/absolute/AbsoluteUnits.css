@@ -3,6 +3,7 @@
     justify-content: space-evenly;
     list-style-type: none;
     border-bottom: 1px solid black;
+    border-top: 1px solid black;
 }
 
 .absolute-units ul li {
@@ -14,6 +15,12 @@
 
 .absolute-units ul li:hover {
     background-color: grey;
+}
+
+.absolute-units ul li.active-unit {
+    background-color: black;
+    color: white;
+    font-weight: bold;
 }
 
 .absolute-units ul li.active-unit::after {
@@ -29,44 +36,54 @@
     justify-content: space-evenly;
 }
 
-.unit-guide div.inch {
-    width: 1in;
-    display: block;
+.measurement-example {
+    display: flex;
+    align-items: center;
+}
+
+.measurement-example label {
+    margin: 0 10px 0 0;
+}
+
+.measurement-example div {
+    height: 5px;
     border-bottom: 5px solid black;
+}
+
+.unit-guide div.in {
+    width: 1in;
 }
 
 .unit-guide div.cm {
     width: 1cm;
-    display: block;
-    border-bottom: 5px solid black;
 }
 
 .unit-guide div.mm {
     width: 1mm;
-    display: block;
-    border-bottom: 5px solid black;
 }
 
-.unit-guide div.q {
+.unit-guide div.Q {
     width: 1q;
-    display: block;
-    border-bottom: 5px solid black;
 }
 
 .unit-guide div.pt {
     width: 1pt;
-    display: block;
-    border-bottom: 5px solid black;
 }
 
 .unit-guide div.pc {
     width: 1pc;
-    display: block;
-    border-bottom: 5px solid black;
 }
 
 .unit-guide div.px {
     width: 1px;
-    display: block;
-    border-bottom: 5px solid black;
+}
+
+.absolute-units .form-group {
+    width: 50%;
+    margin: 10px auto;
+}
+
+.sample-text {
+    text-align: center;
+    line-height: 1;
 }

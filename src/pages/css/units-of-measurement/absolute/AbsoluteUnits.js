@@ -1,48 +1,83 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './AbsoluteUnits.css'
-
-export default function AbsoluteUnits() {
-    const [active, setActive] = useState('cm');
-    const [expl, setExpl] = useState('centimeters');
-    const [fontSize, setFontSize] = useState('1cm')
-    let arr = ['cm', 'mm', 'Q', 'in', 'pc', 'pt', 'px'];
-    let explanations = [
-        'centimeters',
-        'millimeters', 
-        'quarter-millimeters',
-        'inches',
-        'picas -- 1/6th of 1in',
-        'points -- 1/72th of 1in',
-        'pixels -- 1/96th of 1in'
+import {Form, InputGroup} from 'react-bootstrap';
+export default class AbsoluteUnits extends React.Component {
+    state = {
+        active: 'cm',
+        expl:  '1 centimeter',
+        fontSize: '1cm',
+        sizes: [1,2,3,4,5,6,7,8,9,10],
+        size: 1
+    }
+    arr = ['cm', 'mm', 'Q', 'in', 'pc', 'pt', 'px'];
+    explanations = [
+        '1 centimeter',
+        '1 millimeter', 
+        '1 quarter-millimeter',
+        '1 inch',
+        '1 pica (1/6th of an inch)',
+        '1 point (1/72th of an inch)',
+        '1 pixel (1/96th of an inch)'
     ]
 
-    let style = {fontSize: `${fontSize}`}
-    function changeUnit (e) {
-        setFontSize(`1${e.target.innerHTML}`)
-        setExpl(explanations[arr.indexOf(e.target.innerHTML)])
-        setActive(e.target.innerHTML)
-    }
-    return (
+   
+    changeUnit = (e) => {
 
-        <div className="absolute-units">
-            <ul>
-                {
-                    arr.map( (item, index) => {
-                        return <li key={index} onClick={changeUnit} className={ active === item ? 'active-unit' : ''}>{item}</li>
-                    })
-                }
-            </ul>
-            <div className="unit-explanation">{ expl }</div>
-            <div className="unit-guide">
-                <div className="inch">1 inch</div>
-                <div className="cm">1 centimeter</div>
-                <div className="mm">1 millimeters</div>
-                <div className="q">1 quarter millimeter</div>
-                <div className="pc">1 pica</div>
-                <div className="pt">1 point</div>
-                <div className="px">1 pixel</div>
+        let unit = e.target.innerHTML;
+
+        let sizes = (unit === 'cm' || unit === 'pc' || unit === 'in') ? [1,2,3,4,5,6,7,8,9,10] : [20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30];
+        this.setState({
+            expl: this.explanations[this.arr.indexOf(e.target.innerHTML)],
+            active: unit,
+            sizes,  
+            size: sizes[0],
+            fontSize:`${sizes[0]}${unit}`
+        })
+    }
+
+    recalculateSize = (e) => {
+         this.setState({size: Number(e.target.value), fontSize: `${e.target.value}${this.state.active}`})
+    }
+    render(){
+        const fontStyle = {fontSize: `${this.state.fontSize}`}
+   
+        return (
+            <div className="absolute-units">   
+                <ul>
+                    {
+                        this.arr.map( (item, index) => {
+                            return <li key={index} onClick={this.changeUnit} className={ this.state.active === item ? 'active-unit' : ''}>{item}</li>
+                        })
+                    }
+                </ul>
+                <div className="unit-guide">
+                    {
+                        this.arr.map( (item, index) => {
+                            let style1 = {display: item === this.state.active ? 'flex' : 'none' }
+                            let style2 = { width: `1${item}` }
+                            
+                            return (
+                                <div key={index} className='measurement-example' style={style1}>
+                                <label>{ this.explanations[index] } &#8594; </label><div className={item}>&nbsp;</div>
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+                <Form.Group>
+                <InputGroup className="mb-3">
+                <InputGroup.Prepend>
+                <InputGroup.Text id="basic-addon3">
+                font-size:
+                </InputGroup.Text>
+                </InputGroup.Prepend>
+                <Form.Control as="select" onChange={this.recalculateSize} value={this.state.size}>
+                { this.state.sizes.map( (item, index) => <option value={item} key={index}>{item} {this.state.active}</option> ) }
+                </Form.Control>
+                </InputGroup>
+                </Form.Group>
+            <div style={fontStyle} className='sample-text'>hello world!</div>
             </div>
-           <div style={style}>hello world!</div>
-        </div>
-    )
+        )
+    }
 }
