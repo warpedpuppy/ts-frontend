@@ -1,6 +1,8 @@
 import React from 'react'
 import './AbsoluteUnits.css'
 import {Form, InputGroup} from 'react-bootstrap';
+import AppContext from '../../../../AppContext';
+import Utils from '../../../../services/Utils';
 export default class AbsoluteUnits extends React.Component {
     state = {
         active: 'cm',
@@ -40,9 +42,22 @@ export default class AbsoluteUnits extends React.Component {
     }
     render(){
         const fontStyle = {fontSize: `${this.state.fontSize}`}
-   
+      
         return (
             <div className="absolute-units">   
+             {
+                    [...Array(50).keys()].map( (item, index) => {
+                        const divStyle = {
+                            width: `${this.state.fontSize}`, 
+                            height:  `${this.state.fontSize}`,
+                            top: `${Math.random()* this.context.browserHeight}px`,
+                            left: `${Math.random()* this.context.browserWidth}px`,
+                            animationDuration: `${(Math.random()* 1500)+1500}ms`,
+                            backgroundColor: Utils.randomHex()
+                        }
+                        return  <div style={divStyle} className='sample-div'></div>
+                    })
+                }
                 <ul>
                     {
                         this.arr.map( (item, index) => {
@@ -76,8 +91,12 @@ export default class AbsoluteUnits extends React.Component {
                 </Form.Control>
                 </InputGroup>
                 </Form.Group>
-            <div style={fontStyle} className='sample-text'>hello world!</div>
+                <fieldset>
+                <div style={fontStyle} className='sample-text'>hello world!</div>
+                </fieldset>
+               
             </div>
         )
     }
 }
+AbsoluteUnits.contextType = AppContext;

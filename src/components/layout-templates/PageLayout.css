@@ -13,6 +13,9 @@
     display: flex;
     justify-content: space-evenly;
     border-bottom: 2px solid black;
+    background-color: white;
+    position: relative;
+    z-index: 1;
 }
 
 .page-menu div {

@@ -1,11 +1,16 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './RelativeUnits.css'
-export default function RelativeUnits() {
-    const [active, setActive] = useState('em');
-    const [expl, setExpl] = useState('Font size of the parent, in the case of typographical properties like font-size, and font size of the element itself, in the case of other properties like width.');
-    const [fontSize, setFontSize] = useState('1cm')
-    let arr = ['em', 'ex', 'ch', 'rem', 'lh', 'vw', 'vh', 'vmin', 'vmax'];
-    let explanations = [
+import {Form, InputGroup} from 'react-bootstrap';
+export default class  RelativeUnits extends React.Component {
+
+    state = {
+        active: 'em',
+        expl: 'Font size of the parent, in the case of typographical properties like font-size, and font size of the element itself, in the case of other properties like width.',
+        fontSize: '1em',
+        sizes: [1,2,3,4,5,6,7,8,9,10]
+    }
+    arr = ['em', 'ex', 'ch', 'rem', 'lh', 'vw', 'vh', 'vmin', 'vmax'];
+    explanations = [
         'Font size of the parent, in the case of typographical properties like font-size, and font size of the element itself, in the case of other properties like width.',
         'x-height of the element\'s font.', 
         'The advance measure (width) of the glyph "0" of the element\'s font.',
@@ -17,23 +22,49 @@ export default function RelativeUnits() {
         '1% of the viewport\'s larger dimension.'
     ]
 
-    let style = {fontSize: `${fontSize}`}
-    function changeUnit (e) {
-        setFontSize(`1${e.target.innerHTML}`)
-        setExpl(explanations[arr.indexOf(e.target.innerHTML)])
-        setActive(e.target.innerHTML)
+    changeUnit = (e) => {
+
+        this.setState({
+            active: e.target.innerHTML,
+            fontSize: `1${e.target.innerHTML}`,
+            expl: this.explanations[this.arr.indexOf(e.target.innerHTML)]
+        })
     }
-    return (
+    recalculateSize = (e) => {
+        this.setState({size: Number(e.target.value), fontSize: `${e.target.value}${this.state.active}`})
+   }
+    render () {
+        let style = {fontSize: `${this.state.fontSize}`}
+        return (
         <div className="relative-units">
         <ul>
         {
-            arr.map( (item, index) => {
-                return <li key={index} onClick={changeUnit} className={ active === item ? 'active-unit' : ''}>{item}</li>
+            this.arr.map( (item, index) => {
+                return <li key={index} onClick={this.changeUnit} className={ this.state.active === item ? 'active-unit' : ''}>{item}</li>
             })
         }
         </ul>
-        <div className="unit-explanation">{ expl }</div>
+        <div className="unit-explanation">{ this.state.expl }</div>
+
+        <Form.Group>
+            <InputGroup className="mb-3">
+            <InputGroup.Prepend>
+            <InputGroup.Text id="basic-addon3">
+            font-size:
+            </InputGroup.Text>
+            </InputGroup.Prepend>
+            <Form.Control as="select" onChange={this.recalculateSize} value={this.state.size}>
+            { this.state.sizes.map( (item, index) => <option value={item} key={index}>{item} {this.state.active}</option> ) }
+            </Form.Control>
+            </InputGroup>
+        </Form.Group>
+
+
+        <fieldset>
         <div style={style}>hello</div>
+        </fieldset>
     </div>
     )
+    }
+    
 }

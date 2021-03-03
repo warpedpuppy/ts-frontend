@@ -1,9 +1,15 @@
+.absolute-units {
+    position: relative;
+}
+
 .absolute-units ul {
     display: flex;
     justify-content: space-evenly;
     list-style-type: none;
     border-bottom: 1px solid black;
     border-top: 1px solid black;
+    background-color: white;
+    position: relative;
 }
 
 .absolute-units ul li {
@@ -83,7 +89,42 @@
     margin: 10px auto;
 }
 
+.absolute-units fieldset {
+    margin: 10px auto;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    padding: 20px;
+    overflow: scroll;
+    height: 300px;
+    width: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    position: relative;
+}
+
 .sample-text {
     text-align: center;
     line-height: 1;
+}
+
+.sample-div {
+    opacity: 0.25;
+    margin: 0 auto;
+    animation-name: spin;
+    animation-duration: 5000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    position: absolute;
+    transition: all 1s;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
