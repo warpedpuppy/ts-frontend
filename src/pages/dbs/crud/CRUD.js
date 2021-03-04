@@ -3,6 +3,8 @@ import PageLayout from '../../../components/layout-templates/PageLayout';
 import GraphQL from './graphql/GraphQL';
 import Mongo from './mongo/Mongo';
 import PostgresQL from './postresql/PostgresQL';
+import AWS from './aws/AWS';
+
 export default class CRUD extends React.Component {
     state = {
         active: 'graphql',
@@ -19,6 +21,8 @@ export default class CRUD extends React.Component {
           activeComponent = <Mongo />
         } else if (this.state.active === 'postgresql') {
           activeComponent = <PostgresQL />
+        } else {
+          activeComponent = <AWS />
         }
          return (
            <PageLayout 
