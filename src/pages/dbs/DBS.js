@@ -6,7 +6,7 @@ import JoinPopulate from './JoinPopulate';
 export default class DBS extends Component {
   state = {
     active: 'crud',
-    categories: ['crud', 'join/populate', 'relational / non relational', 'performance']
+    categories: ['crud', 'join/populate', 'relational / non relational', 'performance', 'browser storage']
   }
 
   onChange = (e) => {   
