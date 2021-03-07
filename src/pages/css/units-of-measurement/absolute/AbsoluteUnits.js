@@ -69,7 +69,6 @@ export default class AbsoluteUnits extends React.Component {
                     {
                         this.arr.map( (item, index) => {
                             let style1 = {display: item === this.state.active ? 'flex' : 'none' }
-                            let style2 = { width: `1${item}` }
                             
                             return (
                                 <div key={index} className='measurement-example' style={style1}>
