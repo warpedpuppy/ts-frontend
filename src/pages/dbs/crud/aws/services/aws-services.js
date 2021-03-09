@@ -23,71 +23,6 @@ const AWSServices = {
 
         console.log("READ CLICKED!")
 
-        console.log("dbconnect")
-        let resultdbconnect = await fetch(`https://exc1dtat2e.execute-api.us-east-1.amazonaws.com/dev/api/dbconnect`, {
-            method: "GET",
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-        let responseJsondbconnect = await resultdbconnect.json();
-        console.log("response from dbconnect: ", responseJsondbconnect)
-
-        try {
-            let result2c = await fetch(`https://exc1dtat2e.execute-api.us-east-1.amazonaws.com/dev/api/db-connect-with-specified-origin`, {
-            method: "GET",
-            headers: {
-            'Content-Type': 'application/json',
-            },
-            })
-            let responseJson2c = await result2c.json();
-            console.log("response from connect with specified origin: ", responseJson2c)
-        } catch (e) {
-            console.log("response from specified origin failed -- which is correct")
-        }
-       
-
-        
-
-        let result2 = await fetch(`https://exc1dtat2e.execute-api.us-east-1.amazonaws.com/dev/api/db-connect-with-middleware`, {
-            method: "GET",
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-        let responseJson2 = await result2.json();
-        console.log("response from connect with middleware: ", responseJson2)
-
-        try {
-            let result2b = await fetch(`https://exc1dtat2e.execute-api.us-east-1.amazonaws.com/dev/api/db-connect-with-middleware-and-db-call`, {
-            method: "GET",
-            headers: {
-            'Content-Type': 'application/json',
-            },
-            })
-            let responseJson2b = await result2b.json();
-            console.log("response from connect with middleware and db call: ", responseJson2b)
-        } catch (e) {
-            console.log('connect with middleware and db call failed')
-        }
-      
-
-
-
-
-        console.log("READ FROM AWS")
-        let result = await fetch(`${Config.AWS_ENDPOINT}/test-endpoint-new`, {
-            method: "GET",
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-        let responseJson = await result.json();
-        console.log("response from get all: ", responseJson)
-
-
-
-        console.log("READ FROM AWS")
         let result1 = await fetch(`${Config.AWS_ENDPOINT}/get-all`, {
             method: "GET",
             headers: {
@@ -126,15 +61,15 @@ const AWSServices = {
         return result.ok ? await result.json() : result.ok ; 
     },
     deleteAllCharacters: async function () {
-        let result = await fetch(`${Config.AWS_ENDPOINT}/delete-all`, {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({userid: this.userid})
-        })
+        // let result = await fetch(`${Config.AWS_ENDPOINT}/delete-all`, {
+        //     method: "POST",
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify({userid: this.userid})
+        // })
 
-        return result.ok ? await result.json() : result.ok ; 
+        // return result.ok ? await result.json() : result.ok ; 
     }
 }
 
