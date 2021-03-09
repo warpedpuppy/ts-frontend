@@ -33,7 +33,8 @@ const AWSServices = {
         let responseJsondbconnect = await resultdbconnect.json();
         console.log("response from dbconnect: ", responseJsondbconnect)
 
-        let result2c = await fetch(`https://exc1dtat2e.execute-api.us-east-1.amazonaws.com/dev/api/db-connect-with-specified-origin`, {
+        try {
+             let result2c = await fetch(`https://exc1dtat2e.execute-api.us-east-1.amazonaws.com/dev/api/db-connect-with-specified-origin`, {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',
@@ -41,6 +42,10 @@ const AWSServices = {
         })
         let responseJson2c = await result2c.json();
         console.log("response from connect with specified origin: ", responseJson2c)
+        } catch (e) {
+            console.log("response from specified origin failed -- which is correct")
+        }
+       
 
         
 
