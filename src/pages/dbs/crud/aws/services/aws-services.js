@@ -8,7 +8,6 @@ const AWSServices = {
     },
     create: async function (q) {
         let obj = {character_name: `Fish ${q+1}`, character_color: Utils.randomHex(), userid: this.userid};
-        console.log(obj)
         let result = await fetch(`${Config.AWS_ENDPOINT}/create`, {
             method: "POST",
             headers: {
@@ -20,14 +19,11 @@ const AWSServices = {
         return result.ok ? await result.json() : result.ok ; 
     },
     read: async function () {
-
-        console.log("READ CLICKED!")
-
-        let result1 = await fetch(`${Config.AWS_ENDPOINT}/get-all`, {
+        let result1 = await fetch(`${Config.AWS_ENDPOINT}/get-all?userid=${this.userid}`, {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',
-            },
+            }
         })
         let responseJson1 = await result1.json();
         console.log("response from get all: ", responseJson1)
@@ -61,15 +57,15 @@ const AWSServices = {
         return result.ok ? await result.json() : result.ok ; 
     },
     deleteAllCharacters: async function () {
-        // let result = await fetch(`${Config.AWS_ENDPOINT}/delete-all`, {
-        //     method: "POST",
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify({userid: this.userid})
-        // })
+        let result = await fetch(`${Config.AWS_ENDPOINT}/delete-all`, {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({userid: this.userid})
+        })
 
-        // return result.ok ? await result.json() : result.ok ; 
+        return result.ok ? await result.json() : result.ok ; 
     }
 }
 
