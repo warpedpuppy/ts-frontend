@@ -7,17 +7,60 @@ const AWSServices = {
       this.userid = id;
     },
     create: async function (q) {
-        let result = await fetch(`${Config.API_URL}/mongo-restful`, {
+        let obj = {character_name: `Fish ${q+1}`, character_color: Utils.randomHex(), userid: this.userid};
+        console.log(obj)
+        let result = await fetch(`${Config.AWS_ENDPOINT}/create`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({character_name: `Fish ${q+1}`, character_color: Utils.randomHex(), userid: this.userid})
+            body: JSON.stringify(obj)
         })
+        console.log(result)
         return result.ok ? await result.json() : result.ok ; 
     },
     read: async function () {
 
+        console.log("READ CLICKED!")
+
+        console.log("dbconnect")
+        let resultdbconnect = await fetch(`https://exc1dtat2e.execute-api.us-east-1.amazonaws.com/dev/api/dbconnect`, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+        let responseJsondbconnect = await resultdbconnect.json();
+        console.log("response from dbconnect: ", responseJsondbconnect)
+
+        
+
+        let result2 = await fetch(`https://exc1dtat2e.execute-api.us-east-1.amazonaws.com/dev/api/db-connect-with-middleware`, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+        let responseJson2 = await result2.json();
+        console.log("response from connect with middleware: ", responseJson2)
+
+
+
+
+
+        console.log("READ FROM AWS")
+        let result = await fetch(`${Config.AWS_ENDPOINT}/test-endpoint-new`, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+        let responseJson = await result.json();
+        console.log("response from get all: ", responseJson)
+
+
+
+        console.log("READ FROM AWS")
         let result1 = await fetch(`${Config.AWS_ENDPOINT}/get-all`, {
             method: "GET",
             headers: {
@@ -26,20 +69,10 @@ const AWSServices = {
         })
         let responseJson1 = await result1.json();
         console.log("response from get all: ", responseJson1)
-        
-        let result = await fetch(`${Config.AWS_ENDPOINT}/get-all2`, {
-            method: "GET",
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-        let responseJson = await result.json();
-        console.log("response from getAll2: ", responseJson)
-        
         return result1.ok ? responseJson1.characters : result1.ok ; 
     },
     delete: async function (id) {
-        let result = await fetch(`${Config.API_URL}/mongo-restful`, {
+        let result = await fetch(`${Config.AWS_ENDPOINT}/mongo-restful`, {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json'
@@ -55,7 +88,7 @@ const AWSServices = {
             character_name,
             character_color: newColor
         }
-        let result = await fetch(`${Config.API_URL}/mongo-restful`, {
+        let result = await fetch(`${Config.AWS_ENDPOINT}/mongo-restful`, {
             method: "PUT",
             headers: {
                 'Content-Type': 'application/json'
@@ -66,8 +99,8 @@ const AWSServices = {
         return result.ok ? await result.json() : result.ok ; 
     },
     deleteAllCharacters: async function () {
-        let result = await fetch(`${Config.API_URL}/mongo-restful/delete-all`, {
-            method: "DELETE",
+        let result = await fetch(`${Config.AWS_ENDPOINT}/delete-all`, {
+            method: "POST",
             headers: {
                 'Content-Type': 'application/json'
             },

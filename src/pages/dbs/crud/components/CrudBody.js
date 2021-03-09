@@ -29,7 +29,8 @@ export default class CrudBody extends React.Component {
       }
       try {
         let character = await this.props.service.create(this.state.characters.length); 
-        this.setState({characters: [...this.state.characters, character], instructions: ''})
+        console.log(character)
+        //this.setState({characters: [...this.state.characters, character], instructions: ''})
       } catch(e) {
         console.error(e)
       } 
