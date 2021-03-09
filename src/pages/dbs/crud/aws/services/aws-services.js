@@ -45,6 +45,15 @@ const AWSServices = {
         console.log("response from connect with middleware: ", responseJson2)
 
 
+        let result2b = await fetch(`https://exc1dtat2e.execute-api.us-east-1.amazonaws.com/dev/api/db-connect-with-middleware-and-db-call`, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+        let responseJson2b = await result2b.json();
+        console.log("response from connect with middleware and db call: ", responseJson2b)
+
 
 
 
