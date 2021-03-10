@@ -62,8 +62,7 @@ export default class CrudBody extends React.Component {
     updateHandler = async (e, id, character_name) => {
       e.preventDefault();
       try {
-        let newColor = Utils.randomHex();
-        console.log(newColor)
+        let newColor = Utils.trueRandomHex();
         //remote
         await this.props.service.update(id, character_name, newColor);
 

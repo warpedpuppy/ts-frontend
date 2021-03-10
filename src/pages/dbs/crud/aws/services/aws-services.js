@@ -30,14 +30,13 @@ const AWSServices = {
         return result1.ok ? responseJson1.characters : result1.ok ; 
     },
     delete: async function (id) {
-        let result = await fetch(`${Config.AWS_ENDPOINT}/mongo-restful`, {
+        let result = await fetch(`${Config.AWS_ENDPOINT}/delete`, {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({id})
         })
-
         return result.ok ? await result.json() : result.ok ; 
     },
     update: async function (id, character_name, newColor) {
@@ -53,9 +52,7 @@ const AWSServices = {
             },
             body: JSON.stringify(obj)
         })
-        let resJson = await result.json();
-        console.log(resJson)
-        return result.ok ? resJson : result.ok ; 
+        return result.ok ? await result.json() : result.ok ; 
     },
     deleteAllCharacters: async function () {
         let result = await fetch(`${Config.AWS_ENDPOINT}/delete-all`, {
