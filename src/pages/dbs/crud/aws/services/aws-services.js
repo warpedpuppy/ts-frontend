@@ -46,15 +46,16 @@ const AWSServices = {
             character_name,
             character_color: newColor
         }
-        let result = await fetch(`${Config.AWS_ENDPOINT}/mongo-restful`, {
+        let result = await fetch(`${Config.AWS_ENDPOINT}/update`, {
             method: "PUT",
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(obj)
         })
-
-        return result.ok ? await result.json() : result.ok ; 
+        let resJson = await result.json();
+        console.log(resJson)
+        return result.ok ? resJson : result.ok ; 
     },
     deleteAllCharacters: async function () {
         let result = await fetch(`${Config.AWS_ENDPOINT}/delete-all`, {

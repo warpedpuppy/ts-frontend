@@ -33,6 +33,8 @@ export default class AWSCORS extends Component {
     <div> 
           <p>the goal was to create an aws endpoint that allowed more than one cross origin url.</p>
           <p>and as always, spoiler alert, the solution came from a combo of console logging all available data until I saw what was available to me and then some plain old JavaScript.</p>
+          <p>lingering issue here is what role aws api gateway plays here -- when the cors settings there are clearly different</p>
+          <p>add discussion of difference bettween yaml and handler and print out event object</p>
           <p>I split the tasks in groups to approach the issue systematically:
               <ol>
                 <li><Button onClick={this.testEndpoint}>just test the endpoint</Button></li> 
