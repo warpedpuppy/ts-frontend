@@ -15,12 +15,14 @@ export default function CharacterModule(props) {
         return;
     }
     return (
-        <div className="character-module" onClick={clickHandler}>
-            <div className="character-module-header" style={colorStyle} >{props.character_name}</div>
-            <div className="character-module-background" style={colorStyle}></div>
-            <div className="character-module-color">{props.character_color}</div>
-            <div className="character-module-update" style={showUpdateStyle}>update color!</div>
-            <div className="character-module-delete" style={showDeleteStyle}>delete!</div>
-        </div>
+        <tr className="character-module" onClick={clickHandler} style={colorStyle}>
+            <td className="character-module-header"  >{props.character_name}</td>
+            {/* <td className="character-module-background" ></td> */}
+            <td className="character-module-color">{props.character_color}</td>
+            <td>
+                <div className="character-module-update" style={showUpdateStyle}>update color!</div>
+                <div className="character-module-delete" style={showDeleteStyle}>delete!</div>
+            </td>
+        </tr>
     )
 }

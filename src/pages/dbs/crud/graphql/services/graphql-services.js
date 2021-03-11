@@ -1,18 +1,15 @@
 import { gql } from '@apollo/client';
 import Utils from '../../../../../services/Utils';
+import { v4 as uuidv4 } from 'uuid';
 const Mutations = {
     client: undefined,
-    userid: undefined,
-    setUserID: function (id) {
-      this.userid = id;
-    },
+    userid: uuidv4(),
     setClient: function (client) {
         this.client = client;
     },
     read: async function (id) {
         try {
-            let result = await this.client.mutate({
-            mutation: gql`
+            let query = `
             query GetCharacters {
                 characters(input: {
                   userid:"${this.userid}",
@@ -24,8 +21,9 @@ const Mutations = {
                   updatedAt
                 }
               }`
-          })
-          return result;
+          let response = await this.client.mutate({ mutation: gql`${query}` })
+          console.log(response)
+          return { query, response, characters: response.data.characters };
         } catch(e) {
           // console.error(e)
         } 
@@ -33,13 +31,12 @@ const Mutations = {
     create: async function(q) {
        let character_name = `Fish ${q + 1}`;
         try {
-            let result = await this.client.mutate({
-            mutation: gql`
+            let query = `
             mutation createCharacter {
                 createCharacter(input: {
                     userid: "${this.userid}",
                     character_name: "${character_name}",
-                    character_color: "${ Utils.randomHex() }"
+                    character_color: "${ Utils.trueRandomHex() }"
                 }) {
                     id
                     character_name
@@ -48,44 +45,44 @@ const Mutations = {
                     updatedAt
                 }
             }`
+            let response = await this.client.mutate({
+            mutation: gql`${query}`
           })
-          return result.data.createCharacter;
+          return { character: response.data.createCharacter, query, response: JSON.stringify(response.data) };
         } catch(e) {
           // console.error(e)
         } 
     },
     update: async function(id, name, color) {
         try {
-            let result = await this.client.mutate({
-                mutation: gql`
-                mutation updateCharacter {
-                    updateCharacter(input: {
-                          id:  "${id}",
-                          character_name: "${name}", 
-                          character_color: "${color}"
-                        }) {
-                          id
-                          character_name
-                          character_color
-                        }
-                }`
-              })
-          return result.data.updateCharacter;
+            let query = `
+            mutation updateCharacter {
+                updateCharacter(input: {
+                      id:  "${id}",
+                      character_name: "${name}", 
+                      character_color: "${color}"
+                    }) {
+                      id
+                      character_name
+                      character_color
+                    }
+            }`
+          let response = await this.client.mutate({mutation: gql`${query}`})
+          return {query, response, character: response.data.updateCharacter};
         } catch(e) {
           // console.error("update error", e)
         } 
     },
     delete: async function (id) {
         try {
-            let result = await this.client.mutate({
-                mutation: gql`
-                mutation deleteCharacter {
-                    deleteCharacter(input:{
-                     id:  "${id}"
-                    }) 
-                }`
-              })
-           return result.data.deleteCharacter;
+          let query = `
+          mutation deleteCharacter {
+              deleteCharacter(input:{
+               id:  "${id}"
+              }) 
+          }`
+            let response = await this.client.mutate({mutation: gql`${query}` })
+           return {query, response, character: response.data.deleteCharacter};
         } catch(e) {
           // console.error(e)
         } 

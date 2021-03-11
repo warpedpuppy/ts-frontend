@@ -1,16 +1,15 @@
 import React from 'react';
 import Utils from '../../../../services/Utils';
-import { v4 as uuidv4 } from 'uuid';
 import CrudButtons from './CrudButtons';
 import './CrudBody.css';
 import CharacterModule from './CharacterModule';
 import FishTank from './FishTank';
 
 export default class CrudBody extends React.Component {
-    state = {activeCharacter: undefined, instructions: 'db is empty!', mode: undefined, characters: []};
+    state = {activeCharacter: undefined, instructions: 'db is empty!', mode: undefined, characters: [], query: '', response: ''};
 
     componentDidMount = () => {
-      this.props.service.setUserID(uuidv4());
+     // this.props.service.setUserID(uuidv4());
       this.props.service.deleteAllCharacters();
     }
     componentWillUnmount = async () => {
@@ -28,8 +27,15 @@ export default class CrudBody extends React.Component {
         return;
       }
       try {
-        let character = await this.props.service.create(this.state.characters.length); 
-        console.log(character)
+        let {character, query, response} = await this.props.service.create(this.state.characters.length); 
+        if (character) {
+          this.setState({
+            characters: [...this.state.characters, character],instructions: "created! click read to see it!", 
+            query, 
+            response: JSON.stringify(response)
+          })
+        }
+        console.log(response)
         //this.setState({characters: [...this.state.characters, character], instructions: ''})
       } catch(e) {
         console.error(e)
@@ -38,12 +44,12 @@ export default class CrudBody extends React.Component {
     read = async (e) => {
       e.preventDefault();
       this.setState({mode: 'read'})
-      let result = await this.props.service.read();
-      let characters = Array.isArray(result) ? result : result.data.characters;
+      let { query, response, characters } = await this.props.service.read();
+      //let characters = Array.isArray(response) ? response : response.data.characters;
       if (!characters.length) {
-        this.setState({instructions: "db is empty!"})
+        this.setState({instructions: "db is empty!", query, response: JSON.stringify(response)})
       } else {
-        this.setState({characters, instructions: ''})
+        this.setState({characters, instructions: '', query, response: JSON.stringify(response) })
       }
       
     }
@@ -64,11 +70,17 @@ export default class CrudBody extends React.Component {
       try {
         let newColor = Utils.trueRandomHex();
         //remote
-        await this.props.service.update(id, character_name, newColor);
-
+        let { query, response } = await this.props.service.update(id, character_name, newColor);
+        let characters = this.state.characters.map( character => {
+          return Object.assign(character, {character_color: character_name === character.character_name ? newColor : character.character_color})})
+          console.log(response)
         //local
-        this.setState({characters: this.state.characters.map( character => {
-          return Object.assign(character, {character_color: character_name === character.character_name ? newColor : character.character_color})}), instructions: '', mode: ''
+        this.setState({
+          characters, 
+          instructions: '', 
+          mode: '',
+          query,
+          response: JSON.stringify(response)
         })
       } catch (e) {
           console.error(e)
@@ -90,21 +102,36 @@ export default class CrudBody extends React.Component {
 
     deleteHandler = async (id) => {
       try {
-        this.setState({characters: this.state.characters.filter(c => c.id !== id)})
-        this.setState({instructions: '', mode: ''})
-        await this.props.service.delete(id); 
+        let { query, character} = await this.props.service.delete(id); 
+        this.setState({
+          characters: this.state.characters.filter(c => c.id !== id), 
+          instructions: '', 
+          mode: '',
+          query,
+          response: JSON.stringify(character)
+        })
       } catch(e) {
         console.error(e)
       } 
     }
    
    render () {
-    const { instructions } = this.state;
+    const { instructions, mode, characters, query, response  } = this.state;
     return (
       <>
           <CrudButtons create={this.create} read={this.read} update={this.update} delete={this.delete} />
           <div className="instructions">{ instructions }</div>
-          <div className={`character-div ${this.state.mode}`}>
+          
+
+          <table className={`character-table ${mode}`}>
+            <thead>
+              <tr>
+                <th>character name</th>
+                <th>character color</th>
+                <th>actions</th>
+              </tr>
+            </thead>
+            <tbody>
             {
               this.state.characters.map((item, index) => <CharacterModule 
               key={index} 
@@ -113,8 +140,13 @@ export default class CrudBody extends React.Component {
               changeColor={this.updateHandler} 
               {...item} /> )
             }
+            </tbody>
+          </table>
+          <div className="query-response-div">
+            <code><h2>query</h2>{query}</code>
+            <code><h2>response</h2>{response}</code>
           </div>
-          <FishTank characters={this.state.characters} />
+          <FishTank characters={characters} />
           </>
         )
     }

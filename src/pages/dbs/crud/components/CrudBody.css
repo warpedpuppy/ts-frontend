@@ -6,8 +6,32 @@
     background-color: rgba(0, 0, 0, 0.25);
 }
 
-.character-div {
+.character-table {
+    display: block;
+}
+
+.character-table thead,
+.character-table tbody,
+.character-table * tr {
+    display: block;
+    width: 100%;
+}
+
+.character-table * tr {
+    cursor: pointer;
+}
+
+.character-table th,
+.character-table td {
+    width: 33.33%;
+    display: inline-block
+}
+
+.query-response-div {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+}
+
+.query-response-div code {
+    font-size: 0.5rem;
+    border: 1px solid grey;
 }

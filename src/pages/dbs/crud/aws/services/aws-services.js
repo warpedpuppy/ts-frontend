@@ -1,11 +1,11 @@
 import Config from '../../../../../config';
 import Utils from '../../../../../services/Utils';
-
+import { v4 as uuidv4 } from 'uuid';
 const AWSServices = {
-    userid: undefined,
-    setUserID: function (id) {
-      this.userid = id;
-    },
+    userid: uuidv4(),
+    // setUserID: function (id) {
+    //   this.userid = id;
+    // },
     create: async function (q) {
         let obj = {character_name: `Fish ${q+1}`, character_color: Utils.randomHex(), userid: this.userid};
         let result = await fetch(`${Config.AWS_ENDPOINT}/create`, {

@@ -1,10 +1,8 @@
 import Config from '../../../../../config';
 import Utils from '../../../../../services/Utils';
+import { v4 as uuidv4 } from 'uuid';
 const MongoServices = {
-    userid: undefined,
-    setUserID: function (id) {
-      this.userid = id;
-    },
+    userid: uuidv4(),
     create: async function (q) {
         let result = await fetch(`${Config.API_URL}/mongo-restful`, {
             method: "POST",
@@ -13,7 +11,8 @@ const MongoServices = {
             },
             body: JSON.stringify({character_name: `Fish ${q+1}`, character_color: Utils.randomHex(), userid: this.userid})
         })
-        return result.ok ? await result.json() : result.ok ; 
+        let responseJson =  result.ok ? await result.json() : result.ok ; 
+        return { character, query, response: JSON.stringify(responseJson) };
     },
     read: async function () {
         let result = await fetch(`${Config.API_URL}/mongo-restful/${this.userid}`)
