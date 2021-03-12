@@ -4,46 +4,81 @@ import { v4 as uuidv4 } from 'uuid';
 const MongoServices = {
     userid: uuidv4(),
     create: async function (q) {
-        let result = await fetch(`${Config.API_URL}/mongo-restful`, {
+
+        try {
+            let result = await fetch(`${Config.API_URL}/mongo-restful`, {
             method: "POST",
             headers: {
-                'Content-Type': 'application/json'
+            'Content-Type': 'application/json'
             },
             body: JSON.stringify({character_name: `Fish ${q+1}`, character_color: Utils.randomHex(), userid: this.userid})
-        })
-        let responseJson =  result.ok ? await result.json() : result.ok ; 
-        return { character, query, response: JSON.stringify(responseJson) };
+            })
+
+            let responseJson =  result.ok ? await result.json() : result.ok ; 
+
+            let {character, query} = responseJson;
+            return { character, query, response: JSON.stringify(responseJson) };
+        
+        } catch (e) {
+            console.log(e)
+        }
+       
     },
     read: async function () {
-        let result = await fetch(`${Config.API_URL}/mongo-restful/${this.userid}`)
-        return result.ok ? await result.json() : result.ok ; 
+        try {
+            let result = await fetch(`${Config.API_URL}/mongo-restful/${this.userid}`)
+            let responseJson = result.ok ? await result.json() : result.ok ; 
+            let { characters, query } = responseJson;
+            return { characters, query, response: JSON.stringify(responseJson) };
+        } catch(e) {
+            console.log(e)
+        }
+       
     },
     delete: async function (id) {
-        let result = await fetch(`${Config.API_URL}/mongo-restful`, {
-            method: "DELETE",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({id})
-        })
+        try{
+            let result = await fetch(`${Config.API_URL}/mongo-restful`, {
+                method: "DELETE",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({id})
+            })
+            if (!result.ok) {
+                return result.ok;
+            } else {
+                let {query, character} = await result.json();
+                return {query, character, response: JSON.stringify(result)}
+            }
+        } catch (e) {
+            console.log(e)
+        }
 
-        return result.ok ? await result.json() : result.ok ; 
+
     },
     update: async function (id, character_name, newColor) {
-        let obj = {
-            id,
-            character_name,
-            character_color: newColor
-        }
-        let result = await fetch(`${Config.API_URL}/mongo-restful`, {
-            method: "PUT",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(obj)
-        })
+        try {
+             let obj = {
+                id,
+                character_name,
+                character_color: newColor
+            }
+            let result = await fetch(`${Config.API_URL}/mongo-restful`, {
+                method: "PUT",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(obj)
+            })
 
-        return result.ok ? await result.json() : result.ok ; 
+            let resultJSON = result.ok ? await result.json() : result.ok ; 
+            let { character, query } = resultJSON;
+            return { character, query, response: JSON.stringify(resultJSON) };
+
+        } catch (e) {
+            console.error(e)
+        }
+       
     },
     deleteAllCharacters: async function () {
         let result = await fetch(`${Config.API_URL}/mongo-restful/delete-all`, {

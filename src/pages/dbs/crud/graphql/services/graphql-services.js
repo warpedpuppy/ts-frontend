@@ -22,7 +22,6 @@ const Mutations = {
                 }
               }`
           let response = await this.client.mutate({ mutation: gql`${query}` })
-          console.log(response)
           return { query, response, characters: response.data.characters };
         } catch(e) {
           // console.error(e)

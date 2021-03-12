@@ -27,10 +27,11 @@ export default class CrudBody extends React.Component {
         return;
       }
       try {
-        let {character, query, response} = await this.props.service.create(this.state.characters.length); 
+        let { character, query, response } = await this.props.service.create(this.state.characters.length); 
+        console.log(character, query, response)
         if (character) {
           this.setState({
-            characters: [...this.state.characters, character],instructions: "created! click read to see it!", 
+            characters: [...this.state.characters, character],instructions: "", 
             query, 
             response: JSON.stringify(response)
           })

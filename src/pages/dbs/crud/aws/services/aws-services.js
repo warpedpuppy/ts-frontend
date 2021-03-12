@@ -3,9 +3,6 @@ import Utils from '../../../../../services/Utils';
 import { v4 as uuidv4 } from 'uuid';
 const AWSServices = {
     userid: uuidv4(),
-    // setUserID: function (id) {
-    //   this.userid = id;
-    // },
     create: async function (q) {
         let obj = {character_name: `Fish ${q+1}`, character_color: Utils.randomHex(), userid: this.userid};
         let result = await fetch(`${Config.AWS_ENDPOINT}/create`, {
@@ -15,19 +12,18 @@ const AWSServices = {
             },
             body: JSON.stringify(obj)
         })
-        console.log(result)
-        return result.ok ? await result.json() : result.ok ; 
+        let { character, query } =  await result.json();
+        return { character: character[0], query, response:  character[0]};
     },
     read: async function () {
-        let result1 = await fetch(`${Config.AWS_ENDPOINT}/get-all?userid=${this.userid}`, {
+        let result = await fetch(`${Config.AWS_ENDPOINT}/get-all?userid=${this.userid}`, {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',
             }
         })
-        let responseJson1 = await result1.json();
-        console.log("response from get all: ", responseJson1)
-        return result1.ok ? responseJson1.characters : result1.ok ; 
+        let { characters, query } =  await result.json();
+        return { characters, query, response: characters }; 
     },
     delete: async function (id) {
         let result = await fetch(`${Config.AWS_ENDPOINT}/delete`, {
@@ -37,7 +33,9 @@ const AWSServices = {
             },
             body: JSON.stringify({id})
         })
-        return result.ok ? await result.json() : result.ok ; 
+        // return result.ok ? await result.json() : result.ok ; 
+        let { character, query } =  await result.json();
+        return { character, query, response: character }; 
     },
     update: async function (id, character_name, newColor) {
         let obj = {
@@ -52,7 +50,9 @@ const AWSServices = {
             },
             body: JSON.stringify(obj)
         })
-        return result.ok ? await result.json() : result.ok ; 
+        // return result.ok ? await result.json() : result.ok ; 
+        let { character, query } =  await result.json();
+        return { character, query, response: character }; 
     },
     deleteAllCharacters: async function () {
         let result = await fetch(`${Config.AWS_ENDPOINT}/delete-all`, {
