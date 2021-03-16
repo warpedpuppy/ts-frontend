@@ -18,9 +18,10 @@
     left: 0;
     background-color: black;
     z-index: -1;
-}
+} */
 
-.character-module-header {
+
+/* .character-module-header {
     padding: 5px;
     font-weight: bolder;
     color: white;
@@ -47,30 +48,28 @@
     color: white;
     width: 100%;
     border: none;
-}
+} */
 
 .character-module-update,
 .character-module-delete {
     font-weight: bolder;
     text-align: center;
     color: white;
-    font-size: 15px;
+    background-color: grey;
     margin: 3px;
     padding: 3px;
     border-radius: 3px;
-
-
-
 }
+
 .delete .character-module {
     animation-name: burn;
     animation-duration: 1s;
     animation-iteration-count: infinite;
 }
+
 .update .character-module {
     border-color: orange;
 }
-*/
 
 @keyframes burn {
     0% {

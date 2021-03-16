@@ -27,17 +27,17 @@ export default class CrudBody extends React.Component {
         return;
       }
       try {
-        let { character, query, response } = await this.props.service.create(this.state.characters.length); 
-        console.log(character, query, response)
+        let { character, query } = await this.props.service.create(this.state.characters.length); 
+
         if (character) {
           this.setState({
-            characters: [...this.state.characters, character],instructions: "", 
+            characters: [...this.state.characters, character],
+            instructions: "", 
             query, 
-            response: JSON.stringify(response)
+            response: JSON.stringify(character)
           })
         }
-        console.log(response)
-        //this.setState({characters: [...this.state.characters, character], instructions: ''})
+
       } catch(e) {
         console.error(e)
       } 
@@ -45,12 +45,12 @@ export default class CrudBody extends React.Component {
     read = async (e) => {
       e.preventDefault();
       this.setState({mode: 'read'})
-      let { query, response, characters } = await this.props.service.read();
+      let { query, characters } = await this.props.service.read();
       //let characters = Array.isArray(response) ? response : response.data.characters;
       if (!characters.length) {
-        this.setState({instructions: "db is empty!", query, response: JSON.stringify(response)})
+        this.setState({instructions: "db is empty!", query, response: JSON.stringify(characters)})
       } else {
-        this.setState({characters, instructions: '', query, response: JSON.stringify(response) })
+        this.setState({characters, instructions: '', query, response: JSON.stringify(characters) })
       }
       
     }
@@ -117,38 +117,42 @@ export default class CrudBody extends React.Component {
     }
    
    render () {
-    const { instructions, mode, characters, query, response  } = this.state;
+    const { mode, characters, query, response  } = this.state;
     return (
-      <>
+      <div className="crud-shell">
           <CrudButtons create={this.create} read={this.read} update={this.update} delete={this.delete} />
-          <div className="instructions">{ instructions }</div>
-          
 
-          <table className={`character-table ${mode}`}>
-            <thead>
-              <tr>
-                <th>character name</th>
-                <th>character color</th>
-                <th>actions</th>
-              </tr>
-            </thead>
-            <tbody>
-            {
-              this.state.characters.map((item, index) => <CharacterModule 
-              key={index} 
-              mode={this.state.mode}
-              deleteHandler={this.deleteHandler} 
-              changeColor={this.updateHandler} 
-              {...item} /> )
+          {  
+          this.state.characters.length > 0 &&  <table className={`character-table ${mode}`}>
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>character name</th>
+                      <th>character color</th>
+                      <th>actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {
+                    this.state.characters.map((item, index) => <CharacterModule 
+                    key={index}
+                    index={index} 
+                    mode={this.state.mode}
+                    deleteHandler={this.deleteHandler} 
+                    changeColor={this.updateHandler} 
+                    {...item} /> )
+                  }
+                  </tbody>
+                </table>
             }
-            </tbody>
-          </table>
+
+
           <div className="query-response-div">
-            <code><h2>query</h2>{query}</code>
-            <code><h2>response</h2>{response}</code>
+            <code><h3>query</h3>{query}</code>
+            <code><h3>response</h3>{response}</code>
           </div>
           <FishTank characters={characters} />
-          </>
+          </div>
         )
     }
 }

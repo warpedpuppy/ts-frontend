@@ -1,3 +1,9 @@
+.crud-shell {
+    width: 80%;
+    margin: 10px auto;
+    overflow: hidden;
+}
+
 .instructions {
     text-align: center;
     font-weight: bold;
@@ -8,6 +14,7 @@
 
 .character-table {
     display: block;
+    margin: 10px auto;
 }
 
 .character-table thead,
@@ -19,19 +26,47 @@
 
 .character-table * tr {
     cursor: pointer;
+    margin: 3px;
+    border-radius: 5px;
 }
 
 .character-table th,
 .character-table td {
-    width: 33.33%;
-    display: inline-block
+    width: 25%;
+    display: inline-block;
+    font-size: 10px;
+}
+
+.character-table td {
+    color: white;
+    font-weight: bold;
+    padding: 0 5px
 }
 
 .query-response-div {
     display: flex;
 }
 
-.query-response-div code {
+.query-response-div h3 {
     font-size: 0.5rem;
-    border: 1px solid grey;
+    font-weight: bold;
+    border-bottom: 1px solid grey;
+}
+
+.query-response-div code {
+    width: 50%;
+    background: #f4f4f4;
+    border: 1px solid #ddd;
+    border-left: 3px solid #f36d33;
+    color: #000;
+    page-break-inside: avoid;
+    font-family: monospace;
+    font-size: 0.75rem;
+    line-height: 1.6;
+    margin-bottom: 1.6em;
+    max-width: 100%;
+    overflow: auto;
+    padding: 1em 1.5em;
+    display: block;
+    word-wrap: break-word;
 }

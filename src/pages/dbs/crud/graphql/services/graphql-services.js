@@ -44,10 +44,8 @@ const Mutations = {
                     updatedAt
                 }
             }`
-            let response = await this.client.mutate({
-            mutation: gql`${query}`
-          })
-          return { character: response.data.createCharacter, query, response: JSON.stringify(response.data) };
+            let response = await this.client.mutate({ mutation: gql`${query}` })
+            return { character: response.data.createCharacter, query, response: response.data };
         } catch(e) {
           // console.error(e)
         } 

@@ -48,7 +48,7 @@ const MongoServices = {
                 return result.ok;
             } else {
                 let {query, character} = await result.json();
-                return {query, character, response: JSON.stringify(result)}
+                return {query, character, response: JSON.stringify(character)}
             }
         } catch (e) {
             console.log(e)
@@ -73,7 +73,7 @@ const MongoServices = {
 
             let resultJSON = result.ok ? await result.json() : result.ok ; 
             let { character, query } = resultJSON;
-            return { character, query, response: JSON.stringify(resultJSON) };
+            return { character, query, response: JSON.stringify(character) };
 
         } catch (e) {
             console.error(e)
