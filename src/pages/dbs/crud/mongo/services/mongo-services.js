@@ -26,7 +26,7 @@ const MongoServices = {
     },
     read: async function () {
         try {
-            let result = await fetch(`${Config.API_URL}/mongo-restful/${this.userid}`)
+            let result = await fetch(`${Config.API_URL}/mongo-restful/user/${this.userid}`)
             let responseJson = result.ok ? await result.json() : result.ok ; 
             let { characters, query } = responseJson;
             return { characters, query, response: JSON.stringify(responseJson) };
@@ -34,6 +34,14 @@ const MongoServices = {
             console.log(e)
         }
        
+    },
+    getTotalRecords: async function () {
+        try {
+            let result = await fetch(`${Config.API_URL}/mongo-restful/complete`)
+            return result.ok ? await result.json() : result.ok ; 
+        } catch(e) {
+            console.log(e)
+        }
     },
     delete: async function (id) {
         try{
@@ -89,6 +97,12 @@ const MongoServices = {
             body: JSON.stringify({userid: this.userid})
         })
 
+        return result.ok ? await result.json() : result.ok ; 
+    },
+    empty: async function () {
+        let result = await fetch(`${Config.API_URL}/mongo-restful/empty`, {
+            method: "DELETE"
+        })
         return result.ok ? await result.json() : result.ok ; 
     }
 }

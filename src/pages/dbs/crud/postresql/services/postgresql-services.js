@@ -23,10 +23,14 @@ const PostgresqlServices = {
   
     },
     read: async function () {
-      let response = await fetch(`${Config.API_URL}/postgresql-restful/${this.userid}`)
+      let response = await fetch(`${Config.API_URL}/postgresql-restful/user/${this.userid}`)
       console.log(response)
       let {characters, query } = await response.json();
       return {characters, query, response: JSON.stringify({characters, query }) };
+    },
+    getTotalRecords: async function () {
+      let response = await fetch(`${Config.API_URL}/postgresql-restful/total`)
+      return await response.json();
     },
     update: async function (id, character_name, newColor) {
       let obj = {
@@ -63,6 +67,10 @@ const PostgresqlServices = {
             },
             body: JSON.stringify({userid: this.userid})
           })
+    },
+    empty: async function () {
+       let result = await fetch(`${Config.API_URL}/postgresql-restful/empty`, { method: "DELETE" })
+       return await result.json();
     }
 
 

@@ -25,6 +25,12 @@ const AWSServices = {
         let { characters, query } =  await result.json();
         return { characters, query, response: characters }; 
     },
+    getTotalRecords: async function () {
+        let result = await fetch(`${Config.AWS_ENDPOINT}/get-total`, {
+            method: "GET"
+        })
+        return await result.json();
+    },
     delete: async function (id) {
         let result = await fetch(`${Config.AWS_ENDPOINT}/delete`, {
             method: "DELETE",
@@ -63,6 +69,10 @@ const AWSServices = {
             body: JSON.stringify({userid: this.userid})
         })
 
+        return result.ok ? await result.json() : result.ok ; 
+    },
+    empty: async function () {
+        let result = await fetch(`${Config.AWS_ENDPOINT}/empty`, { method: "DELETE" })
         return result.ok ? await result.json() : result.ok ; 
     }
 }
