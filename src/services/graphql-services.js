@@ -1,5 +1,5 @@
 import { gql } from '@apollo/client';
-import Utils from '../../../../../services/Utils';
+import Utils from './Utils';
 import { v4 as uuidv4 } from 'uuid';
 const Mutations = {
     client: undefined,

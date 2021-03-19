@@ -5,7 +5,7 @@ import Operators from './operators/Operators';
 export default class DBS extends Component {
   state = {
     active: 'operators',
-    buttons: ['operators', 'isNaN', 'current target v target', 'functional v OOP', 'maze solver code', 'object pooling']
+    buttons: ['operators', 'isNaN', 'current target v target', 'functional v OOP', 'maze solver code', 'object pooling', 'recursive permutation']
   }
 
   onChange = (active) => {   

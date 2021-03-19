@@ -1,5 +1,5 @@
-import Config from '../../../../../config';
-import Utils from '../../../../../services/Utils';
+import Config from '../config';
+import Utils from './Utils';
 import { v4 as uuidv4 } from 'uuid';
 const AWSServices = {
     userid: uuidv4(),

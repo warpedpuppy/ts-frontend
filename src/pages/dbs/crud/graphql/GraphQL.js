@@ -1,5 +1,5 @@
 import React from 'react';
-import Mutations from './services/graphql-services';
+import Mutations from '../../../../services/graphql-services';
 import Config from '../../../../config';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import CrudBody from '../components/CrudBody';

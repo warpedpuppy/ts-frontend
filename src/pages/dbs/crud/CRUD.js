@@ -4,12 +4,12 @@ import GraphQL from './graphql/GraphQL';
 import Mongo from './mongo/Mongo';
 import PostgresQL from './postresql/PostgresQL';
 import AWS from './aws/AWS';
-import CRUDAdmin from './admin/CRUDAdmin';
+
 
 export default class CRUD extends React.Component {
     state = {
         active: 'graphql',
-        buttons: ['graphql', 'postgresql', 'mongo', 'serverless - aws', 'admin']
+        buttons: ['graphql', 'postgresql', 'mongo', 'serverless - aws']
       }
       onChange = (active) => {   
        this.setState({active})
@@ -24,9 +24,7 @@ export default class CRUD extends React.Component {
           activeComponent = <PostgresQL />
         } else if (this.state.active === 'serverless - aws') {
           activeComponent = <AWS />
-        } else {
-          activeComponent = <CRUDAdmin />
-        }
+        } 
          return (
            <PageLayout 
             activeString={this.state.active} 
