@@ -23,4 +23,4 @@ yarn-debug.log*
 yarn-error.log*
 
 /aws-api
-
+/aws-api/serverless.yml

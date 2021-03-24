@@ -4,10 +4,8 @@ import * as PIXI from 'pixi.js'
 import Utils from '../../../../services/Utils';
 
 export default class FishTank extends React.Component {
-    state = {characters: []};
     canvasWidth = 600;
     canvasHeight = 200;
-    // characters = [];
     stage = undefined;
     app = undefined;
     count = 0;
@@ -64,7 +62,8 @@ export default class FishTank extends React.Component {
     }
   
     moveCharacters = () => {
-      this.state.characters.forEach( character => {
+      this.props.characters.forEach( (dbInfo, index) => {
+        let character = this.objectPool[index]
         character.x += character.vx;
         character.y += character.vy;
 
@@ -96,18 +95,12 @@ export default class FishTank extends React.Component {
     create = (c, i) => {
         if (!this.stage) return;
   
-        let newItem = this.objectPool[i];
-        newItem.tint = `0x${c.character_color.substring(1)}`
-        newItem.character_name = c.character_name;
-        newItem.x = newItem.xVal;
-        newItem.y = newItem.yVal;
-        this.stage.addChildAt(newItem, 0)
-
-        let fish = this.state.characters.find( char => char.character_name === c.character_name)
-        if (!fish) {
-          this.setState({characters: [...this.state.characters, newItem]})
-        }
-        
+        let newFish = this.objectPool[i];
+        newFish.tint = `0x${c.character_color.substring(1)}`
+        newFish.character_name = c.character_name;
+        newFish.x = newFish.xVal;
+        newFish.y = newFish.yVal;
+        this.stage.addChildAt(newFish, 0)
 
         if (!this.water1.parent) {
           this.stage.addChild(this.water1)
@@ -121,7 +114,7 @@ export default class FishTank extends React.Component {
     render () {
       let tankStyle = { display: !this.props.characters.length ? 'none' : 'block' }
     
-      if (this.stage){
+      if (this.stage) {
         this.stage.removeChildren();
       }
       this.props.characters.forEach( (c, i) => this.create(c, i))

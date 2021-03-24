@@ -42,7 +42,6 @@ export default class About extends Component {
     if (this.context.loggedIn) {
       return ( 
           <>
-            logged in: {this.context.loggedIn ? "true" : "false"}
           <button onClick={(e) => this.context.logInOut(e,false) }>log out</button>
           <Admin />
           </>
