@@ -18,6 +18,8 @@ export default class DBS extends Component {
     } else {
       active = <RecursivePermutation />
     }
-    return <PageLayout activeString={this.state.active} buttons={this.state.buttons} onChange={this.onChange} active={active} />
+    return (
+    <PageLayout activeString={this.state.active} buttons={this.state.buttons} onChange={this.onChange} activeComponent={active} />
+    )
   }
 }

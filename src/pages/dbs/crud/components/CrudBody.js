@@ -4,10 +4,10 @@ import CrudButtons from './CrudButtons';
 import './CrudBody.css';
 import CharacterModule from './CharacterModule';
 import FishTank from './FishTank';
+import Timer from '../../../../services/Timer';
 
 export default class CrudBody extends React.Component {
-    state = {activeCharacter: undefined, instructions: 'db is empty!', mode: undefined, characters: [], query: '', response: ''};
-
+    state = {activeCharacter: undefined, instructions: 'db is empty!', mode: undefined, characters: [], query: '', response: '', buttonDisabled: false, elapsedTime: 0};
     componentDidMount = () => {
      // this.props.service.setUserID(uuidv4());
       this.props.service.deleteAllCharacters();
@@ -21,7 +21,8 @@ export default class CrudBody extends React.Component {
     }
     create = async (e) => {
       e.preventDefault();
-      this.setState({mode: 'create'})
+      this.setState({mode: 'create', buttonDisabled: true})
+      Timer.startTimer();
       if (this.state.characters.length >= 5) {
         this.setState({instructions: 'only 5 allowed!'})
         return;
@@ -34,7 +35,9 @@ export default class CrudBody extends React.Component {
             characters: [...this.state.characters, character],
             instructions: "", 
             query, 
-            response: JSON.stringify(character)
+            response: JSON.stringify(character),
+            buttonDisabled: false,
+            elapsedTime: Timer.endTimer()
           })
         }
 
@@ -44,13 +47,16 @@ export default class CrudBody extends React.Component {
     }
     read = async (e) => {
       e.preventDefault();
-      this.setState({mode: 'read'})
+      Timer.startTimer();
+      this.setState({mode: 'read', buttonDisabled: true})
       let { query, characters } = await this.props.service.read();
       //let characters = Array.isArray(response) ? response : response.data.characters;
       if (!characters.length) {
-        this.setState({instructions: "db is empty!", query, response: JSON.stringify(characters)})
+        this.setState({instructions: "db is empty!", query, response: JSON.stringify(characters), buttonDisabled: false,
+        elapsedTime: Timer.endTimer()})
       } else {
-        this.setState({characters, instructions: '', query, response: JSON.stringify(characters) })
+        this.setState({characters, instructions: '', query, response: JSON.stringify(characters), buttonDisabled: false,
+        elapsedTime: Timer.endTimer() })
       }
       
     }
@@ -69,19 +75,22 @@ export default class CrudBody extends React.Component {
     updateHandler = async (e, id, character_name) => {
       e.preventDefault();
       try {
+        this.setState({mode: 'read', buttonDisabled: true})
         let newColor = Utils.trueRandomHex();
+        Timer.startTimer();
         //remote
         let { query, response } = await this.props.service.update(id, character_name, newColor);
         let characters = this.state.characters.map( character => {
           return Object.assign(character, {character_color: character_name === character.character_name ? newColor : character.character_color})})
-          console.log(response)
         //local
         this.setState({
           characters, 
           instructions: '', 
           mode: '',
           query,
-          response: JSON.stringify(response)
+          response: JSON.stringify(response), 
+          buttonDisabled: false,
+          elapsedTime: Timer.endTimer()
         })
       } catch (e) {
           console.error(e)
@@ -103,13 +112,15 @@ export default class CrudBody extends React.Component {
 
     deleteHandler = async (id) => {
       try {
+        Timer.startTimer();
         let { query, character} = await this.props.service.delete(id); 
         this.setState({
           characters: this.state.characters.filter(c => c.id !== id), 
           instructions: '', 
           mode: '',
           query,
-          response: JSON.stringify(character)
+          response: JSON.stringify(character),
+          elapsedTime: Timer.endTimer()
         })
       } catch(e) {
         console.error(e)
@@ -120,8 +131,8 @@ export default class CrudBody extends React.Component {
     const { mode, characters, query, response  } = this.state;
     return (
       <div className="crud-shell">
-          <CrudButtons create={this.create} read={this.read} update={this.update} delete={this.delete} />
-
+          <CrudButtons create={this.create} read={this.read} update={this.update} delete={this.delete} disabled={this.state.buttonDisabled}/>
+          <div>time in milliseconds: {this.state.elapsedTime}</div>
           {  
           this.state.characters.length > 0 &&  <table className={`character-table ${mode}`}>
                   <thead>

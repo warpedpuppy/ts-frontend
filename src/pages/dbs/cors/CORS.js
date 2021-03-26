@@ -5,7 +5,7 @@ import AWSCORS from './aws/AWSCORS';
 export default class CRUD extends React.Component {
     state = {
         active: 'aws',
-        buttons: ['aws']
+        buttons: ['aws', 'preflight']
       }
       onChange = (active) => {   
        this.setState({active})

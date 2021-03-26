@@ -12,6 +12,7 @@ const AWSServices = {
             },
             body: JSON.stringify(obj)
         })
+
         let { character, query } =  await result.json();
         return { character: character[0], query, response:  character[0]};
     },

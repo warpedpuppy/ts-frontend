@@ -4,10 +4,10 @@ import './CrudButtons.css';
 export default function CrudButtons(props) {
     return (
         <div className="button-group">
-            <Button onClick={props.create}>Create</Button>
-            <Button variant="success" onClick={props.read}>Read</Button>
-            <Button variant="warning" onClick={props.update}>Update</Button>
-            <Button variant="danger" onClick={props.delete}>Delete</Button>
+            <Button onClick={props.create} disabled={props.disabled}>Create</Button>
+            <Button variant="success" onClick={props.read} disabled={props.disabled}>Read</Button>
+            <Button variant="warning" onClick={props.update} disabled={props.disabled}>Update</Button>
+            <Button variant="danger" onClick={props.delete} disabled={props.disabled}>Delete</Button>
         </div>
     )
 }
