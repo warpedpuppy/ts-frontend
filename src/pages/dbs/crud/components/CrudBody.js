@@ -24,7 +24,7 @@ export default class CrudBody extends React.Component {
       this.setState({mode: 'create', buttonDisabled: true})
       Timer.startTimer();
       if (this.state.characters.length >= 5) {
-        this.setState({instructions: 'only 5 allowed!'})
+        this.setState({instructions: 'only 5 allowed!', buttonDisabled: false})
         return;
       }
       try {
