@@ -36,7 +36,7 @@ export default class  RelativeUnits extends React.Component {
     fillUpBackground = () => {
         let itemHeight = document.getElementById('font-specific-background').clientHeight;
          if (itemHeight < this.context.browserHeight) {
-             this.setState({repeatedString: this.state.repeatedString + this.poem})
+             this.setState({repeatedString:this.state.repeatedString + this.poem})
              setTimeout(this.fillUpBackground, 10)
          }
     }
@@ -77,7 +77,9 @@ export default class  RelativeUnits extends React.Component {
         let style = {fontSize: this.state.active}
         return (
         <div className="font-specific">
-        <div id="font-specific-background">{this.state.repeatedString}</div>
+        <div id="font-specific-background">
+            {this.state.repeatedString}
+        </div>
         <ul>
         {
             this.arr.map( (item, index) => {
@@ -90,11 +92,11 @@ export default class  RelativeUnits extends React.Component {
      
         <fieldset>
         <div id="poem-text" style={style}>{
-        this.state.poem.split('').map( letter => {
+        this.state.poem.split('').map( (letter, index) => {
         if (letter === ";" ) {
-            return <span>{letter}<br /></span>
+            return <span key={index}>{letter}<br /></span>
         }
-        return <span>{letter}</span>})
+        return <span key={index}>{letter}</span>})
         
         }</div>
         </fieldset>
