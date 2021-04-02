@@ -7,6 +7,8 @@ import Menu from './components/Menu';
 import CSS from './pages/css/CSS';
 import DBS from './pages/dbs/DBS';
 import JS from './pages/js/JS';
+import Games from './pages/games/Games';
+import Art from './pages/art/Art';
 import AppContext from './AppContext';
 import About from './pages/about/About';
 import TokenService from './services/TokenService';
@@ -64,6 +66,8 @@ class App extends React.Component {
                <Route exact path="/css" render={ history => <CSS history={history} />} />
                <Route exact path="/dbs" component={ DBS } />
                <Route exact path="/js" component={ JS } />
+               <Route exact path="/games" component={ Games } />
+               <Route exact path="/art" component={ Art } />
                <Route exact path="/about" component={ About } />
                <Route path="*" component={ NotFound } /> 
                </Switch>

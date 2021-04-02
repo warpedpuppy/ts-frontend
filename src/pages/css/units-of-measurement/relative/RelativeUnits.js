@@ -1,6 +1,7 @@
 import React from 'react'
 import './RelativeUnits.css'
 import {Form, InputGroup} from 'react-bootstrap';
+import Utils from '../../../../services/Utils';
 export default class  RelativeUnits extends React.Component {
 
     state = {
@@ -9,6 +10,7 @@ export default class  RelativeUnits extends React.Component {
         fontSize: '1em',
         sizes: [1,2,3,4,5,6,7,8,9,10]
     }
+    poem = 'Safe upon the solid rock the ugly houses stand:Come and see my shining palace built upon the sand!';
     arr = ['em', 'ex', 'ch', 'rem', 'lh', 'vw', 'vh', 'vmin', 'vmax'];
     explanations = [
         'Font size of the parent, in the case of typographical properties like font-size, and font size of the element itself, in the case of other properties like width.',
@@ -35,8 +37,10 @@ export default class  RelativeUnits extends React.Component {
    }
     render () {
         let style = {fontSize: `${this.state.fontSize}`}
+        let stripes = {background: `repeating-linear-gradient( 45deg, #FFFFFF, ${Utils.randomHex()} ${this.state.fontSize})`}
         return (
         <div className="relative-units">
+        <div id="relative-units-background" style={stripes}></div>
         <ul>
         {
             this.arr.map( (item, index) => {
@@ -61,7 +65,14 @@ export default class  RelativeUnits extends React.Component {
 
 
         <fieldset>
-        <div style={style}>hello</div>
+        <div style={style}> {
+        this.poem.split('').map( (letter, index) => {
+        if (letter === ":" ) {
+            return <span key={index}>{letter}<br /></span>
+        }
+        return <span key={index}>{letter}</span>})
+        
+        }</div>
         </fieldset>
     </div>
     )

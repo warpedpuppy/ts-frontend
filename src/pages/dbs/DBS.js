@@ -6,7 +6,7 @@ import CORS from './cors/CORS';
 export default class DBS extends Component {
   state = {
     active: 'crud',
-    categories: ['crud', 'cors', 'join/populate', 'relational / non relational', 'performance', 'browser storage']
+    categories: ['crud'] //, 'cors', 'join/populate', 'relational / non relational', 'performance', 'browser storage']
   }
 
   onChange = (e) => {   
