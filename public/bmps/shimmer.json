@@ -1,0 +1,93 @@
+{"frames": {
+
+"dot.png":
+{
+	"frame": {"x":32,"y":2,"w":15,"h":15},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":15,"h":15},
+	"sourceSize": {"w":15,"h":15},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"dress.png":
+{
+	"frame": {"x":109,"y":2,"w":35,"h":53},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":35,"h":53},
+	"sourceSize": {"w":35,"h":53},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"flower.png":
+{
+	"frame": {"x":146,"y":2,"w":55,"h":78},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":55,"h":78},
+	"sourceSize": {"w":55,"h":78},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"hatHead.png":
+{
+	"frame": {"x":78,"y":2,"w":29,"h":30},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":29,"h":30},
+	"sourceSize": {"w":29,"h":30},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"leftArm.png":
+{
+	"frame": {"x":20,"y":2,"w":10,"h":20},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":10,"h":20},
+	"sourceSize": {"w":10,"h":20},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"leftLeg.png":
+{
+	"frame": {"x":11,"y":2,"w":7,"h":17},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":7,"h":17},
+	"sourceSize": {"w":7,"h":17},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"line.gif":
+{
+	"frame": {"x":2,"y":82,"w":300,"h":10},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":300,"h":10},
+	"sourceSize": {"w":300,"h":10},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"rightArm.png":
+{
+	"frame": {"x":49,"y":2,"w":27,"h":14},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":27,"h":14},
+	"sourceSize": {"w":27,"h":14},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"rightLeg.png":
+{
+	"frame": {"x":2,"y":2,"w":7,"h":17},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":7,"h":17},
+	"sourceSize": {"w":7,"h":17},
+	"pivot": {"x":0.5,"y":0.5}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "shimmer.png",
+	"format": "RGBA8888",
+	"size": {"w":304,"h":94},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:cc5b4e31987783985da71473a664be79:4d8d6fab0c3ce63c27b12b9db468637b:7d58d8ab718fcf688981f4d419f60ec6$"
+}
+}

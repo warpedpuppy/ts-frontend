@@ -1,0 +1,28 @@
+/* * {
+	box-sizing: border-box;
+}
+
+header {
+	position: relative;
+	z-index: 7000;
+}
+
+main {
+	margin: 50px auto 0;
+	position: relative;
+	z-index: 6000;
+}
+
+.general-page-layout {
+    width: 80%;
+    max-width: 1000px;
+    margin: 20px auto;
+}
+.modal {
+    z-index: 8000 !important;
+} */
+
+#games-wrapper {
+    position: relative;
+    top: 70px;
+}

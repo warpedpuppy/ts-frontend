@@ -1,0 +1,17 @@
+.grid {
+    display: inline-block;
+}
+.newGrid {
+    text-align: center;
+}
+fieldset span {
+    display: inline-block;
+    margin: 5px;
+}
+fieldset span label {
+    margin-right: 5px;
+}
+
+.tab-content > .active {
+    text-align: center;
+}

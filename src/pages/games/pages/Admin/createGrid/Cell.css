@@ -1,0 +1,48 @@
+.cell {
+    width: 5px;
+    height: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: bold;
+}
+.cell.wall {
+    background-color: black;
+}
+.cell.hero {
+    background-color: green;
+}
+.cell.token1 {
+    background-color: red;
+}
+.cell.token1:after {
+    content: "1";
+}
+.cell.token2 {
+    background-color: yellow;
+}
+.cell.token2:after {
+    content: "2";
+}
+.cell.token3 {
+    background-color: pink;
+}
+.cell.token3:after {
+    content: "3";
+}
+.cell.token4 {
+    background-color: lightblue;
+}
+.cell.token4:after {
+    content: "4";
+}
+
+@media (min-width: 768px) {
+    .cell {
+        width: 20px;
+        height: 20px;
+    }
+}

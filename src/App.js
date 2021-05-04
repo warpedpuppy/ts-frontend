@@ -13,6 +13,7 @@ import AppContext from './AppContext';
 import About from './pages/about/About';
 import TokenService from './services/TokenService';
 import APIService from './services/APIServices';
+
 class App extends React.Component {
 
    state = {
@@ -66,9 +67,17 @@ class App extends React.Component {
                <Route exact path="/css" render={ history => <CSS history={history} />} />
                <Route exact path="/dbs" component={ DBS } />
                <Route exact path="/js" component={ JS } />
-               <Route exact path="/games" component={ Games } />
                <Route exact path="/art" component={ Art } />
                <Route exact path="/about" component={ About } />
+               {/* <Route exact path="/games" render={({ history }) => <Games history={history} />}  /> */}
+               <Route path="/games" render={({ history, match }) => <Games history={history} match={match} />} />
+                  {/* <Games match={/>
+               </Route> */}
+                {/* <Route exact path="/games/test" component={Test} /> */}
+               {/* <Route exact path="/games/jump-game" component={CanvasJump} />
+               <Route exact path="/games/fly-game" render={({ history }) => <CanvasFly history={history} />} />
+               <Route exact path="/games/swim-game" render={({ history }) => <CanvasSwim history={history} />} />
+               <Route exact path="/games/admin" component={Admin} /> */}
                <Route path="*" component={ NotFound } /> 
                </Switch>
             </main>

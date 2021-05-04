@@ -1,0 +1,17 @@
+.gridCont {
+    /* display: inline-block; */
+}
+
+.row:first-child .cell {
+    background-color: black;
+}
+.row:last-child .cell {
+    background-color: black;
+}
+.cell:first-child {
+    background-color: black;
+}
+.cell:last-child {
+    background-color: black;
+}
+

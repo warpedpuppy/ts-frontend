@@ -1,0 +1,15 @@
+.all-grids .cell {
+    width: 5px;
+    height: 5px;
+}
+
+.all-grids {
+   
+}
+
+@media (min-width: 768px) {
+    .all-grids .cell {
+        width: 10px;
+        height: 10px;
+    }
+}

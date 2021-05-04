@@ -1,0 +1,32 @@
+.displayDiv {
+    float: left;
+    margin: 30px;
+}
+ .displayDiv .gridCont .row .cell{
+   cursor: pointer;
+} 
+.displayDiv .gridCont .row .cell{
+    transition: all 0.25s;
+ } 
+.displayDiv .gridCont:hover .row:first-child .cell {
+    background-color: orange;
+}
+.displayDiv .gridCont:hover .row:last-child .cell {
+    background-color: orange;
+    box-shadow: 0px 10px 5px rgba(0, 0, 0, 0.5);
+}
+.displayDiv .gridCont:hover .cell:first-child {
+    background-color: orange;
+}
+.displayDiv .gridCont:hover .cell:last-child {
+    background-color: orange;
+    
+}
+.active-maze {
+    background-color: lightgreen;
+}
+.btn.delete-maze-button {
+    display:block;
+    margin: 15px auto;
+}
+

@@ -1,0 +1,208 @@
+/*#startGameCanvas {
+	position: relative;
+	z-index: 10;
+	flex-direction: row;
+	justify-content: center;
+
+}
+#startGameCanvas canvas{
+	width: 100vw;
+	height: calc(100vh-60px);
+	background: transparent;
+	position: absolute;
+	top:30px;
+	left: 0;
+
+}
+*/
+
+.spinner-cont {
+    text-align: center;
+}
+
+.canvasParent .inGameAllGrids {
+    background-color: rgba(255, 255, 255, 0.65);
+    top: 0;
+    left: 0;
+    position: absolute;
+    z-index: 4;
+    width: 100vw;
+    min-height: 100vh;
+    text-align: center;
+}
+
+.canvasParent .inGameAllGrids .displayDiv {
+    float: none;
+    display: inline-block;
+}
+
+.closeButton {
+    position: absolute;
+    right: 32px;
+    top: 32px;
+    width: 33px;
+    height: 33px;
+    opacity: 0.3;
+    cursor: pointer;
+}
+
+.closeButton:hover {
+    opacity: 1;
+}
+
+.closeButton:before,
+.closeButton:after {
+    position: absolute;
+    left: 13px;
+    top: 0px;
+    content: ' ';
+    height: 33px;
+    width: 5px;
+    background-color: #FF00FF;
+}
+
+.closeButton:before {
+    transform: rotate(45deg);
+}
+
+.closeButton:after {
+    transform: rotate(-45deg);
+}
+
+#testOrientation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 6000;
+}
+
+.startScreenHide {
+    display: none;
+}
+
+#homeCanvas {
+    width: 100vw;
+    text-align: center;
+    background-color: #FF00FF;
+}
+
+#homeCanvas canvas {
+    /*width:100vw;*/
+    position: fixed;
+    top: 85px;
+    left: 0;
+    z-index: 3;
+}
+
+.canvasParent.isMobileOnly {
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    text-align: center;
+}
+
+.canvasParent.isMobileOnly #homeCanvas {
+    background-color: transparent;
+    margin: 0 auto;
+}
+
+.canvasParent.isMobileOnly #homeCanvas canvas {
+    position: static;
+    z-index: 3;
+    box-sizing: content-box;
+    background-color: transparent;
+    background: transparent;
+}
+
+.mobileButtons {
+    display: none;
+}
+
+.canvasParent.isMobileOnly #homeCanvas+.mobileButtons {
+    /*display: block;*/
+}
+
+.canvasParent.isMobileOnly #homeCanvas+.mobileButtons button {
+    font-size: 30px;
+    border-radius: 10px;
+    background-color: red;
+    padding: 3px 5px;
+    margin: 3px;
+}
+
+.fpsCheckerShell {
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    display: none;
+}
+
+#homeCanvas #fpsChecker {}
+
+#sizeShow {
+    position: fixed;
+    z-index: 6000;
+    top: 30px;
+    text-align: center;
+    font-size: 12px;
+    width: 100%;
+}
+
+#sizeShow2 {
+    position: fixed;
+    z-index: 6000;
+    top: 60px;
+    text-align: center;
+    font-size: 12px;
+    width: 100%;
+}
+
+.testPanel {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+}
+
+.testPanel button {
+    cursor: pointer;
+    padding: 1px;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 0 1px;
+    background-color: white;
+    font-size: 8px;
+}
+
+.nightBackground canvas {
+    background-color: black;
+}
+
+.waterBackground canvas {
+    background-color: #0033CC;
+}
+
+@media screen and (min-width: 768px) {
+    #homeCanvas.nonMobile {
+        width: 100vw;
+        height: 100vh;
+    }
+    #homeCanvas.nonMobile canvas {
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
+    .testPanel button {
+        cursor: pointer;
+        padding: 5px 10px;
+        border: 1px solid black;
+        border-radius: 10px;
+        margin: 0 5px;
+        background-color: white;
+        font-size: 12px;
+    }
+}

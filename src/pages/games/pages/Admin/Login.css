@@ -1,0 +1,46 @@
+.login-form {
+    width: 50%;
+    margin: 50px auto;
+    text-align: center;
+}
+.keyPad {
+    margin: 20px;
+    text-align: center;
+}
+.keyPad div {
+    display: inline-block;
+}
+.keyPad div:nth-child(2) {
+    display: block;
+}
+.keyPad span {
+    display: inline-block;
+    padding: 10px;
+    text-align: center;
+    border: 2px solid black;
+    margin: 10px;
+    border-radius: 3px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    float: left;
+    user-select: none;
+}
+.keyPad span:nth-child(4),
+.keyPad span:nth-child(7) {
+   clear: left;
+}
+.keyPad span:hover {
+    border: 2px solid orange;
+}
+.keyPad span:active {
+    transform: scale(0.7); 
+}
+.keyPad div.feedback,
+.feedback {
+    color: orange;
+    text-align: center;
+    font-style: italic;
+    margin: 10px auto;
+    display: block;
+}

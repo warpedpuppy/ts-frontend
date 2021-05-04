@@ -1,0 +1,118 @@
+.aboutPage {
+	background-color: #333;
+	position:relative;
+	height:100vh;
+	text-align: center;
+}
+.aboutPage h2 {
+	font-size: 20px;
+}
+.aboutPageTextOuter {
+	position:absolute;
+	top: 0;
+	left: 0;
+	text-align: center;
+	width:100vw;
+	height: 100vh;
+
+}
+.aboutPageText {
+	padding:5px 15px;
+	margin:150px auto;
+	background-color: rgba(255,255,255,0.75);
+	border:5px solid black;
+	border-radius: 20px;
+	
+	display: inline-block;
+	text-align: left;
+	font-weight: bold;
+	z-index: 1;
+}
+.aboutPageText p {
+	margin: 10px 0;
+	font-size: 10px;
+}
+
+.starsCont {
+	width: 25%;
+	margin: 100px auto;
+	height: 200px;
+	display: inline-block;
+	opacity: 0.15;
+	z-index: 0;
+	position: relative;
+
+}
+.starsCont2 {
+	width: 100%;
+	position: absolute;
+	top:0;
+	left:0;
+
+}
+.starCont:nth-child(1) {
+	position: absolute;
+	top:-75px;
+	left:-75px;
+}
+.starCont:nth-child(2) {
+	position: absolute;
+	top:-50px;
+	right:-50px;
+}
+.starCont:nth-child(3) {
+	position: absolute;
+	bottom:-250px;
+	right:-250px;
+}
+.starCont:nth-child(4) {
+	position: absolute;
+	bottom:-25px;
+	left:-25px;
+}
+.star1 {
+	width:150px;
+}
+
+.star2 {
+	width: 100px;
+}
+
+.star3 {
+	width:500px;	
+}
+.star4 {
+	width: 50px;
+}
+.clockwise {
+	animation: rotating 20s linear infinite;
+}
+.clockwise2 {
+	animation: rotating 50s linear infinite;
+}
+.counterClockwise {
+	animation: rotatingReverse 30s linear infinite;
+}
+.counterClockwise2 {
+	animation: rotatingReverse 40s linear infinite;
+}
+/*
+@media (min-width: 1024px) {
+	
+}
+@media (max-width: 600px) {
+	.starsCont {
+		width:100%;
+		top:-100px;
+	}
+}
+@media (min-width: 600px) {
+	.starsCont {
+		top:-150px;
+		width:600px;
+		height:600px;
+	}
+	.aboutPageText {
+		top:-550px;
+	}
+}*/

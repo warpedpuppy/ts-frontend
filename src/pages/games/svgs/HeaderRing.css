@@ -1,0 +1,26 @@
+.cls-1{fill:#ff0;}
+.cls-1,.cls-2{stroke:#000;stroke-miterlimit:10;}
+.cls-2{fill:url(#radial-gradient);}
+.headerRing {
+	position: relative;
+ 	
+}
+.clockwise {
+	animation: rotating 5s linear infinite;
+}
+.counterClockwise {
+	animation: rotatingReverse 7s linear infinite;
+}
+.clockwise_fast {
+	animation: rotating 6s linear infinite;
+}
+.counterClockwise_fast {
+	animation: rotatingReverse 6s linear infinite;
+}
+.svgDiv {
+	position: absolute;
+	text-align: center;
+	width:150px;
+	height:150px;
+	top:-50px;
+}
