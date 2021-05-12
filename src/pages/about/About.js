@@ -50,6 +50,15 @@ export default class About extends Component {
     } else {
         return (
               <>
+              <section id="about-text">
+                <section>
+                  <h3>about this site</h3>
+                </section>
+                <section>
+                  <h3>about me</h3>
+                </section>
+              </section>
+              <section id="admin-login">
                 <div onClick={this.showForm}>🤪😀🤪😀🤪😀🤪😀🤪</div>
                 logged in: {this.context.loggedIn ? "true" : "false"}
                 {  
@@ -62,6 +71,7 @@ export default class About extends Component {
                 {
                   !this.context.loggedIn && this.state.showLogin && <form onSubmit={this.submitForm}><input type="password" name="login" /><input type="submit" /></form>
                 }
+                </section>
               </>
             );
     }

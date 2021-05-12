@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import './GamesMenu.css'
 import SiteContext from '../GamesContext'
 
@@ -28,7 +28,6 @@ class Menu extends React.Component {
     }
 
     render () {
-      const text = (this.context.inGameMazeEdit) ? 'resume game' : 'choose maze'
       if (this.context.game === '') {
         const classRef = (this.state.dropDown) ? 'change' : ''
         return (

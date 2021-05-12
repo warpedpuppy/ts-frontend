@@ -1,6 +1,6 @@
 import Utils from '../../utils/utils'
 import Assets from '../../utils/assetCreation'
-
+import * as PIXI from 'pixi.js';
 export default function RainbowSwirls() {
   return {
     cont: undefined,
@@ -36,9 +36,8 @@ export default function RainbowSwirls() {
     init (parentCont, quadrant) {
       this.quadrant = quadrant
       this.curve = this.curves[Math.floor(Math.random() * 4)]
-      this.app = this.utils.app
-
-      this.goldTile = this.utils.spritesheet.textures['tile.png']
+      this.app = this.utils.app;
+      
       this.interval = this.utils.randomIntBetween(0, 2)
       this.parentCont = parentCont
 
@@ -66,7 +65,7 @@ export default function RainbowSwirls() {
       this.curveQ = this.utils.randomIntBetween(this.curvedQs[0], this.curvedQs[1])
     },
     brick () {
-      const s = Assets.Sprite('tile.png')
+      const s = PIXI.Sprite.from('bmps/tile.png')
       s.counter = 0
       s.curveCounter = 0
       this.brickHeight = s.height
@@ -153,7 +152,7 @@ export default function RainbowSwirls() {
 
     },
     animate () {
-      this.testCounter++
+      this.testCounter++;
       if (this.testCounter % this.interval === 0) this.newBrick()
     }
   }

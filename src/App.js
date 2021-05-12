@@ -43,7 +43,12 @@ class App extends React.Component {
          browserWidth: document.documentElement.clientWidth,
          browserHeight: document.documentElement.clientHeight
       })
+      return {
+         browserWidth: document.documentElement.clientWidth,
+         browserHeight: document.documentElement.clientHeight
+      }
    }
+
    logInOut = (e, loggedIn) => {
       if (e) e.preventDefault();
       this.setState({loggedIn})
@@ -55,7 +60,8 @@ class App extends React.Component {
       browserWidth: this.state.browserWidth, 
       browserHeight: this.state.browserHeight, 
       loggedIn: this.state.loggedIn,
-      logInOut: this.logInOut
+      logInOut: this.logInOut, 
+      updateContext: this.resizeHandler
     }
      return (
         <AppContext.Provider value={contextValue}>

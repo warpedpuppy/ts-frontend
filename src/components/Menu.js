@@ -15,7 +15,7 @@ class Menu extends Component {
 
         return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-            <Navbar.Brand as={Link} to={'/'}>trying something</Navbar.Brand>
+            <Navbar.Brand as={Link} to={'/'}><h3>trying something</h3></Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse className="justify-content-end">
                 <Nav.Link as={Link} to={'/css'}>css</Nav.Link> 
