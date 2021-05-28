@@ -15,9 +15,9 @@ export default class Home extends Component {
   }
   static contextType = AppContext;
   componentDidMount = async () => {
+
     setTimeout(this.createSwirls, 100)
 
-  
     let result = await MongoServices.getTotalRecords();
 
     if (result) {
@@ -37,10 +37,10 @@ export default class Home extends Component {
     window.addEventListener('resize', this.resizeHandler);
   }
   createSwirls = () => {
-    console.log(this.context)
     HomePageAnimation.init(this.context.browserWidth, this.context.browserHeight);
   }
   componentWillUnmount = () => {
+    console.log("boom")
     HomePageAnimation.destroy();
     window.removeEventListener('resize', this.resizeHandler);
   }
@@ -63,9 +63,7 @@ export default class Home extends Component {
           <li>remote postrgresql: <span className={this.state.postresql ? 'on' : 'off'}>{this.state.postresql.toString()}</span></li>
           <li>aws postrgresql: <span className={this.state.aws ? 'on' : 'off'}>{this.state.aws.toString()}</span></li>
         </ul>
-
       </section>
-      
       </>
     );
   }

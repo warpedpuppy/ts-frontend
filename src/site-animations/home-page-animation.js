@@ -6,6 +6,7 @@ const HomePageAnimation = {
     rainbowSwirlInstances: [],
     init: function (w, h) {
 
+        this.rainbowSwirlInstances = [];
         Utils.setWidthAndHeight(w, h);
         const app = new PIXI.Application({
         width: w, height: h, transparent: true, resolution: window.devicePixelRatio || 1,
@@ -25,17 +26,21 @@ const HomePageAnimation = {
           this.tileColumn.addToStage()
           this.rainbowSwirlInstances.push(this.tileColumn)
         }
-        
+
         // Listen for animate update
         app.ticker.add(this.ticker.bind(this));
     },
     resize: function (w, h) {
-        console.log(w, h)
+
         Utils.setWidthAndHeight(w, h);
         this.app.renderer.resize(w, h)
     },
     destroy: function () {
-        this.app.destroy(true, true)
+        this.app.destroy(true);
+        
+        for (let i = 0; i < this.rainbowSwirlsQ; i++) {
+        this.rainbowSwirlInstances[i].removeFromStage()
+        }
     },
     ticker: function (delta) {
         for (let i = 0; i < this.rainbowSwirlsQ; i++) {

@@ -4,11 +4,23 @@ import APIServices from '../../services/APIServices';
 import TokenService from '../../services/TokenService';
 import AppContext from '../../AppContext';
 import Admin from './components/Admin';
+import AboutText from './components/AboutText';
 export default class About extends Component {
   state = {
     code: '', 
-    showLogin: false
+    showLogin: false, 
+    yearsWorking: 0,
+    showAdmin: false
   }
+  componentDidMount = () => {
+    let date = new Date();
+    let currentYear = date.getFullYear();
+    this.setState({yearsWorking: currentYear - 2004})
+  }
+  toggleAdmin = () => {
+    this.setState({showAdmin: !this.state.admin})
+  }
+
   keyPress = (e) => {
     let code = this.state.code;
     code += e.target.innerHTML
@@ -31,6 +43,7 @@ export default class About extends Component {
     e.preventDefault();
     let code = e.target.login.value;
     let response = await APIServices.post(`/admin/login`, {code})
+
     const { success, token } = response;
     if (success) {
       TokenService.setToken(token)
@@ -46,18 +59,16 @@ export default class About extends Component {
           <Admin />
           </>
         )
-      
-    } else {
+    } else if (!this.state.showAdmin) {
         return (
-              <>
-              <section id="about-text">
-                <section>
-                  <h3>about this site</h3>
-                </section>
-                <section>
-                  <h3>about me</h3>
-                </section>
-              </section>
+            <>
+            <AboutText yearsWorking={this.state.yearsWorking} />
+            <span id="see-admin-login" onClick={() => this.setState({showAdmin:!this.state.showAdmin})}>🤪</span>
+            </>
+            )
+    } else {
+          return (
+            <>
               <section id="admin-login">
                 <div onClick={this.showForm}>🤪😀🤪😀🤪😀🤪😀🤪</div>
                 logged in: {this.context.loggedIn ? "true" : "false"}
@@ -72,9 +83,10 @@ export default class About extends Component {
                   !this.context.loggedIn && this.state.showLogin && <form onSubmit={this.submitForm}><input type="password" name="login" /><input type="submit" /></form>
                 }
                 </section>
+                <span id="see-admin-login" onClick={() => this.setState({showAdmin:!this.state.showAdmin})}>🤪</span>
               </>
             );
-    }
+      }
   }
 }
 About.contextType = AppContext;

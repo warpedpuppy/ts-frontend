@@ -31,9 +31,10 @@ export default function RainbowSwirls() {
     height: 0,
     interval: 0,
     colWidth: 5,
-    colors: [0xFF00FF, 0xFF0000, 0xFFFF00, 0xFF9900, 0x33FF00],
+    colors: [0xfff0f5, 0xe6e6fa, 0xff7575, 0xffb775, 0xfff175, 0xc3ff76, 0x7bffb8, 0x7de8ff, 0x799fff, 0xff93f7],
     colorCounter: 0,
     init (parentCont, quadrant) {
+
       this.quadrant = quadrant
       this.curve = this.curves[Math.floor(Math.random() * 4)]
       this.app = this.utils.app;
@@ -41,9 +42,7 @@ export default function RainbowSwirls() {
       this.interval = this.utils.randomIntBetween(0, 2)
       this.parentCont = parentCont
 
-      this.spritesheet = this.utils.spritesheet
-
-      this.tileQ = Assets.webgl ? 150 : 10
+      this.tileQ =  150 ;
       this.cont = Assets.ParticleContainer(this.tileQ)
 
       for (let i = 0; i < this.tileQ; i++) {
@@ -55,17 +54,17 @@ export default function RainbowSwirls() {
         this.objectPool.push(s)
       }
 
-      const s = this.objectPool[this.objectPoolCounter]
-      this.objectPoolCounter++
-      const newPos = this.newXY()
-      s.y = newPos.x
-      s.x = newPos.y
-      this.cont.addChild(s)
+      const s = this.objectPool[this.objectPoolCounter];
+      this.objectPoolCounter++;
+      const newPos = this.newXY();
+      s.y = newPos.x;
+      s.x = newPos.y;
+      this.cont.addChild(s);
 
       this.curveQ = this.utils.randomIntBetween(this.curvedQs[0], this.curvedQs[1])
     },
     brick () {
-      const s = PIXI.Sprite.from('bmps/tile.png')
+      const s = Assets.Sprite('tile.png')
       s.counter = 0
       s.curveCounter = 0
       this.brickHeight = s.height
@@ -74,6 +73,7 @@ export default function RainbowSwirls() {
       return s
     },
     newBrick () {
+
       const s = this.objectPool[this.objectPoolCounter]
       this.objectPoolCounter++
       if (this.objectPoolCounter > this.objectPool.length - 1) {
@@ -103,7 +103,6 @@ export default function RainbowSwirls() {
       const newY = prevY - (s.height * Math.cos(prevRotation))
       s.x = newX
       s.y = newY
-
       const buffer = 1
       if (this.objectPoolCounter === 0 ||
 				s.y < -buffer ||
@@ -152,6 +151,7 @@ export default function RainbowSwirls() {
 
     },
     animate () {
+
       this.testCounter++;
       if (this.testCounter % this.interval === 0) this.newBrick()
     }

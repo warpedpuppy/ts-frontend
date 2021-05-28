@@ -18,3 +18,11 @@
 .login-grid div:active {
     outline: purple;
 }
+
+#see-admin-login {
+    font-size: 130px;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    cursor: pointer;
+}
