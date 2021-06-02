@@ -76,7 +76,7 @@ export default function Jump() {
       this.startXs = ['TL', 'BL', 'TR', 'BR']
       for (let i = 0; i < this.rainbowSwirlsQ; i++) {
         this.tileColumn = RainbowSwirls()
-        this.tileColumn.init(this.cont, this.startXs[i], action)
+        this.tileColumn.init(this.cont, this.startXs[i])
         this.tileColumn.addToStage()
         this.rainbowSwirlInstances.push(this.tileColumn)
       }

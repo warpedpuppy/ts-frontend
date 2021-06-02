@@ -1,6 +1,5 @@
 import Utils from '../../utils/utils'
 import Assets from '../../utils/assetCreation'
-import * as PIXI from 'pixi.js';
 export default function RainbowSwirls() {
   return {
     cont: undefined,
@@ -31,10 +30,13 @@ export default function RainbowSwirls() {
     height: 0,
     interval: 0,
     colWidth: 5,
+    customWidth: undefined,
+    customHeight: undefined,
     colors: [0xfff0f5, 0xe6e6fa, 0xff7575, 0xffb775, 0xfff175, 0xc3ff76, 0x7bffb8, 0x7de8ff, 0x799fff, 0xff93f7],
     colorCounter: 0,
-    init (parentCont, quadrant) {
-
+    init (parentCont, quadrant, cw, ch) {
+      this.customHeight = ch;
+      this.customWidth = cw;
       this.quadrant = quadrant
       this.curve = this.curves[Math.floor(Math.random() * 4)]
       this.app = this.utils.app;
@@ -47,6 +49,7 @@ export default function RainbowSwirls() {
 
       for (let i = 0; i < this.tileQ; i++) {
         const s = this.brick()
+     
         s.alpha = 0.5
         s.tint = this.colors[this.colorCounter]
         this.colorCounter++
@@ -66,15 +69,20 @@ export default function RainbowSwirls() {
     brick () {
       const s = Assets.Sprite('tile.png')
       s.counter = 0
-      s.curveCounter = 0
+      s.curveCounter = 0;
+
       this.brickHeight = s.height
+     
       s.anchor.x = 0.5
       s.anchor.y = 1
       return s
     },
     newBrick () {
 
-      const s = this.objectPool[this.objectPoolCounter]
+      const s = this.objectPool[this.objectPoolCounter];
+     
+      s.width = this.customWidth ? this.customWidth : s.width;
+      s.height = this.customHeight ? this.customHeight : s.height;
       this.objectPoolCounter++
       if (this.objectPoolCounter > this.objectPool.length - 1) {
         this.objectPoolCounter = 0

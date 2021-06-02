@@ -1,0 +1,34 @@
+#admin-login {
+    text-align: center;
+}
+
+.login-grid {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-gap: 20px;
+    width: 300px;
+    margin: 0 auto;
+}
+
+.login-grid div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid grey;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login-grid div:active {
+    outline: purple;
+}
+
+#see-admin-login {
+    font-size: 130px;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    cursor: pointer;
+}

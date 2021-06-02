@@ -3,8 +3,11 @@ export default function AboutText(props) {
     return (
         <>
         <section id="about-text">
+          <div className="animation-container animation-container-1"></div>
+          <div className="animation-container animation-container-2"></div>
+          <div className="animation-container animation-container-3"></div>
+          <div className="animation-container animation-container-4"></div>
           <h3>about me</h3>
-          <p>Hey.</p>
           <p>In 2004 I was the most miserable lawyer that existed on the planet, so I said "fuck it" and went and bought all the webdev software that existed at the time and enrolled in a trade school in San Francisco.</p>
           <p>And I've never regretted it for a minute.</p>
           <p>Now, <span id="years-working">{props.yearsWorking}</span> years later I have worked at big companies and small companies.  And perhaps most interestingly I worked with two companies that went from tiny to super successful while I was there (coincidence? most definitely).</p>
