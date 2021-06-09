@@ -5,7 +5,7 @@ export default class MazeSolver extends Component {
 
   state = {
     mazes: [],
-    paths: [],
+    paths: [{path: []}],
     maze2: [
       [1,0,1,1],
       [1,0,0,1],
@@ -37,77 +37,63 @@ export default class MazeSolver extends Component {
 
  
   componentDidMount = () => {
-    let paths = [[[0,1]]]
+  
+  }
+  runMaze = () => {
+    let paths = [{path: [[0,1]]}]
     let result = this.findPath(paths, this.state.maze)
     console.log('result =', result)
   }
-  counter = 0;
-  paths = []
+  resetMaze = () => {
+    this.setState({paths: [{path: []}]})
+  }
   findPath = (paths, maze) => {
     let rows = maze.length - 1;
     let cols = maze[0].length - 1;
-       let newPaths = [];
-        let options = false;
-        let pathObjectArray = [];
-        let waitPeriod = 100;
-       
-        for (let i = 0; i < paths.length; i++) {
-          let hasChanged = false;
-          let current = paths[i];
-          let [ prevRow, prevCol ] = current[current.length - 1];
-
-          if (current.length > 1 && (prevRow === 0 || prevCol === 0 || prevRow === rows || prevCol === cols)) {
-            pathObjectArray.push({path:current, type:'success'})
-            hasChanged = true;
-          }
-          //up
-          if (prevRow > 0 && maze[prevRow - 1][prevCol] === 0 && !this.checkForDups(current, prevRow - 1, prevCol)) {
-            let temp = [...current, [prevRow - 1,prevCol]];
-            newPaths.push(temp)
-            pathObjectArray.push({path:temp, type:'tbd'})
-            options = true;
-            hasChanged = true;
-
-          }
-          //right
-          if (prevCol <= cols - 1 && maze[prevRow][prevCol + 1] === 0  && !this.checkForDups(current, prevRow, prevCol + 1)) {
-            let temp = [...current, [prevRow,prevCol + 1]]
-            newPaths.push(temp)
-            pathObjectArray.push({path:temp, type:'tbd'})
-            options = true;
-            hasChanged = true;
-
-          }
-          //down
-          if (prevRow < rows - 1 && maze[prevRow + 1][prevCol] === 0  && !this.checkForDups(current, prevRow + 1, prevCol)) {
-            let temp = [...current, [prevRow + 1, prevCol]]
-            newPaths.push(temp)
-            pathObjectArray.push({path:temp, type:'tbd'})
-            options = true;
-            hasChanged = true;
-
-          }
-          //left
-          if (prevCol > 0 && maze[prevRow][prevCol - 1] === 0 && !this.checkForDups(current, prevRow, prevCol - 1)) {
-            let temp = [...current, [prevRow, prevCol - 1]]
-            newPaths.push(temp)
-            pathObjectArray.push({path:temp, type:'tbd'})
-            options = true;
-            hasChanged = true;
-
-          }
+    let anyPathHasChanged = false;
+    let pathObjectArray = [];
+    
+    for (let i = 0; i < paths.length; i++) {
+      let individualPathHasChanged = false;
+      let current = paths[i].path;
+      let [ prevRow, prevCol ] = current[current.length - 1];
       
+      if (current.length > 1 && (prevRow === 0 || prevCol === 0 || prevRow === rows || prevCol === cols)) {
+        pathObjectArray.push({path:current, type:'success'})
+        individualPathHasChanged = true;
+      }
+      //up
+      if (prevRow > 0 && maze[prevRow - 1][prevCol] === 0 && !this.checkForDups(current, prevRow - 1, prevCol)) {
+        pathObjectArray.push({path:[...current, [prevRow - 1,prevCol]], type:'tbd'})
+        anyPathHasChanged = individualPathHasChanged = true;
+      }
+      //right
+      if (prevCol <= cols - 1 && maze[prevRow][prevCol + 1] === 0  && !this.checkForDups(current, prevRow, prevCol + 1)) {
+        pathObjectArray.push({path:[...current, [prevRow,prevCol + 1]], type:'tbd'});
+        anyPathHasChanged = individualPathHasChanged = true;
+      }
+      //down
+      if (prevRow < rows - 1 && maze[prevRow + 1][prevCol] === 0  && !this.checkForDups(current, prevRow + 1, prevCol)) {
+        pathObjectArray.push({path:[...current, [prevRow + 1, prevCol]], type:'tbd'});
+        anyPathHasChanged = individualPathHasChanged = true;
+      }
+      //left
+      if (prevCol > 0 && maze[prevRow][prevCol - 1] === 0 && !this.checkForDups(current, prevRow, prevCol - 1)) {
+        pathObjectArray.push({path:[...current, [prevRow, prevCol - 1]], type:'tbd'});
+        anyPathHasChanged = individualPathHasChanged = true;
+      }
+      //no change
+      if(!individualPathHasChanged) {
+        pathObjectArray.push({path:current, type:'failure'})
+      }
+    }
 
-          if(!hasChanged) {
-            pathObjectArray.push({path:current, type:'failure'})
-            newPaths.push(current);
-          }
-        }
-        // pathObjectArray.sort( (a,b) => a.path.length - b.path.length)
-        this.setState({paths: pathObjectArray})
-        return options ? setTimeout(() => this.findPath(newPaths, maze), waitPeriod) : console.log('no options') ;
+    this.setState({paths: pathObjectArray})
+    return anyPathHasChanged ? setTimeout(() => this.findPath(pathObjectArray, maze), 40) : console.log('no options') ;
 
 }
+
+
     
      
   checkForDups = (arr, row, col) => {
@@ -122,7 +108,6 @@ export default class MazeSolver extends Component {
   
 
   render() {
-    console.log(this.state.paths)
     return (
         <section id="maze-solver">
         {
@@ -155,7 +140,8 @@ export default class MazeSolver extends Component {
           )
         })
         }
-          
+        <button onClick={this.runMaze}>run maze</button>
+        <button onClick={this.resetMaze}>reset maze</button>
         </section>
     );
   }
