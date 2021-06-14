@@ -3,7 +3,7 @@ import './RecursivePermutation.css';
 export default class RecursivePermutation extends Component {
 
   state = {
-    num: 12345,
+    num: 123,
     arr: [],
     functionCalls: [],
     colQ: 1, 
@@ -26,7 +26,7 @@ export default class RecursivePermutation extends Component {
   async permutation(num, val) {
     val = val + 1 || 1
   
-    this.setState({functionCalls:[...this.state.functionCalls, {type: "call", direction: "forward", value: num, col: val}], totalColumns: val >= this.state.totalColumns ? val : this.state.totalColumns})
+    this.setState({functionCalls:[...this.state.functionCalls, {type: "calling function with value:", direction: "forward", value: num, col: val}], totalColumns: val >= this.state.totalColumns ? val : this.state.totalColumns})
     await this.resolveAfter2Seconds();
     
 
@@ -34,14 +34,14 @@ export default class RecursivePermutation extends Component {
     let combos = [];
     if (str.length === 1) {
       
-      this.setState({functionCalls:[...this.state.functionCalls, {type: "endpoint", direction: "backward", value: str, col: val}]})
+      this.setState({functionCalls:[...this.state.functionCalls, {type: "start backwards motion with:", direction: "on backward", value: str, col: val}]})
         return str;
     } else {
       
         for (let i = 0; i < str.length; i++) {
 
             let remainder = str.slice(0,i) + str.slice(i+1)
-            this.setState({functionCalls:[...this.state.functionCalls, {type: "hold", direction: "forward",value: str[i], col: val}]})
+            this.setState({functionCalls:[...this.state.functionCalls, {type: "hold on to: ", direction: "forward",value: str[i], col: val}]})
             let result = await this.permutation(remainder, val);
   
             for (let letter of result) {
@@ -52,7 +52,7 @@ export default class RecursivePermutation extends Component {
         }
     }
    
-    this.setState({functionCalls:[...this.state.functionCalls, {type: "final return", direction: "backwards",value: combos, col: val}]})
+    // this.setState({functionCalls:[...this.state.functionCalls, {type: "final return", direction: "backwards",value: combos, col: val}]})
     return combos;
   }
 
@@ -74,7 +74,7 @@ export default class RecursivePermutation extends Component {
           <tbody>
           {
           this.state.functionCalls.map( (item, index) => {
-            return <tr key={index}><td class={`${item.type} ${item.direction}`} colSpan={ item.type === 'final return' ? this.state.totalColumns : item.col }> {item.value}</td></tr>
+            return <tr key={index}><td class={`${item.type} ${item.direction}`} colSpan={ item.type === 'final return' ? this.state.totalColumns : item.col }>{item.value}</td></tr>
           })
           }
           </tbody>
