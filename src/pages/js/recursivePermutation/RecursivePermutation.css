@@ -1,0 +1,23 @@
+table.rp {
+    display: block;
+    width: 60%;
+    border: 1px solid black;
+}
+
+table.rp td {
+    text-align: right;
+    padding: 3px;
+    overflow: hidden;
+}
+
+table.rp td {
+    border-right: 1px solid grey;
+}
+
+table.rp td.call {
+    /* text-align: left; */
+}
+
+table.rp td.final {
+    text-align: center;
+}

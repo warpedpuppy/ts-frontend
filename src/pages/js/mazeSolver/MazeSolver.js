@@ -62,7 +62,7 @@ export default class MazeSolver extends Component {
       let individualPathHasChanged = false;
       // let current = paths[i].path;
      let current = obj[key].path;
-     let currentQ = Object.keys(obj).length;
+    //  let currentQ = Object.keys(obj).length;
       let [ prevRow, prevCol ] = current[current.length - 1];
 
       if (obj[key].type === 'failure') {
@@ -191,8 +191,8 @@ export default class MazeSolver extends Component {
             } 
         </div>
         <div className="maze-button-div">
-      <button class="maze-button" onClick={this.runMaze}>run maze</button>
-      <button  class="maze-button" onClick={this.resetMaze}>reset maze</button>     
+      <button className="maze-button" onClick={this.runMaze}>run maze</button>
+      <button  className="maze-button" onClick={this.resetMaze}>reset maze</button>     
       </div>
         <section id="maze-solver">
         {
