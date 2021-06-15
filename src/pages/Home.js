@@ -63,6 +63,7 @@ export default class Home extends Component {
           <li>remote postrgresql: <span className={this.state.postresql ? 'on' : 'off'}>{this.state.postresql.toString()}</span></li>
           <li>aws postrgresql: <span className={this.state.aws ? 'on' : 'off'}>{this.state.aws.toString()}</span></li>
         </ul>
+        
       </section>
       </>
     );

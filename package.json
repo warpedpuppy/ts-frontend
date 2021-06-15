@@ -10,6 +10,7 @@
         "bootstrap": "^4.6.0",
         "faker": "^5.3.1",
         "graphql": "^15.4.0",
+        "highlight.js": "^11.0.1",
         "jwt-decode": "^3.1.2",
         "mongoose": "^5.11.18",
         "pixi-fps": "^2.0.1",
@@ -21,6 +22,7 @@
         "react-id-generator": "^3.0.1",
         "react-router-dom": "^5.2.0",
         "react-scripts": "4.0.1",
+        "react-syntax-highlighter": "^15.4.3",
         "uuid": "^8.3.2",
         "web-vitals": "^0.2.4"
     },
