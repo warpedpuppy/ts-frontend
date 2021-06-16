@@ -1,5 +1,14 @@
 .recursivePermutation-shell {}
 
+.permutation-controls {
+    padding: 10px;
+    text-align: center;
+}
+
+.permutation-controls+div {
+    text-align: center;
+}
+
 .recursivePermutation-page {
     display: flex;
     justify-content: center;
@@ -22,37 +31,99 @@ table.rp {
     /* display: block; */
     width: 60%;
     font-size: 12px;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     table-layout: fixed;
     margin: 0 30px;
 }
 
 table.rp tr {
     /* width: 100%; */
-    border: 1px solid rgba(0, 0, 0, 0.25);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
 }
 
-table.rp td {
-    text-align: right;
-    padding: 0;
-    overflow: hidden;
+table.rp tr:nth-child(odd) {
+    /* width: 100%; */
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+table.rp tr:nth-child(even) {
+    /* width: 100%; */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+span.calling.function {
+    font-weight: bold;
+    font-size: 15px;
+    display: inline-block;
+    margin: 3px;
+    ;
+}
+
+table.rp td.wiggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+span.wiggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: yellow;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    color: black;
+    border-radius: 50%;
+    border: 1px solid grey;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.25);
+    animation: 2s linear 1s infinite alternate wiggle;
+}
+
+@keyframes wiggle {
+    0% {
+        transform: rotateZ(0);
+    }
+    25% {
+        transform: rotateZ(30deg);
+    }
+    50% {
+        transform: rotateZ(-30deg);
+    }
+    100% {
+        transform: rotateZ(0);
+    }
+}
+
+table.rp td.combo {
+    text-align: center;
+}
+
+table.rp td span.combo {
+    border: 1px solid black;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.25);
+    background-color: #FF00FF;
+    padding: 3px 10px;
+    color: white;
+    animation: 1s linear 1s infinite alternate pulse;
+    display: inline-block;
+    margin: 3px;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 
 table.rp th {
     border: 1px solid rgba(0, 0, 0, 0.25);
-}
-
-table.rp td {
-    /* border: 1px solid rgba(0, 0, 0, 0.25); */
-}
-
-table.rp td.on {
-    /* text-align: center; */
-    /* font-size: 30px; */
-}
-
-table.rp td.call {
-    /* text-align: left; */
 }
 
 table.rp td.final {

@@ -9,8 +9,9 @@ export default class RecursivePermutation extends Component {
     arr: [],
     functionCalls: [],
     colQ: 1, 
-    totalColumns: 0,
-    permutations: []
+    totalColumns: 3,
+    permutations: [],
+    timerObjects: []
   }
 
   code = `function permutation(num) {
@@ -32,14 +33,19 @@ export default class RecursivePermutation extends Component {
 
   componentDidMount = async () => {
     // HLJS.highlightAll();
-    let permutations = await this.permutation(this.state.num)
+    //let permutations = await this.permutation(this.state.num)
 
-    console.log(permutations)
-    this.setState({permutations})
+    // console.log(permutations)
+    // this.setState({permutations})
   }
   startAction = async () => {
-    this.setState({functionCalls:[]}, async ()=> {
-let permutations = await this.permutation(this.state.num)
+    this.state.timerObjects.forEach( item => {
+      clearTimeout(item)
+    })
+    this.setState({functionCalls:[], totalColumns: this.state.num.toString().length}, async ()=> {
+      if (this.state.num < 10)return;
+      let permutations = await this.permutation(this.state.num);
+      this.setState({permutations})
     })
     // 
 
@@ -49,9 +55,12 @@ let permutations = await this.permutation(this.state.num)
 
  resolveAfter2Seconds() {
     return new Promise(resolve => {
-      setTimeout(() => {
+
+      let to = setTimeout(() => {
         resolve('resolved');
       }, 400);
+      this.setState({timerObjects: [...this.state.timerObjects, to]})
+
     });
   }
 
@@ -66,18 +75,18 @@ let permutations = await this.permutation(this.state.num)
     let combos = [];
     if (str.length === 1) {
       
-      this.setState({functionCalls:[...this.state.functionCalls, {type: "start backwards motion with:", direction: "off backward", value: str, col: val, highlight: 5}]})
+      this.setState({functionCalls:[...this.state.functionCalls, {type: "start backwards motion with: wiggle", direction: "off backward", value: str, col: val, highlight: 5}]})
         return str;
     } else {
       
         for (let i = 0; i < str.length; i++) {
 
             let remainder = str.slice(0,i) + str.slice(i+1)
-            this.setState({functionCalls:[...this.state.functionCalls, {type: "hold on to: ", direction: "forward",value: `${str[i]} `, col: val, highlight: 11}]})
+            this.setState({functionCalls:[...this.state.functionCalls, {type: "hold on to: wiggle", direction: "forward",value: `${str[i]} `, col: val, highlight: 11}]})
             let result = await this.permutation(remainder, val);
   
             for (let letter of result) {
-              this.setState({functionCalls:[...this.state.functionCalls, {type: "hold on to: ", direction: "forward",value: `combo result: ${str[i]}${letter}`, col: val, highlight: 11}]})
+              this.setState({functionCalls:[...this.state.functionCalls, {type: "hold on to: combo", direction: "forward",value: `combo result:${str[i]}${letter}`, col: val, highlight: 11}]})
              // this.setState({functionCalls:[...this.state.functionCalls, {type: "add to array", direction: "backwards",value: str[i]+letter}]})
                 combos.push(str[i]+letter)
             }
@@ -98,23 +107,25 @@ let permutations = await this.permutation(this.state.num)
 
     return (
       <div className="recursivePermutation-shell">
-      <input type="text" defaultValue={this.state.num} />
-      <button onClick={this.startAction}>click to start</button>
+      <div className="permutation-controls">
+        <input type="text" defaultValue={this.state.num} onChange={e => this.setState({num: e.target.value})}/>
+        <button onClick={this.startAction}>click to start</button>
+      </div>
       <div>{this.state.permutations.join(',')}</div>
       <div className="recursivePermutation-page"> 
 
-<SyntaxHighlighter
-              style={a11yDark}
-              wrapLines={true}
-              showLineNumbers={true}
-            >
-              {this.code}
-            </SyntaxHighlighter>
+        <SyntaxHighlighter
+        style={a11yDark}
+        wrapLines={true}
+        showLineNumbers={true}
+        >
+        {this.code}
+        </SyntaxHighlighter>
         <table className='rp'>
           <thead>
             <tr>
           {
-            [...Array(this.state.num.toString().length).keys()].map( (item, index) => {
+            [...Array(this.state.totalColumns).keys()].map( (item, index) => {
               return <th key={`head${index}`}></th>
             })
           }
@@ -130,7 +141,28 @@ let permutations = await this.permutation(this.state.num)
             highlightRow.classList.add("highlight");
             setTimeout(() => this.removeHighlight(highlightRow), 1400)
 
-            return <tr key={index}><td className={`${item.type} ${item.direction}`} colSpan={ item.type === 'final return' ? this.state.totalColumns : item.col }>{item.value}</td></tr>
+            if (item.col !== 1 && item.value.includes("combo")) {
+              return <></>
+              // return <tr key={index}><td className={`${item.type} ${item.direction}`} colSpan={ item.type === 'final return' ? this.state.totalColumns : item.col }>&nbsp;</td></tr>
+            } else {
+              let totalCols = this.state.totalColumns;
+              let colsBefore = [...Array(item.col - 1).keys()].map( (item, j) => {
+                return <td key={`pre${j}`}>&nbsp;</td>
+              });
+              let colsAfter = [...Array(totalCols - item.col).keys()].map( (item, k) => {
+                return <td key={`post${k}`}>&nbsp;</td>
+              });;
+
+
+
+                 return( <tr key={index}>
+                   {colsBefore}
+                   <td className={`${item.type} ${item.direction}`} data-colSpan={ item.type === 'final return' ? this.state.totalColumns : item.col }>
+              <span className={`${item.type} ${item.direction}`}>{item.value}</span></td>
+                    {colsAfter}
+              </tr>)
+            }
+         
           })
           }
           </tbody>
