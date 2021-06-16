@@ -5,6 +5,18 @@
     text-align: center;
 }
 
+.permutation-controls input {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    padding: 5px;
+}
+
+.permutation-controls button {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 5px;
+}
+
 .permutation-controls+div {
     text-align: center;
 }
