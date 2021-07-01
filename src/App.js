@@ -13,13 +13,19 @@ import AppContext from './AppContext';
 import About from './pages/about/About';
 import TokenService from './services/TokenService';
 import APIService from './services/APIServices';
+import MongoServices from './services/mongo-services';
+import PosgresServices from './services/postgresql-services';
+import AWSServices from './services/aws-services';
+import GraphQLServices from './services/graphql-services';
+import { v4 as uuidv4 } from 'uuid';
 
 class App extends React.Component {
 
    state = {
       browserWidth: 0,
       browserHeight: 0,
-      loggedIn: false
+      loggedIn: false,
+      userID: uuidv4()
    }
    componentDidMount = () => {
       this.resizeHandler();
@@ -36,6 +42,15 @@ class App extends React.Component {
       }
    }
    componentWillUnmount = () => {
+      //mongo
+      MongoServices.deleteAllCharacters(this.state.userID);
+      //postgresql
+      PosgresServices.deleteAllCharacters(this.state.userID);
+      //AWS
+      AWSServices.deleteAllCharacters(this.context.userID);
+      //GraphQL
+      GraphQLServices.deleteAllCharacters(this.context.userID)
+      //empty dbs
       window.removeEventListener('resize', this.resizeHandler)
    }
    resizeHandler = () => {
@@ -60,6 +75,7 @@ class App extends React.Component {
       browserWidth: this.state.browserWidth, 
       browserHeight: this.state.browserHeight, 
       loggedIn: this.state.loggedIn,
+      userID: this.state.userID,
       logInOut: this.logInOut, 
       updateContext: this.resizeHandler
     }

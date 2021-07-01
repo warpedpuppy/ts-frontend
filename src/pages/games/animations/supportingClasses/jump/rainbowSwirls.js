@@ -57,12 +57,12 @@ export default function RainbowSwirls() {
         this.objectPool.push(s)
       }
 
-      const s = this.objectPool[this.objectPoolCounter];
-      this.objectPoolCounter++;
-      const newPos = this.newXY();
-      s.y = newPos.x;
-      s.x = newPos.y;
-      this.cont.addChild(s);
+      // const s = this.objectPool[this.objectPoolCounter];
+      // this.objectPoolCounter++;
+      // const newPos = this.newXY();
+      // s.y = newPos.x;
+      // s.x = newPos.y;
+      // this.cont.addChild(s);
 
       this.curveQ = this.utils.randomIntBetween(this.curvedQs[0], this.curvedQs[1])
     },
@@ -125,27 +125,25 @@ export default function RainbowSwirls() {
       this.cont.addChild(s)
     },
     newXY () {
-      const buffer = 0
-      const perc = 0.5
       if (this.quadrant === 'TL') {
         return {
-          x: this.utils.randomNumberBetween(buffer, this.utils.canvasWidth * perc),
-          y: this.utils.randomNumberBetween(buffer, this.utils.canvasHeight * perc)
+          x: this.utils.canvasWidth * 0.25,
+          y: this.utils.canvasHeight * 0.25
         }
       } if (this.quadrant === 'TR') {
         return {
-          x: this.utils.randomNumberBetween(this.utils.canvasWidth * perc, this.utils.canvasWidth),
-          y: this.utils.randomNumberBetween(buffer, this.utils.canvasHeight * perc)
+          x: this.utils.canvasWidth * 0.75,
+          y: this.utils.canvasHeight * 0.25
         }
       } if (this.quadrant === 'BL') {
         return {
-          x: this.utils.randomNumberBetween(buffer, this.utils.canvasWidth * perc),
-          y: this.utils.randomNumberBetween(this.utils.canvasHeight * perc, this.utils.canvasHeight)
+          x: this.utils.canvasWidth * 0.75,
+          y: this.utils.canvasHeight * 0.75
         }
       } if (this.quadrant === 'BR') {
         return {
-          x: this.utils.randomNumberBetween(this.utils.canvasWidth * perc, this.utils.canvasWidth),
-          y: this.utils.randomNumberBetween(this.utils.canvasHeight * perc, this.utils.canvasHeight)
+          x: this.utils.canvasWidth * 0.25,
+          y: this.utils.canvasHeight * 0.75
         }
       }
     },

@@ -1,7 +1,14 @@
 import React from 'react';
 import CrudBody from '../components/CrudBody';
 import AWSServices from '../../../../services/aws-services';
+import AppContext from '../../../../AppContext';
 
-export default function AWS () {
-    return <CrudBody service={AWSServices} />;
+export default class AWS extends React.Component {
+    componentDidMount = () => {
+        AWSServices.setUserID(this.context.userID)
+    }
+    render() {
+        return <CrudBody service={AWSServices} />;
+    }
 }
+AWS.contextType = AppContext;

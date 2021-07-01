@@ -1,11 +1,11 @@
 import { gql } from '@apollo/client';
 import Utils from './Utils';
-import { v4 as uuidv4 } from 'uuid';
 const Mutations = {
     client: undefined,
-    userid: uuidv4(),
-    setClient: function (client) {
+    userid: undefined,
+    setClient: function (client, userid) {
         this.client = client;
+        this.userid = userid;
     },
     read: async function (id) {
         try {

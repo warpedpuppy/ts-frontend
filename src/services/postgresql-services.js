@@ -1,8 +1,10 @@
 import Config from '../config';
 import Utils from './Utils';
-import { v4 as uuidv4 } from 'uuid';
 const PostgresqlServices = {
-    userid: uuidv4(),
+    userid: undefined,
+    setUserId: function (userid) {
+      this.userid = userid;
+    },
     create: async function (q) {
         let obj = {
             userid: this.userid,
