@@ -67,6 +67,21 @@ export default class About extends Component {
 
         return (
             <>
+              <div className="lines">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
             <AboutText yearsWorking={this.state.yearsWorking} />
             <span id="see-admin-login" onClick={() => this.setState({showAdmin:!this.state.showAdmin})}>🤪</span>
             </>
@@ -76,6 +91,21 @@ export default class About extends Component {
           return (
             
             <>
+             <div className="lines">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
             <AdminLogin keyPress={this.keyPress} showForm={this.showForm} code={this.state.code} showLogin={this.state.showLogin} loggedIn={this.context.loggedIn} submitForm={this.submitForm} />
               {/* <section id="admin-login">
                 <div onClick={this.showForm}>🤪😀🤪😀🤪😀🤪😀🤪</div>

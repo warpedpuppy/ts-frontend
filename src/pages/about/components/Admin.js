@@ -55,18 +55,20 @@ export default class Admin extends Component {
   render() {
     return (
       <div> 
+         <fieldset><legend>postgres</legend>
+          <ul>
+            <li>empty postgres db record count: {this.state.postgresRecordQ} </li>
+            <li><button onClick={() => this.empty("postgres")}>empty postgres db</button></li>
+          </ul>
+        </fieldset>
+        
         <fieldset><legend>mongo</legend>
           <ul>
             <li>mongoatlas db record count: {this.state.mongoAtlasRecordQ} </li>
             <li><button onClick={() => this.empty("mongo")}>empty mongoatlas db</button></li>
           </ul>
         </fieldset>
-        <fieldset><legend>postgres</legend>
-          <ul>
-            <li>empty postgres db record count: {this.state.postgresRecordQ} </li>
-            <li><button onClick={() => this.empty("postgres")}>empty postgres db</button></li>
-          </ul>
-        </fieldset>
+       
         <fieldset><legend>aws</legend>
           <ul>
             <li>empty aws db record count: {this.state.awsRecordQ} </li>

@@ -14,7 +14,7 @@
         height: 140%;
         margin: -20% 0 0 -20%;
         z-index: -1;
-        /* opacity: 0.1; */
+        opacity: 0.1;
         transform: skew(15deg, 15deg);
         animation-name: skew;
         animation-duration: 8s;

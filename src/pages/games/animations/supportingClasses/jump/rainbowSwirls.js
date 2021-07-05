@@ -57,12 +57,12 @@ export default function RainbowSwirls() {
         this.objectPool.push(s)
       }
 
-      // const s = this.objectPool[this.objectPoolCounter];
-      // this.objectPoolCounter++;
-      // const newPos = this.newXY();
-      // s.y = newPos.x;
-      // s.x = newPos.y;
-      // this.cont.addChild(s);
+      const s = this.objectPool[this.objectPoolCounter];
+      this.objectPoolCounter++;
+      const newPos = this.newXY();
+      s.y = newPos.y;
+      s.x = newPos.x;
+      this.cont.addChild(s);
 
       this.curveQ = this.utils.randomIntBetween(this.curvedQs[0], this.curvedQs[1])
     },

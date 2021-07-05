@@ -42,7 +42,7 @@ export default class RecursivePermutation extends Component {
     this.state.timerObjects.forEach( item => {
       clearTimeout(item)
     })
-    this.setState({functionCalls:[], totalColumns: this.state.num.toString().length}, async ()=> {
+    this.setState({permutations: [], functionCalls:[], totalColumns: this.state.num.toString().length}, async ()=> {
       if (this.state.num < 10)return;
       let permutations = await this.permutation(this.state.num);
       this.setState({permutations})
