@@ -35,9 +35,14 @@ export default class MazeSolver extends Component {
   ]
 }
 
- 
+ timeoutObjects = [];
   componentDidMount = () => {
   
+  }
+  componentWillUnmount = () => {
+    this.timeoutObjects.forEach( item => {
+      clearTimeout(item)
+    })
   }
   runMaze = () => {
     let paths = [{path: [[0,1]]}]
@@ -46,6 +51,9 @@ export default class MazeSolver extends Component {
     this.findPath(paths, this.state.maze, obj)
   }
   resetMaze = () => {
+    this.timeoutObjects.forEach( item => {
+      clearTimeout(item)
+    })
     this.setState({paths: [{path: []}]})
   }
   counter = 0;
@@ -155,7 +163,9 @@ export default class MazeSolver extends Component {
 
     // if (this.counter > 30)return
     this.setState({paths: obj})
-    return anyPathHasChanged ? setTimeout(() => this.findPath(pathObjectArray, maze, obj), 80) : 0 ;
+    return anyPathHasChanged ? 
+    this.timeoutObjects= [...this.timeoutObjects, setTimeout(() => this.findPath(pathObjectArray, maze, obj), 80)]
+    : 0 ;
 
 }
 

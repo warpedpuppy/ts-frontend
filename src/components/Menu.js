@@ -22,7 +22,7 @@ class Menu extends Component {
                 <Nav.Link as={Link} to={'/js'}>js</Nav.Link>
                 <Nav.Link as={Link} to={'/dbs'}>dbs</Nav.Link>
                 <Nav.Link as={Link} to={'/games'}>games</Nav.Link>
-                <Nav.Link as={Link} to={'/art'}>art</Nav.Link>
+                {/* <Nav.Link as={Link} to={'/art'}>art</Nav.Link> */}
                 <Nav.Link as={Link} to={'/about'}>about</Nav.Link>
             </Navbar.Collapse>
         </Navbar>

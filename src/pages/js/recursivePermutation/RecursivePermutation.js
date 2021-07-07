@@ -35,7 +35,7 @@ export default class RecursivePermutation extends Component {
     // HLJS.highlightAll();
     //let permutations = await this.permutation(this.state.num)
 
-    // console.log(permutations)
+
     // this.setState({permutations})
   }
   startAction = async () => {
@@ -49,7 +49,7 @@ export default class RecursivePermutation extends Component {
     })
     // 
 
-    // console.log(permutations)
+
     // this.setState({permutations: JSON.stringify(permutations), functionCalls:[]})
   }
 

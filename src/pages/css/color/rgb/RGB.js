@@ -2,10 +2,18 @@ import React, { Component } from 'react';
 import './RGB.css';
 import {Form, Button} from 'react-bootstrap'
 export default class RGB extends Component {
-  state = {r:0, g: 0, b: 0, activeState: 'manual', timerObject: undefined}
+  state = {r:0, g: 0, b: 0, activeState: 'change'}
+  timerObject = undefined;
   arr = [...Array(251).keys()]
   componentDidMount = () => {
       this.chooseRandomRBG();
+      if (this.state.activeState === 'change') {
+        this.timerObject = setInterval(() => this.chooseRandomRBG(), 2000)
+        // this.setState({timerObject: obj})
+      }
+  }
+  componentWillUnmount = () => {
+    clearInterval(this.timerObject)
   }
   changeColor = (e) => {
      let obj = {};
@@ -20,14 +28,15 @@ export default class RGB extends Component {
       return Math.floor(Math.random() * 250)
   }
   change = (e) => {
+    clearInterval(this.timerObject)
       if (e.target.value === 'random') {
         this.chooseRandomRBG();
-        clearInterval(this.state.timerObject)
+        clearInterval(this.timerObject)
       } else if (e.target.value === 'change') {
-        let obj = setInterval(() => this.chooseRandomRBG(), 2000)
-        this.setState({timerObject: obj})
+        this.timerObject = setInterval(() => this.chooseRandomRBG(), 2000)
+        // this.setState({timerObject: obj})
       } else {
-        clearInterval(this.state.timerObject)
+        clearInterval(this.timerObject)
       }
       this.setState({activeState: e.target.value})
   }

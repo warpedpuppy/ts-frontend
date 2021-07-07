@@ -56,7 +56,6 @@ export default function GridIndex() {
       this.gridBuild.blockWidth = w
       this.gridBuild.blockHeight = h
 
-      // console.log(this.boards[this.gridBuild.currentBoard])
       this.gridBuild.buildGrid(this.boards[this.gridBuild.currentBoard])
 
       this.gridAction.setLimits()
