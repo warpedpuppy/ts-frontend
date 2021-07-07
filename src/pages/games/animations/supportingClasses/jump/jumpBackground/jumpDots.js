@@ -9,7 +9,7 @@ import JumpTokenUnlockedGraphic from './jumpTokenUnlocked'
 import SpaceGremlin from './spaceGremlin'
 import ThreeInARow from './threeInARow'
 
-export default function () {
+export default function JumpDots () {
   return {
     cont: Assets.Container(),
     background: Assets.Graphics(),
@@ -166,8 +166,6 @@ export default function () {
         this.columns.push(this.tileColumn)
       }
 
-      // console.log(this.orbs.length);
-      // console.log(this.dotsArray.length);
       this.loopingQ = Math.max(this.orbs.length)
 
       this.testGraphics = Assets.Graphics()

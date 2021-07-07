@@ -40,7 +40,6 @@ export default class Home extends Component {
     HomePageAnimation.init(this.context.browserWidth, this.context.browserHeight);
   }
   componentWillUnmount = () => {
-    console.log("boom")
     HomePageAnimation.destroy();
     window.removeEventListener('resize', this.resizeHandler);
   }

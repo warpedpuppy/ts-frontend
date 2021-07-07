@@ -105,7 +105,7 @@ export default class NewGrid extends React.Component {
       const obj = this.createObject()
       obj.id = nextId()
 
-      console.log(obj.id)
+
 
       if (obj.hero && obj.token1 && obj.token2 && obj.token3 && obj.token4) {
         this.context.addMazes(obj)

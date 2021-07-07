@@ -57,7 +57,6 @@ export default class Grid extends Component {
     this.reset(Number(e.target.value))
   }
   changeCategory = e => {
-    console.log(e.target)
     this.setState({category: e.target.id})
   }
   changeGridRow = e => {

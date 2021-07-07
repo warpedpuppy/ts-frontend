@@ -45,7 +45,6 @@ export default class CRUDAdmin extends Component {
         if (success) this.setState({postgresRecordQ: 0})
       } else if (tech === "aws") {
         let {success} = await AWSServices.empty();
-        console.log(success)
         if (success) this.setState({awsRecordQ: 0})
       }
     } catch (e) {

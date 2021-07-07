@@ -113,7 +113,6 @@ export default function GridBuild() {
           ...this.transitionItemsArray
         ]
       }
-      // console.log(this.blocks)
 
       for (let i = 0; i < data.r; i++) {
         this.blocks[i] = []
@@ -125,7 +124,6 @@ export default function GridBuild() {
           const bool = obj[`${i}_${j}`] === 'covered'
 
           if (!this.blockPool[counter]) {
-            // console.log("create new")
             b = Assets.Sprite()
             gridCircle = Assets.Sprite('gridCircle600.png')
             gridCircle.anchor.set(0.5)
@@ -133,7 +131,6 @@ export default function GridBuild() {
             this.blockPool.push(b)
             this.gridCirclePool.push(gridCircle)
           } else {
-            // console.log("use old")
             b = this.blockPool[counter]
             gridCircle = this.gridCirclePool[counter]
           }

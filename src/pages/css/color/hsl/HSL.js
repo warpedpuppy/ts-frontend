@@ -56,8 +56,8 @@ export default class HSL extends Component {
                   {
                     [...Array(100).keys()].map( item => {
                       let adjusted = item + 1;
-                      let selected = adjusted === this.state.saturation ? true : false
-                      return <option defaultValue={adjusted} key={adjusted} selected={selected}>{adjusted}</option>
+                      //let selected = adjusted === this.state.saturation ? true : false
+                      return <option defaultValue={adjusted} key={adjusted} >{adjusted}</option>
                     })
                   }
                 </select>
@@ -71,8 +71,8 @@ export default class HSL extends Component {
                   {
                     [...Array(100).keys()].map( item => {
                       let adjusted = item + 1;
-                      let selected = adjusted === this.state.lightness ? true : false
-                      return <option defaultValue={adjusted} key={adjusted} selected={selected}>{adjusted}</option>
+                     // let selected = adjusted === this.state.lightness ? true : false
+                      return <option defaultValue={adjusted} key={adjusted} >{adjusted}</option>
                     })
                   }
                 </select>

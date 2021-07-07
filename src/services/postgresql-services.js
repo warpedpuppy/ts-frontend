@@ -26,7 +26,6 @@ const PostgresqlServices = {
     },
     read: async function () {
       let response = await fetch(`${Config.API_URL}/postgresql-restful/user/${this.userid}`)
-      console.log(response)
       let {characters, query } = await response.json();
       return {characters, query, response: JSON.stringify({characters, query }) };
     },

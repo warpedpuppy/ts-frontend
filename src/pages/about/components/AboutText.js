@@ -26,7 +26,7 @@ export default function AboutText(props) {
           <li>Worked for an app development company and coded 6 mobile apps.</li>
           <li>Worked for The Dodo and coded the front end viewed by 17 million people per month.</li>
           <li>Managed a subscription based ecommerce site built in VueJS.</li>
-          <li>Mentor at CareerFoundry.</li>
+          <li>Mentor at multiple coding academies.</li>
           </ul>
         </section>
         

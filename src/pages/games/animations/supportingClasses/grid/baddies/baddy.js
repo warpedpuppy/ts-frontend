@@ -103,7 +103,6 @@ export default function Baddy(gridBuild) {
                 (currentSquare.block.left && currentSquare.block.left.covered && this.body.x < leftEdge) ||
                 (currentSquare.block.above && currentSquare.block.above.covered && this.body.y < topEdge) ||
                 (currentSquare.block.below && currentSquare.block.below.covered && this.body.y > bottomEdge)) {
-        // console.log(' HIT');
         this.towardsDragon = false
         this.alreadyBeenToAWall = true
       }
@@ -152,7 +151,6 @@ export default function Baddy(gridBuild) {
         // this only happen if it isn't touching a blocked box
         this.body.x += this.vx
         this.body.y += this.vy
-        // console.log(Math.floor(this.body.x), Math.floor(this.body.y))
 
         if (this.spearCounter < 10) {
           this.spearCounter++
@@ -175,7 +173,7 @@ export default function Baddy(gridBuild) {
           this.spear.vy = Math.sin(this.spear.angle) * this.spearSpeed
           this.spear.x += this.spear.vx
           this.spear.y += this.spear.vy
-          // console.log(Math.floor(this.spear.x), Math.floor(this.spear.y))
+
           this.spear.rotation = this.spear.angle
 
           const xDiff = Math.floor(Math.abs(this.spear.originalTarget.x - this.spear.x))

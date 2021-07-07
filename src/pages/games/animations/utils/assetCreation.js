@@ -14,7 +14,7 @@ const AssetCreation = {
   id: undefined,
   init () {
     this.id = this.id || Math.floor(Math.random()*10000);
-    console.log("asset creation = ", this.id)
+
     if(this.rings.length !== 0)return;
     this.ringQ = Config.bounceTotalPoints;
     for (let i = 0; i < this.ringQ; i++) {
@@ -42,11 +42,7 @@ const AssetCreation = {
     return new PIXI.Container()
   },
   Loader () {
-    console.log("does loader currently exist: ", !!this.loader)
 
-    if (!!this.loader) {
-      console.log(this.loader)
-    }
     this.loader = this.loader ? this.loader : new PIXI.Loader() ;
     return this.loader;
   },

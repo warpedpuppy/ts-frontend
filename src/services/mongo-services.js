@@ -22,7 +22,7 @@ const MongoServices = {
             return { character, query, response: JSON.stringify(responseJson) };
         
         } catch (e) {
-            console.log(e)
+         
         }
        
     },
@@ -33,7 +33,7 @@ const MongoServices = {
             let { characters, query } = responseJson;
             return { characters, query, response: JSON.stringify(responseJson) };
         } catch(e) {
-            console.log(e)
+           
         }
        
     },
@@ -42,7 +42,7 @@ const MongoServices = {
             let result = await fetch(`${Config.API_URL}/mongo-restful/complete`)
             return result.ok ? await result.json() : result.ok ; 
         } catch(e) {
-            console.log(e)
+            
         }
     },
     delete: async function (id) {
@@ -61,7 +61,7 @@ const MongoServices = {
                 return {query, character, response: JSON.stringify(character)}
             }
         } catch (e) {
-            console.log(e)
+           
         }
 
 

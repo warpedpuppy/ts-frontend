@@ -7,7 +7,7 @@ import Submenu from '../../components/layout-templates/SubMenu';
 import Utils from '../../services/Utils';
 export default class CSS extends Component {
   state = {
-    active: 'layout',
+    active: 'color',
     categories: ['color', 'layout', 'units of measurement']
   }
   componentDidMount = () => {

@@ -39,7 +39,7 @@ const HomePageAnimation = {
         this.app.destroy(true);
         
         for (let i = 0; i < this.rainbowSwirlsQ; i++) {
-        this.rainbowSwirlInstances[i].removeFromStage()
+            this.rainbowSwirlInstances[i].removeFromStage()
         }
     },
     ticker: function (delta) {

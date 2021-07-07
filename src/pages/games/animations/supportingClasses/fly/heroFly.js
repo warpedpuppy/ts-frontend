@@ -15,7 +15,6 @@ export default function HeroFly() {
 
 
       const head = Assets.Sprite('dragonHead.png');
-      console.log("from hero fly", head, this.utils.spritesheet.textures, this.utils.spritesheet.textures['dragonHead.png'].baseTexture)
       this.dyeLot.push(head)
       head.anchor.x = 0.5
       head.anchor.y = 1

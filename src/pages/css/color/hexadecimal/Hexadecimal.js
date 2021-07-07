@@ -7,12 +7,16 @@ export default class Hexadecimal extends Component {
   state = {
     hex: "FF00FF",
     boxSize: 20,
-    activeState: 'change',
-    timerObject: undefined
+    activeState: 'change'
   }
+  intervalObject = undefined;
   componentDidMount = () => {
     this.change({target: {value: this.state.activeState}})
   }
+  componentWillUnmount = () => {
+    clearInterval(this.intervalObject)
+  }
+
   clickHandler = (e, index, value, n) => {
     if (this.state.activeState !== 'manual') return
     let val = index * this.state.boxSize;
@@ -26,12 +30,11 @@ export default class Hexadecimal extends Component {
   change = (e) => {
       if (e.target.value === 'random') {
         this.chooseRandomHex();
-        clearInterval(this.state.timerObject)
+        clearInterval(this.intervalObject)
       } else if (e.target.value === 'change') {
-        let obj = setInterval(() => this.chooseRandomHex(), 2000)
-        this.setState({timerObject: obj})
+        this.intervalObject = setInterval(() => this.chooseRandomHex(), 2000)
       } else {
-        clearInterval(this.state.timerObject)
+        clearInterval(this.intervalObject)
       }
       this.setState({activeState: e.target.value})
   }

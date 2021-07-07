@@ -37,7 +37,7 @@ export default class PlusPlus extends React.Component {
                         </thead>
                         <tbody>
                             <tr>
-                                <td colSpan="3">let i = 0;</td>
+                                <td colspan="3">let i = 0;</td>
                             </tr>
                             <tr>
                                 <td >console.log(i++)</td>
@@ -60,7 +60,7 @@ export default class PlusPlus extends React.Component {
                                 <td className={this.answerClass}><span>2</span></td>
                             </tr>
                             <tr>
-                                <td colSpan="3"><Button variant="success" onClick={this.revealAnswers}>reveal answers</Button></td>
+                                <td colspan="3"><Button variant="success" onClick={this.revealAnswers}>reveal answers</Button></td>
                             </tr>
                         </tbody>
                     </Table>

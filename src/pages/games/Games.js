@@ -25,14 +25,22 @@ export default class Games extends React.Component {
       mazeGameAction: true
     }
   }
+  mounted = false;
 
   componentDidMount () {
+    this.mounted = true;
     MazeService.load_ids()
       .then((ids) => {
-        const activeMazeId = (ids[0]) ? ids[0].id : 0
+        if (this.mounted) {
+           const activeMazeId = (ids[0]) ? ids[0].id : 0
         this.setState({ ids, activeMazeId })
+        }
+       
       })
       .catch(error => error)
+  }
+  componentWillUnmount = () => {
+    this.mounted = false;
   }
 
   setIdsAndActiveMazeId = (ids, activeMazeId) => {

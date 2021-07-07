@@ -64,7 +64,7 @@ const AWSServices = {
         return { character, query, response: character }; 
     },
     deleteAllCharacters: async function () {
-        console.log('DELETE FROM THIS ID', this.userid, JSON.stringify({userid: this.userid}))
+
         let result = await fetch(`${Config.AWS_ENDPOINT}/delete-all`, {
             method: "DELETE",
             headers: {
@@ -72,12 +72,10 @@ const AWSServices = {
             },
             body: JSON.stringify({userid: this.userid})
         })
-        console.log(this.userid)
-        console.log("aws services result= ", result)
+
 
         let json = await result.json();
 
-        console.log("aws services json= ", json)
 
         return result.ok ? json : result.ok ; 
     },

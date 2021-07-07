@@ -40,19 +40,6 @@ export default function Dots() {
       dot.beginFill(0xFFFF00).drawCircle(0, 0, this.radius).endFill()
       return dot
     },
-    // collisionDetect: function (heroObject, dot) {
-    // 	let globalPoint = dot.toGlobal(this.utils.app.stage);
-    // 	this.collisionDetect.x = globalPoint.x
-    // 	this.collisionDetect.y = globalPoint.y;
-    // 	this.collisionDetect.radius = this.radius;
-    // 	if(dot.visible &&
-    // 	   this.dotEatBoolean &&
-    // 		this.utils.circleToCircleCollisionDetection(heroObject, this.collisionDetect)[0])
-    // 	{
-    // 		console.log("hit")
-    // 		dot.visible = false;
-    // 	}
-    // },
     addToStage () {
 
     },

@@ -45,11 +45,10 @@ export default class Admin extends Component {
         if (success) this.setState({postgresRecordQ: 0})
       } else if (tech === "aws") {
         let {success} = await AWSServices.empty();
-        console.log(success)
         if (success) this.setState({awsRecordQ: 0})
       }
     } catch (e) {
-      console.error(e)
+      // console.error(e)
     }
   }
   render() {

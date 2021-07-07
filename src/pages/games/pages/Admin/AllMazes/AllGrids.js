@@ -33,7 +33,7 @@ export default class AllGrids extends React.Component {
 
       MazeService.deleteMaze(this.state.idToDelete)
         .then((data) => {
-          console.log(data)
+
         })
       this.setState({ show: false, idToDelete: undefined })
     }

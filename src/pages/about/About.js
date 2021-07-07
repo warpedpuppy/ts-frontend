@@ -67,21 +67,6 @@ export default class About extends Component {
 
         return (
             <>
-              <div className="lines">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
             <AboutText yearsWorking={this.state.yearsWorking} />
             <span id="see-admin-login" onClick={() => this.setState({showAdmin:!this.state.showAdmin})}>🤪</span>
             </>

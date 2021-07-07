@@ -25,7 +25,8 @@ class App extends React.Component {
       browserWidth: 0,
       browserHeight: 0,
       loggedIn: false,
-      userID: uuidv4()
+      userID: uuidv4(),
+      logPermit: true
    }
    componentDidMount = () => {
       this.resizeHandler();
@@ -69,6 +70,12 @@ class App extends React.Component {
       this.setState({loggedIn})
       if (!loggedIn) TokenService.deleteToken();
    }
+   log = (args) => {
+      if (this.state.logPermit) {
+         console.log(args.join(','))
+      }
+   }
+
    
   render () {
    const contextValue = { 
@@ -77,7 +84,8 @@ class App extends React.Component {
       loggedIn: this.state.loggedIn,
       userID: this.state.userID,
       logInOut: this.logInOut, 
-      updateContext: this.resizeHandler
+      updateContext: this.resizeHandler,
+      log: this.log
     }
      return (
         <AppContext.Provider value={contextValue}>

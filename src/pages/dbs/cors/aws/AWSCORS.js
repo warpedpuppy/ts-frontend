@@ -5,28 +5,23 @@ export default class AWSCORS extends Component {
 
   testEndpoint = async e => {
       e.preventDefault();
-      let result = await AWSCORSServices.testEndpoint();
-      console.log(result)
+      await AWSCORSServices.testEndpoint();
   }
   dbConnect = async e => {
         e.preventDefault();
-        let result = await AWSCORSServices.dbConnect();
-        console.log(result)
+        await AWSCORSServices.dbConnect();
     }
     specifiedOrigin = async e => {
         e.preventDefault();
-        let result = await AWSCORSServices.specifiedOrigin();
-        console.log(result)
+        await AWSCORSServices.specifiedOrigin();
     }
     withMiddleware = async e => {
         e.preventDefault();
-        let result = await AWSCORSServices.withMiddleware();
-        console.log(result)
+        await AWSCORSServices.withMiddleware();
     }
     multipleOrigins = async e => {
         e.preventDefault();
-        let result = await AWSCORSServices.multipleOrigins();
-        console.log(result)
+        await AWSCORSServices.multipleOrigins();
     }
   render() {
     return (

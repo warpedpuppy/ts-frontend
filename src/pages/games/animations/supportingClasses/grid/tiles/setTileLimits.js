@@ -60,7 +60,7 @@ const SetTileLimits = {
         this.utils.root.grid.gridBuild.blocks[i][j].left = left
         this.utils.root.grid.gridBuild.blocks[i][j].leftCovered = left.covered
 
-        // console.log(above, right, left, below)
+
       }
     }
   }

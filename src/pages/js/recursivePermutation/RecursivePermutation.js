@@ -142,8 +142,8 @@ export default class RecursivePermutation extends Component {
             setTimeout(() => this.removeHighlight(highlightRow), 1400)
 
             if (item.col !== 1 && item.value.includes("combo")) {
-              return <></>
-              // return <tr key={index}><td className={`${item.type} ${item.direction}`} colSpan={ item.type === 'final return' ? this.state.totalColumns : item.col }>&nbsp;</td></tr>
+              return <tr key={`asdf${index}`}></tr>
+              // return <tr key={index}><td className={`${item.type} ${item.direction}`} colspan={ item.type === 'final return' ? this.state.totalColumns : item.col }>&nbsp;</td></tr>
             } else {
               let totalCols = this.state.totalColumns;
               let colsBefore = [...Array(item.col - 1).keys()].map( (item, j) => {
@@ -157,7 +157,7 @@ export default class RecursivePermutation extends Component {
 
                  return( <tr key={index}>
                    {colsBefore}
-                   <td className={`${item.type} ${item.direction}`} data-colSpan={ item.type === 'final return' ? this.state.totalColumns : item.col }>
+                   <td className={`${item.type} ${item.direction}`} data-colspan={ item.type === 'final return' ? this.state.totalColumns : item.col }>
               <span className={`${item.type} ${item.direction}`}>{item.value}</span></td>
                     {colsAfter}
               </tr>)

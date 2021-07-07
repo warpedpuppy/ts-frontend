@@ -55,13 +55,13 @@ export default class AbsoluteUnits extends React.Component {
                             animationDuration: `${(Math.random()* 1500)+1500}ms`,
                             backgroundColor: Utils.randomHex()
                         }
-                        return  <div style={divStyle} className='sample-div'></div>
+                        return  <div style={divStyle} key={`divs${index}`} className='sample-div'></div>
                     })
                 }
                 <ul>
                     {
                         this.arr.map( (item, index) => {
-                            return <li key={index} onClick={this.changeUnit} className={ this.state.active === item ? 'active-unit' : ''}>{item}</li>
+                            return <li key={`as${index}`} onClick={this.changeUnit} className={ this.state.active === item ? 'active-unit' : ''}>{item}</li>
                         })
                     }
                 </ul>

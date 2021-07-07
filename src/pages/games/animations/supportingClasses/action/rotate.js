@@ -29,9 +29,7 @@ export default function Rotate() {
         activeAction.storeRadius = activeAction.radius
         returnObj = { vx: -this.vx, vy: -this.vy }
       }
-      // console.log(activeAction.radius)
 
-      // console.log(returnObj)
       return returnObj
     },
     addToStage () {

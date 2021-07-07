@@ -80,12 +80,10 @@ export default function Clock() {
       } else {
         this.counter++
 
-        // console.log(this.counter)
         if (this.counter) {
           this.secondhand.alpha = 0
           const increment = 30
           this.demoS += increment
-          console.log(`${this.demoH}:${this.demoM}:${this.demoS}`)
           this.hourhand.rotation = this.demoH * this.hourToRadians
           this.minutehand.rotation = this.demoM * this.minutesToRadians
           this.secondhand.rotation = this.demoS * this.secondsToRadians

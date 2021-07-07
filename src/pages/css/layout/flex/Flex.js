@@ -25,7 +25,6 @@ export default class Flex extends Component {
     this.setState({alignItems: e.target.value})
   }
   flexItemChange = (e, item, property) => {
-   console.log(item, e.target.value)
    let obj = {...this.state.flexProperties};
    if (!obj[item]) obj[item] = {};
    let temp = {};

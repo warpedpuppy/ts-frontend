@@ -71,7 +71,6 @@ export default function keyHandler() {
     },
     keyDown (e) {
       e.preventDefault()
-      // console.log(e.keyCode)
       switch (e.keyCode) {
         case 84:
           // the letter t

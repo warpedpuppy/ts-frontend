@@ -93,7 +93,7 @@ export default function JumpAnimation() {
       this.animate = this.animate.bind(this)
       this.animateDesktopIpad = this.animateDesktopIpad.bind(this)
       this.animateMobile = this.animateMobile.bind(this)
-      console.log("this.loader.resources['/ss/ss.json'] = ", !!this.loader.resources['/ss/ss.json'])
+
       if (!this.loader.resources['/ss/ss.json']) {
         this.loader
           .add('/ss/ss.json')

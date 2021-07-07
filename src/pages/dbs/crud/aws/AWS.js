@@ -5,7 +5,6 @@ import AppContext from '../../../../AppContext';
 
 export default class AWS extends React.Component {
     componentDidMount = () => {
-        console.log(this.context.userID)
         AWSServices.setUserID(this.context.userID)
     }
     render() {

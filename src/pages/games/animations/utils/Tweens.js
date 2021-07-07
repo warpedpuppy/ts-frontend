@@ -64,7 +64,6 @@ const Tweens = {
     return -c * Math.cos(t / d * (Math.PI / 2)) + c + b
   },
   animate () {
-    // console.log(this.tweenArray.length)
     if (this.tweenArray.length) {
       this.tweenArray.forEach((item, index) => {
         if (!item.obj) {
@@ -85,7 +84,6 @@ const Tweens = {
           const d = item.seconds * 1000
           // let e = c - b;
           const percentage = t / d
-          // console.log(t, d)
           const easing = (!item.easing) ? this.defaultEasing : item.easing
           const inc = Easing[easing](percentage)
           const inc2 = b + inc * (c - b)

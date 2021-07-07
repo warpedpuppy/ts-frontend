@@ -12,7 +12,7 @@ export default function EveryCombo() {
     //                 let stem = arr.slice(offset)
     //                 let temp = [...root, ...stem]
     //                 offset ++;
-    //                 console.log(temp)
+
                     
     //             }
     //             endOfStartArray ++;     

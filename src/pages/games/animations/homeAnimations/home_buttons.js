@@ -20,7 +20,6 @@ export default function HomeButtons(doneLoading) {
     loaded: false,
     init () {
 
-      console.log("assets loader = ", Assets.loader)
       this.buildGame = this.buildGame.bind(this)
       let options = {width: 200, height: 200, transparent: true};
       this.flyApp = Assets.Application(options)

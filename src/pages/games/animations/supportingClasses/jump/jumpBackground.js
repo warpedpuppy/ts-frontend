@@ -111,7 +111,7 @@ export default function Jump() {
       this.orbs[spaceShipOrbIndex].spaceShip = true
       this.orbs[spaceShipOrbIndex].addChild(spaceShip)
 
-      // console.log("add space ship", this.utils.canvasWidth, this.orbsCont.x)
+
     },
     addToken () {
       if (!this.tokenTaken) {

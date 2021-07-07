@@ -1,7 +1,7 @@
 import Assets from '../../../utils/assetCreation'
 import Utils from '../../../utils/utils'
 
-export default function () {
+export default function ConcentricCircles() {
   return {
     cont: Assets.ParticleContainer(1000),
     rings: [],
@@ -59,7 +59,6 @@ export default function () {
           ring.scale.set(1)
         } else if (this.expand && ring.scale.x > 1) {
           ring.scale.set(0)
-          console.log(ring.scale.x)
         }
       })
     }

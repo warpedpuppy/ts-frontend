@@ -81,7 +81,6 @@ export default function GridAction() {
       const { below } = currentSquare.block
       const { left } = currentSquare.block
 
-      // console.log(above.covered, right.covered, left.covered, below.covered)
 
       if (!above || above.covered) {
         this.topBorder = this.topEdge - (this.blockHeight * i)
@@ -105,7 +104,6 @@ export default function GridAction() {
       }
     },
     setLimits () {
-      // console.log("here = ", this.utils.root.grid.boards[this.utils.root.grid.gridBuild.currentBoard])
       this.blockWidth = Config[`${this.utils.root.activeMode}BlockSize`][0]
       this.blockHeight = Config[`${this.utils.root.activeMode}BlockSize`][1]
 
@@ -169,7 +167,6 @@ export default function GridAction() {
 
         if (this.itemHitDetect(item)) {
           if (item.hit !== true) {
-            // console.log("COIN HIT")
             item.hit = true
             // remove item from stage
             item.parent.removeChild(item)
@@ -208,7 +205,6 @@ export default function GridAction() {
               this.utils.root.tokens.earnToken(item)
             }
           } else if (item.name === 'spaceship') {
-            console.log('spaceshit hit')
             this.pause = true
             this.spaceShip.classRef.blastOff()
           }
@@ -224,7 +220,6 @@ export default function GridAction() {
             this.gridBuild.gridItems.moveItem1(item)
           } else {
             if (item.name === 'treasureChest') {
-              // console.log(item)
               item.classRef.animate()
             }
             item.counter++

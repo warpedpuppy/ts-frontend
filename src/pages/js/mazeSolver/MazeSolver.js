@@ -43,8 +43,7 @@ export default class MazeSolver extends Component {
     let paths = [{path: [[0,1]]}]
     let obj = {};
     obj['a0'] = {path: [[0,1]]};
-    let result = this.findPath(paths, this.state.maze, obj)
-    console.log('result =', result)
+    this.findPath(paths, this.state.maze, obj)
   }
   resetMaze = () => {
     this.setState({paths: [{path: []}]})
@@ -151,12 +150,12 @@ export default class MazeSolver extends Component {
    
     
     }
-     console.log(obj)
+
     this.counter ++;
-    console.log(this.counter)
+
     // if (this.counter > 30)return
     this.setState({paths: obj})
-    return anyPathHasChanged ? setTimeout(() => this.findPath(pathObjectArray, maze, obj), 80) : console.log('no options') ;
+    return anyPathHasChanged ? setTimeout(() => this.findPath(pathObjectArray, maze, obj), 80) : 0 ;
 
 }
 

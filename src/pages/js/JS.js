@@ -7,7 +7,7 @@ import ObjectPooling from './objectPooling/ObjectPooling';
 export default class DBS extends Component {
   state = {
     active: 'maze solver code',
-    buttons: ['maze solver code', 'recursive permutation', 'all combinations', 'object pooling']
+    buttons: ['maze solver code', 'recursive permutation']//, 'all combinations', 'object pooling']
   }
 
   onChange = (active) => {   

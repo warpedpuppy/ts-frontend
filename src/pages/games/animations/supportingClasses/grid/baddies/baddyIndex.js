@@ -57,9 +57,7 @@ export default function BaddyIndex() {
       this.spears = [...this.spearsPool]
     },
     placeCastlesAndSoldiers (gridBuild) {
-      // console.log('switching to ', this.utils.root.activeMode)
-      // console.log('There are  ', this.castles.length, ' castles left')
-      // console.log('There are  ', this.soldiers.length, ' soldiers left')
+
       const { freeSpaces } = gridBuild
 
       const bw = Config[`${this.utils.root.activeMode}BlockSize`][0]
