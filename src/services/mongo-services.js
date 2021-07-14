@@ -1,5 +1,6 @@
 import Config from '../config';
 import Utils from './Utils';
+import axios from 'axios';
 const MongoServices = {
     userid: undefined,
     setUserID: function (userid) {
@@ -8,18 +9,16 @@ const MongoServices = {
     create: async function (q) {
 
         try {
-            let result = await fetch(`${Config.API_URL}/mongo-restful`, {
-            method: "POST",
+            let result = await axios.post(`${Config.API_URL}/mongo-restful`,
+            {character_name: `Fish ${q+1}`, character_color: Utils.randomHex(), userid: this.userid},
+            {
             headers: {
             'Content-Type': 'application/json'
             },
-            body: JSON.stringify({character_name: `Fish ${q+1}`, character_color: Utils.randomHex(), userid: this.userid})
+           
             })
-
-            let responseJson =  result.ok ? await result.json() : result.ok ; 
-
-            let {character, query} = responseJson;
-            return { character, query, response: JSON.stringify(responseJson) };
+            let {character, query} = result.data;
+            return { character, query, response: JSON.stringify(result.data) };
         
         } catch (e) {
          
@@ -28,10 +27,9 @@ const MongoServices = {
     },
     read: async function () {
         try {
-            let result = await fetch(`${Config.API_URL}/mongo-restful/user/${this.userid}`)
-            let responseJson = result.ok ? await result.json() : result.ok ; 
-            let { characters, query } = responseJson;
-            return { characters, query, response: JSON.stringify(responseJson) };
+            let result = await axios(`${Config.API_URL}/mongo-restful/user/${this.userid}`)
+            let { characters, query } = result.data;
+            return { characters, query, response: JSON.stringify(result.data) };
         } catch(e) {
            
         }
@@ -39,26 +37,26 @@ const MongoServices = {
     },
     getTotalRecords: async function () {
         try {
-            let result = await fetch(`${Config.API_URL}/mongo-restful/complete`)
-            return result.ok ? await result.json() : result.ok ; 
+            let result = await axios(`${Config.API_URL}/mongo-restful/complete`)
+            return result.statusText === "OK" ? result : false ; 
         } catch(e) {
             
         }
     },
     delete: async function (id) {
         try{
-            let result = await fetch(`${Config.API_URL}/mongo-restful`, {
-                method: "DELETE",
+            let result = await axios.delete(`${Config.API_URL}/mongo-restful`, 
+            {data: {id}},
+            {
                 headers: {
                     'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({id})
+                }
             })
-            if (!result.ok) {
-                return result.ok;
+            if (result.statusText !== "OK") {
+                return false;
             } else {
-                let {query, character} = await result.json();
-                return {query, character, response: JSON.stringify(character)}
+                let {query, character} = result.data;
+                return {query, character, response: JSON.stringify(result.data)}
             }
         } catch (e) {
            
@@ -73,17 +71,13 @@ const MongoServices = {
                 character_name,
                 character_color: newColor
             }
-            let result = await fetch(`${Config.API_URL}/mongo-restful`, {
-                method: "PUT",
+            let result = await axios.put(`${Config.API_URL}/mongo-restful`, obj, {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(obj)
             })
-
-            let resultJSON = result.ok ? await result.json() : result.ok ; 
-            let { character, query } = resultJSON;
-            return { character, query, response: JSON.stringify(character) };
+            let { character, query } = result.data;
+            return { character, query, response: JSON.stringify(result.data) };
 
         } catch (e) {
             console.error(e)
@@ -91,21 +85,20 @@ const MongoServices = {
        
     },
     deleteAllCharacters: async function () {
-        let result = await fetch(`${Config.API_URL}/mongo-restful/delete-all`, {
-            method: "DELETE",
+        let result = await axios.delete(`${Config.API_URL}/mongo-restful/delete-all`, 
+        {data: { userid: this.userid }},
+        {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({userid: this.userid})
+            body: JSON.stringify()
         })
 
-        return result.ok ? await result.json() : result.ok ; 
+        return result.data ; 
     },
     empty: async function () {
-        let result = await fetch(`${Config.API_URL}/mongo-restful/empty`, {
-            method: "DELETE"
-        })
-        return result.ok ? await result.json() : result.ok ; 
+        let result = await axios.delete(`${Config.API_URL}/mongo-restful/empty`)
+        return result.data ; 
     }
 }
 

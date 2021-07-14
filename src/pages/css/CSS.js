@@ -5,10 +5,12 @@ import Layout from './layout/Layout';
 import UnitsOfMeasurement from './units-of-measurement/UnitsOfMeasurement';
 import Submenu from '../../components/layout-templates/SubMenu';
 import Utils from '../../services/Utils';
+import CSS_EXPERIMENTS from './css_experiments/CSS_EXPERIMENTS';
+
 export default class CSS extends Component {
   state = {
     active: 'color',
-    categories: ['color', 'layout', 'units of measurement']
+    categories: ['color', 'layout', 'units of measurement', 'experiments']
   }
   componentDidMount = () => {
     let obj = Utils.parseURLVars(this.props.history.location.search);
@@ -27,6 +29,8 @@ export default class CSS extends Component {
       active =  <Color /> ;
     } else if (this.state.active === 'layout') {
       active = <Layout /> ;
+    } else if (this.state.active === 'experiments') {
+      active = <CSS_EXPERIMENTS />
     } else {
       active = <UnitsOfMeasurement />
     }

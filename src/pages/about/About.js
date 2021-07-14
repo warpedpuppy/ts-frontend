@@ -76,7 +76,7 @@ export default class About extends Component {
           return (
             
             <>
-             <div className="lines">
+             {/* <div className="lines">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -90,7 +90,7 @@ export default class About extends Component {
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </div> */}
             <AdminLogin keyPress={this.keyPress} showForm={this.showForm} code={this.state.code} showLogin={this.state.showLogin} loggedIn={this.context.loggedIn} submitForm={this.submitForm} />
               {/* <section id="admin-login">
                 <div onClick={this.showForm}>🤪😀🤪😀🤪😀🤪😀🤪</div>

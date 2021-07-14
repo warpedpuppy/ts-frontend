@@ -1,32 +1,25 @@
 import config from '../config'
 import TokenService from './token-service'
-
+import axios from 'axios';
 const AuthApiService = {
   async showLoginForm (code) {
-    const result = await fetch(`${config.API_ENDPOINT}/auth/show-login-form`, {
-      method: 'POST',
+    const result = await axios.post(`${config.API_ENDPOINT}/auth/show-login-form`, { code }, {
       headers: {
         'content-type': 'application/json'
-      },
-      body: JSON.stringify({ code })
+      }
     })
-    const resultJson = await result.json()
-    return resultJson
+    return result.data
   },
   async postLogin (password) {
     try {
-      const res = await fetch(`${config.API_ENDPOINT}/auth/login`, {
-        method: 'POST',
+      const res = await axios.post(`${config.API_ENDPOINT}/auth/login`, { password }, {
         headers: {
           'content-type': 'application/json'
-        },
-        body: JSON.stringify({ password })
+        }
       })
-      const res_1 = await ((!res.ok)
-        ? res.json().then((e) => Promise.reject(e))
-        : res.json())
-      if (res_1.authToken) {
-        TokenService.saveAuthToken(res_1.authToken)
+     
+      if (res.data.authToken) {
+        TokenService.saveAuthToken(res.data.authToken)
         return { login: true }
       }
       return { login: false }

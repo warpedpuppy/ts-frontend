@@ -1,17 +1,15 @@
 import config from '../config'
 import TokenService from './token-service'
-
+import axios from 'axios';
 const MazeService = {
   async load_ids () {
     try {
-      const res = await fetch(`${config.API_ENDPOINT}/tugtug/get-grid-ids`, {
-        method: 'GET',
+      const res = await axios(`${config.API_ENDPOINT}/tugtug/get-grid-ids`, {
         headers: {
           'content-type': 'application/json'
         }
       })
-      const res_1 = await res.json()
-      return res_1
+      return res.data
     }
     catch (error) {
       return error
@@ -19,15 +17,12 @@ const MazeService = {
   },
   async getOneMaze (id) {
     try {
-      const res = await fetch(`${config.API_ENDPOINT}/tugtug/get-grid`, {
-        method: 'POST',
+      const res = await axios.post(`${config.API_ENDPOINT}/tugtug/get-grid`, { id }, {
         headers: {
           'content-type': 'application/json'
-        },
-        body: JSON.stringify({ id })
+        }
       })
-      const res_1 = await res.json()
-      return res_1
+      return res.data
     }
     catch (error) {
       return error
@@ -35,14 +30,12 @@ const MazeService = {
   },
   async loadAllMazes () {
     try {
-      const res = await fetch(`${config.API_ENDPOINT}/tugtug/all-mazes`, {
-        method: 'GET',
+      const res = await axios(`${config.API_ENDPOINT}/tugtug/all-mazes`, {
         headers: {
           Authorization: `Bearer ${TokenService.getAuthToken()}`
         }
       })
-      const res_1 = await res.json()
-      return res_1
+      return res.data
     }
     catch (error) {
       return error
@@ -50,17 +43,14 @@ const MazeService = {
   },
   async saveMaze (data) {
     try {
-      const res = await fetch(`${config.API_ENDPOINT}/tugtug/new-maze`, {
-        method: 'POST',
+      const res = await axios.post(`${config.API_ENDPOINT}/tugtug/new-maze`, { data }, {
         headers: {
           'content-type': 'application/json',
           Authorization: `Bearer ${TokenService.getAuthToken()}`
-        },
-        body: JSON.stringify({ data })
+        }
       })
-      const res_1 = await res.json()
-      if (res_1.success) {
-        return res_1
+      if (res.statusText === "OK") {
+        return res.data
       }
       return false
     }
@@ -70,16 +60,13 @@ const MazeService = {
   },
   async deleteMaze (id) {
     try {
-      const res = await fetch(`${config.API_ENDPOINT}/tugtug/delete-maze`, {
-        method: 'DELETE',
+      const res = await axios.delete(`${config.API_ENDPOINT}/tugtug/delete-maze`, {data:{ id }}, {
         headers: {
           'content-type': 'application/json',
           Authorization: `Bearer ${TokenService.getAuthToken()}`
-        },
-        body: JSON.stringify({ id })
+        }
       })
-      const res_1 = await res.json()
-      return res_1
+      return res.data
     }
     catch (error) {
       return error

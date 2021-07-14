@@ -38,6 +38,7 @@
 
 .page-content {
     width: 100%;
+    overflow: hidden;
 }
 
 @media (min-width: 1000px) {

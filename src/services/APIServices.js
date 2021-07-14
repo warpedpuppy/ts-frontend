@@ -1,16 +1,14 @@
 import Config from '../config';
-
+import axios from 'axios';
 const APISERVICES = {
     post: async function (path, obj) {
         try {
-          let result = await fetch(Config.API_URL + path, {
-              method: "POST",
+          let result = await axios.post(Config.API_URL + path, obj, {
               headers: {
               "Content-Type": 'application/json'
-              },
-              body: JSON.stringify(obj)
+              }
           })
-          return await result.json();
+          return result.data;
         } catch (e) {
           return e;
         }

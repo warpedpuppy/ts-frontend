@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { Navbar, Nav } from 'react-bootstrap';
-import {Link} from 'react-router-dom';
+import { Link} from 'react-router-dom';
+import './Menu.css';
 // import UserContext from '../UserContext';
 import TokenService from '../services/TokenService';
 import { withRouter } from 'react-router-dom';
@@ -11,21 +11,29 @@ class Menu extends Component {
         TokenService.deleteToken();
         this.props.history.push('/')
     }
+    showMenu = (e) => {
+        if ( e.target.nextSibling.classList.contains('show')) {
+            e.target.nextSibling.classList.remove('show');
+        } else {
+            e.target.nextSibling.classList.add('show');
+        }
+        
+    }
     render() {
 
         return (
-        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-            <Navbar.Brand as={Link} to={'/'}><h3>trying something</h3></Navbar.Brand>
-            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-            <Navbar.Collapse className="justify-content-end">
-                <Nav.Link as={Link} to={'/css'}>css</Nav.Link> 
-                <Nav.Link as={Link} to={'/js'}>js</Nav.Link>
-                <Nav.Link as={Link} to={'/dbs'}>dbs</Nav.Link>
-                <Nav.Link as={Link} to={'/games'}>games</Nav.Link>
+        <nav className="nav-wrapper">
+            <Link to="/" className="nav-brand">trying something</Link>
+            <div className="nav-hamburger" onClick={this.showMenu}>hamburger</div>
+            <div className="nav-links">
+                <Link to={'/css'}>css</Link> 
+                <Link to={'/js'}>js</Link>
+                <Link to={'/dbs'}>dbs</Link>
+                <Link to={'/games'}>games</Link>
                 {/* <Nav.Link as={Link} to={'/art'}>art</Nav.Link> */}
-                <Nav.Link as={Link} to={'/about'}>about</Nav.Link>
-            </Navbar.Collapse>
-        </Navbar>
+                <Link to={'/about'}>about</Link>
+            </div>
+        </nav>
         )
     }
 }
