@@ -1,128 +1,13 @@
-nav#primary-nav {
-    position: fixed;
-    top: 56px;
-    left: 0;
+nav#games-nav {
     height: 30px;
-    /* background: white; */
-    /* box-shadow: 0 5px 5px rgba(0, 0, 0, 0.35); */
     width: 100vw;
     display: flex;
     align-items: center;
     justify-content: flex-end;
 }
 
-nav#primary-nav .logo {
-    position: absolute;
-    left: 20px;
-    z-index: 4;
-}
-
-nav#primary-nav .logo a {
-    font-weight: bolder;
-    color: #333;
-    text-decoration: none;
-}
-
-nav#primary-nav .dropdown-screen {
-    display: none;
-    width: 100vw;
-    height: 30px;
-    /* background-color: white; */
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 2;
-}
-
-nav#primary-nav .nav-links {
-    /* width: 100vw;
-	background: rgba(0, 0, 0, 0.75); */
-    position: relative;
-    right: 10px;
-    /* top:-100px; */
-    /* left: 0;
-	transition: top 0.5s; */
-    z-index: 1;
-}
-
-nav#primary-nav .nav-links span {
+nav#games-nav span {
     cursor: pointer;
     display: inline-block;
-    margin: 0 15px;
-}
-
-nav#primary-nav .nav-links.change {
-    top: 30px;
-}
-
-nav#primary-nav .nav-links.change span {
-    display: block;
-    text-align: center;
-    color: white;
-    font-weight: bold;
-    padding: 10px 0;
-}
-
-nav#primary-nav .nav-links span.adminLink {
-    font-size: 20px;
-    color: #CCC;
-    margin: 0;
-}
-
-
-/* hamburger */
-
-.hamburger {
-    display: none;
-    position: absolute;
-    z-index: 3;
-    right: 10px;
-    top: 8px;
-}
-
-.hamburger span {
-    width: 35px;
-    height: 3px;
-    background-color: #666;
-    margin: 0 0 3px;
-    transition: 0.4s;
-    display: block;
-    cursor: pointer;
-    position: relative;
-    right: 0;
-}
-
-.hamburger span.change:nth-child(1) {
-    -webkit-transform: rotate(-45deg) translate(1px, 6px);
-    transform: rotate(-45deg) translate(-2px, 6px);
-    right: -4px;
-}
-
-.hamburger span.change:nth-child(2) {
-    opacity: 0;
-}
-
-.hamburger span.change:nth-child(3) {
-    -webkit-transform: rotate(45deg) translate(2px, -10px);
-    transform: rotate(45deg) translate(2px, -10px);
-}
-
-@media screen and (min-width: 1024px) {
-    nav#primary-nav .dropdown-screen {
-        display: none;
-    }
-    .hamburger {
-        display: none;
-    }
-    nav#primary-nav .nav-links {
-        top: 0;
-        width: auto;
-        background: transparent;
-    }
-    nav#primary-nav span {
-        display: inline-block;
-        margin: 0 20px;
-        color: #333;
-        font-weight: bold;
-    }
+    margin: 0 1rem;
 }

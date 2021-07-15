@@ -5,26 +5,26 @@ import './Menu.css';
 import TokenService from '../services/TokenService';
 import { withRouter } from 'react-router-dom';
 class Menu extends Component {
+
+  
     
     logOutHandler = (e) => {
         e.preventDefault();
         TokenService.deleteToken();
         this.props.history.push('/')
     }
-    showMenu = (e) => {
-        if ( e.target.nextSibling.classList.contains('show')) {
-            e.target.nextSibling.classList.remove('show');
-        } else {
-            e.target.nextSibling.classList.add('show');
-        }
-        
-    }
+
     render() {
 
         return (
         <nav className="nav-wrapper">
             <Link to="/" className="nav-brand">trying something</Link>
-            <div className="nav-hamburger" onClick={this.showMenu}>hamburger</div>
+            <input className="nav-hamburger" type="checkbox" />
+            <div className="nav-hamburger-spans">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
             <div className="nav-links">
                 <Link to={'/css'}>css</Link> 
                 <Link to={'/js'}>js</Link>

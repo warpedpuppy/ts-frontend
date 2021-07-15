@@ -88,8 +88,8 @@
 
 #homeCanvas canvas {
     /*width:100vw;*/
-    position: fixed;
-    top: 85px;
+    /* position: fixed;
+    top: 85px; */
     left: 0;
     z-index: 3;
 }

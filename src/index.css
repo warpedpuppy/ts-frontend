@@ -18,6 +18,10 @@ li {
     font-family: 'Roboto', sans-serif;
 }
 
+a:hover {
+    text-decoration: none;
+}
+
 
 /* code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;

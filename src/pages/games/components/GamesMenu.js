@@ -28,39 +28,13 @@ class Menu extends React.Component {
     }
 
     render () {
-      if (this.context.game === '') {
-        const classRef = (this.state.dropDown) ? 'change' : ''
+      
         return (
-          <nav id="primary-nav">
-         
-            <div className="dropdown-screen" />
-            <div className="hamburger" onClick={this.hamburgerClickHandler}>
-              <span className={classRef} />
-              <span className={classRef} />
-              <span className={classRef} />
-            </div>
-          </nav>
-        )
-      } else if (this.context.game === 'swim' || this.context.game === 'fly') {
-        return (
-          <nav id="primary-nav">
-
-            <div className="nav-links">
-
+          <nav id="games-nav">
               <span onClick={() => this.goto('/games')}>exit</span>
-            </div>
-          </nav>
-        )
-      } else if (this.context.game === 'jump') {
-        return (
-          <nav id="primary-nav">
-            <div className="nav-links">
-
-              <span onClick={() => this.goto('/games')}>exit</span>
-            </div>
             </nav>
         )
-      } 
-    }
+    } 
+  
 }
 export default withRouter(Menu)

@@ -1,11 +1,15 @@
-/* .rainbow-cont {}
+.rainbow-cont {
+    background-color: black;
+}
 
 .lines {
+    background-color: black;
     position: fixed;
     top: 0;
-    left: 10px;
+    left: 0;
     z-index: -1;
     height: 100vh;
+    width: 100%;
 }
 
 .lines span {
@@ -99,7 +103,7 @@
         margin: 10px 20px 0 200px;
     }
     .lines {
-        left: 100px;
+        padding-left: 300px;
     }
     .lines span {
         width: 30px;
@@ -133,4 +137,4 @@
     100% {
         top: -100vh
     }
-} */
+}

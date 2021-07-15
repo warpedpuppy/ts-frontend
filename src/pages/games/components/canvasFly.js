@@ -119,11 +119,11 @@ export default class CanvasFly extends React.Component {
             )
           }
           this.changeGrid(this.context.activeMazeId)
-          return (
-            <div className={canvasClass}>
-              <div id="homeCanvas" className="flyCanvas" /><div className="inGameAllGrids"><AllGrids /></div>
-            </div>
-          )
+          // return (
+          //   <div className={canvasClass}>
+          //     <div id="homeCanvas" className="flyCanvas" /><div className="inGameAllGrids"><AllGrids /></div>
+          //   </div>
+          // )
       } else {
         return (
         <Spinners />
