@@ -26,6 +26,10 @@
         -webkit-touch-callout: none;
     }
     
+    .nav-hamburger:hover~.nav-hamburger-spans span {
+        opacity: 0.5;
+    }
+    
     .nav-hamburger-spans {
         display: block;
         /* width: 40px;
@@ -42,9 +46,10 @@
         height: 4px;
         margin-bottom: 5px;
         position: relative;
-        background: #cdcdcd;
+        background: #cdcdcd !important;
         border-radius: 3px;
         z-index: 1;
+        transition: opacity 0.25s;
     }
     
     .nav-links {

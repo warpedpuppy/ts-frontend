@@ -4,3 +4,53 @@ main nav {
     z-index: 1;
     background-color: white;
 }
+
+.nav-wrapper.sub,
+.nav-wrapper.sub * {
+    background-color: #333;
+}
+
+.nav-hamburger-spans:hover span {
+    background: red !important;
+}
+
+
+/* ANIMATED UP ARROW */
+
+.nav-hamburger:checked~.nav-hamburger-spans.sub span {
+    transition: transform 0.5s ease;
+}
+
+.nav-hamburger:checked~.nav-hamburger-spans.sub span:nth-of-type(1) {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+    width: 22px;
+}
+
+.nav-hamburger:checked~.nav-hamburger-spans.sub span:nth-of-type(2) {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+}
+
+.nav-hamburger:checked~.nav-hamburger-spans.sub span:nth-of-type(3) {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+    width: 22px;
+}
+
+.nav-hamburger:checked~.nav-hamburger-spans.sub span:nth-of-type(1) {
+    transform: translate3d(5px, -2px, 0) rotate(-45deg);
+    transform-origin: center center;
+    width: 15px;
+}
+
+.nav-hamburger:checked~.nav-hamburger-spans.sub span:nth-of-type(2) {
+    transform: rotate(-90deg);
+    transform-origin: center center;
+}
+
+.nav-hamburger:checked~.nav-hamburger-spans.sub span:nth-of-type(3) {
+    transform: translate3d(0, -21px, 0) rotate(-135deg);
+    transform-origin: right top;
+    width: 15px;
+}
+
+
+/* END ANIMATED UP ARROW */

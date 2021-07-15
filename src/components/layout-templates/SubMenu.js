@@ -1,6 +1,4 @@
 import React from 'react'
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
 import { Link } from 'react-router-dom';
 import './SubMenu.css';
 import { withRouter } from 'react-router-dom';
@@ -24,17 +22,22 @@ class SubMenu extends React.Component {
     }
     render () {
         return (
-            <Navbar collapseOnSelect expand="lg" >
-                <Navbar.Brand as={Link} to={'/'}>{ this.props.title}</Navbar.Brand>
-                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                <Navbar.Collapse className="justify-content-end">
+            <nav className="nav-wrapper sub">
+                <div className="nav-brand">{ this.props.title}</div>
+                <input className="nav-hamburger" type="checkbox" />
+                <div className="nav-hamburger-spans sub">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div className="nav-links">
                     {
                          this.props.menuItems.map( (item, index) => {
-                            return <Nav.Link key={index} onClick={this.clickHandler}>{item}</Nav.Link> 
+                            return <Link key={index} onClick={this.clickHandler}>{item}</Link> 
                         })
                     }
-                </Navbar.Collapse>
-            </Navbar>
+                </div>
+            </nav>
         )
     }
     
