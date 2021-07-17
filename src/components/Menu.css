@@ -27,7 +27,7 @@
     }
     
     .nav-hamburger:hover~.nav-hamburger-spans span {
-        opacity: 0.5;
+        opacity: 1;
     }
     
     .nav-hamburger-spans {
@@ -49,6 +49,7 @@
         background: #cdcdcd !important;
         border-radius: 3px;
         z-index: 1;
+        opacity: 0.5;
         transition: opacity 0.25s;
     }
     
@@ -79,7 +80,8 @@
         transform: translate(0, -8px);
     }
     
-    .nav-links a {
+    .nav-links div {
+        cursor: pointer;
         display: block;
         width: 100%;
         text-align: left;
@@ -87,7 +89,7 @@
         font-size: 1rem;
     }
     
-    .nav-links a:hover {
+    .nav-links div:hover {
         text-decoration: none;
     }
     
@@ -127,11 +129,14 @@
             width: 100%;
             margin-top: 0;
             transition: none;
+            padding: 0;
         }
-        .nav-links a {
+        .nav-links div {
+            cursor: pointer;
             display: inline-block;
             width: auto;
             text-align: right;
-            margin: 0 20px;
+            margin: 0 0 0 20px;
+            font-weight: bold;
         }
     }

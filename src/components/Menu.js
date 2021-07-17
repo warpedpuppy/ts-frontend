@@ -13,25 +13,30 @@ class Menu extends Component {
         TokenService.deleteToken();
         this.props.history.push('/')
     }
+    clickHandler = (e) => {
+        let route = e.target.innerText;
+        this.props.history.push(`/${route}`)
+        document.getElementById('main-checkbox').checked = false;
+    }
 
     render() {
 
         return (
         <nav className="nav-wrapper">
             <Link to="/" className="nav-brand">trying something</Link>
-            <input className="nav-hamburger" type="checkbox" />
+            <input className="nav-hamburger" id="main-checkbox" type="checkbox" />
             <div className="nav-hamburger-spans">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
             <div className="nav-links">
-                <Link to={'/css'}>css</Link> 
-                <Link to={'/js'}>js</Link>
-                <Link to={'/dbs'}>dbs</Link>
-                <Link to={'/games'}>games</Link>
-                {/* <Nav.Link as={Link} to={'/art'}>art</Nav.Link> */}
-                <Link to={'/about'}>about</Link>
+                <div onClick={this.clickHandler}>css</div> 
+                <div onClick={this.clickHandler}>js</div>
+                <div onClick={this.clickHandler}>dbs</div>
+                <div onClick={this.clickHandler}>games</div>
+                {/* <div >art</div> */}
+                <div onClick={this.clickHandler}>about</div>
             </div>
         </nav>
         )

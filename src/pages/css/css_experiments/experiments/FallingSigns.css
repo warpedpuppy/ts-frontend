@@ -1,0 +1,105 @@
+.falling-signs-shell {}
+
+.falling-signs-shell div {
+    width: 300px;
+    height: 150px;
+    border: 1px solid black;
+    margin: 30px auto;
+    background: white;
+    position: relative;
+    transform-origin: center center;
+    position: relative;
+}
+
+.falling-signs-shell div:nth-child(odd) {
+    animation: easeInBounce 2s ease-in 0.25;
+    animation-iteration-count: infinite;
+    left: -250px;
+}
+
+.falling-signs-shell div:nth-child(even) {
+    animation: easeInBounce2 2s ease-in 0.5;
+    animation-iteration-count: infinite;
+    transform: rotate(10deg);
+    left: 250px;
+}
+
+@keyframes falling {
+    0% {
+        top: -800px;
+    }
+    50% {
+        top: -100px;
+    }
+    100% {
+        top: 0;
+    }
+}
+
+@keyframes easeInBounce {
+    0% {
+        transform: rotate(-10deg) translateY(-100%);
+    }
+    15% {
+        transform: rotate(-5deg) translateY(-1.99%);
+    }
+    25% {
+        transform: rotate(-10deg) translateY(-24.98%);
+    }
+    35% {
+        transform: rotate(-5deg) translateY(-1.63%);
+    }
+    45% {
+        transform: rotate(-10deg) translateY(-6.25%);
+    }
+    55% {
+        transform: rotate(-5deg) translateY(-0.66%);
+    }
+    64% {
+        transform: rotate(-10deg) translateY(-1.54%);
+    }
+    /* 76% {
+        transform: translateY(-56.44%);
+    }
+    88% {
+        transform: translateY(-89.11%);
+    } */
+    100% {
+        transform: rotate(-5deg) translateY(0%);
+    }
+}
+
+@keyframes easeInBounce2 {
+    0% {
+        transform: rotate(5deg) translateY(-100%);
+    }
+    15% {
+        transform: rotate(10deg) translateY(-1.99%);
+    }
+    25% {
+        transform: rotate(5deg) translateY(-24.98%);
+    }
+    35% {
+        transform: rotate(10deg) translateY(-1.63%);
+    }
+    45% {
+        transform: rotate(5deg) translateY(-6.25%);
+    }
+    55% {
+        transform: rotate(10deg) translateY(-0.66%);
+    }
+    64% {
+        transform: rotate(5deg) translateY(-1.54%);
+    }
+    /* 76% {
+        transform: translateY(-56.44%);
+    }
+    88% {
+        transform: translateY(-89.11%);
+    } */
+    100% {
+        transform: rotate(10deg) translateY(0%);
+    }
+}
+
+@media (min-width: 1024px) {}

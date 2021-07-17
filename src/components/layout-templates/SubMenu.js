@@ -18,13 +18,14 @@ class SubMenu extends React.Component {
         this.props.history.push({
             search: `?category=${e.target.innerHTML}`
           })
-        this.props.onChange(e)
+        this.props.onChange(e);
+        document.getElementById('sub-checkbox').checked = false;
     }
     render () {
         return (
             <nav className="nav-wrapper sub">
                 <div className="nav-brand">{ this.props.title}</div>
-                <input className="nav-hamburger" type="checkbox" />
+                <input className="nav-hamburger" id="sub-checkbox" type="checkbox" />
                 <div className="nav-hamburger-spans sub">
                     <span></span>
                     <span></span>
@@ -33,7 +34,7 @@ class SubMenu extends React.Component {
                 <div className="nav-links">
                     {
                          this.props.menuItems.map( (item, index) => {
-                            return <Link key={index} onClick={this.clickHandler}>{item}</Link> 
+                            return <div key={index} onClick={this.clickHandler}>{item}</div> 
                         })
                     }
                 </div>
