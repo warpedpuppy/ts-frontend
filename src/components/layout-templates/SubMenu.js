@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
 import './SubMenu.css';
 import { withRouter } from 'react-router-dom';
 import Utils from '../../services/Utils';

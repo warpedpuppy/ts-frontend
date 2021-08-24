@@ -118,6 +118,9 @@
         .nav-wrapper {
             flex-wrap: nowrap;
         }
+        .nav-hamburger {
+            display: none;
+        }
         .nav-hamburger-spans {
             display: none;
         }
