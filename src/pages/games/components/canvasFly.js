@@ -4,6 +4,7 @@ import './CanvasFly.css'
 import { isMobile, isMobileOnly } from 'react-device-detect'
 import FlyAnimation from '../animations/flyAnimation'
 import SiteContext from '../GamesContext'
+// import AllGrids from '../pages/Admin/AllMazes/AllGrids'
 import MazeService from '../services/maze-service';
 import Spinners from './Spinners';
 export default class CanvasFly extends React.Component {

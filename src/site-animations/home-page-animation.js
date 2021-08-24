@@ -9,7 +9,7 @@ const HomePageAnimation = {
         this.rainbowSwirlInstances = [];
         Utils.setWidthAndHeight(w, h);
         const app = new PIXI.Application({
-        width: w, height: h, transparent: true, resolution: window.devicePixelRatio || 1,
+        width: w, height: h, transparent: true, resolution: 1,
         });
         document.getElementById("home-canvas").appendChild(app.view);
         

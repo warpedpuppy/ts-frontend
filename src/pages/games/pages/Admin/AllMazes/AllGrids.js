@@ -47,12 +47,10 @@ export default class AllGrids extends React.Component {
       }
 
       if(!this.context.activeMazeId){
-        MazeService.load_ids()
-        .then((ids) => {
-          const activeMazeId = (ids[0]) ? ids[0].id : 0
-          this.context.setIdsAndActiveMazeId(ids, activeMazeId )
-        })
-        .catch(error => error)
+        const activeMazeId =  0;
+          this.context.setIdsAndActiveMazeId([0], activeMazeId )
+
+        
       }
     }
 
