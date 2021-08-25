@@ -7,7 +7,7 @@ const MongoServices = {
         this.userid = userid;
     },
     create: async function (q) {
-        console.log(Config.API_URL)
+        console.log(window.location.hostname)
         try {
             let result = await axios.post(`${Config.API_URL}/mongo-restful`,
             {character_name: `Fish ${q+1}`, character_color: Utils.randomHex(), userid: this.userid},
