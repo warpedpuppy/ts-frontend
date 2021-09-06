@@ -1,5 +1,4 @@
 .crud-shell {
-    width: 80%;
     margin: 10px auto;
     overflow: hidden;
 }
@@ -45,6 +44,8 @@
 
 .query-response-div {
     display: flex;
+    max-height: 150px;
+    overflow: scroll;
 }
 
 .query-response-div h3 {
@@ -69,4 +70,14 @@
     padding: 1em 1.5em;
     display: block;
     word-wrap: break-word;
+}
+
+@media (min-width: 768px) {
+    .crud-shell {
+        width: 80%;
+    }
+    .query-response-div {
+        display: flex;
+        max-height: none;
+    }
 }
