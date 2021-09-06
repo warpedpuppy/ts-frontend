@@ -54,7 +54,7 @@ export default class Home extends Component {
       <section id="main-text">
         <div id="home-canvas"></div>
         <h2>Welcome!</h2>
-        <p>It has been about a very, very long time since I created a personal site, so I decided to leave <a href="//warpedpuppy.com" rel="noreferrer" target="_blank">that site</a> alone and start scratch here.</p>
+        <p>It has been about a very, very long time since I created a personal site, so I decided to leave <a href="//warpedpuppy.com" rel="noreferrer" target="_blank">that site</a> alone and start from scratch here.</p>
         <p>I talk about my professional history on the <Link to='/about'>about</Link> page.  Mostly this site is devoted to whatever <Link to="/js">js</Link>, <Link to="/css">css</Link>, or <Link to="/dbs">db</Link> issue I&apos;m currently dealing with or trying to communicate to a student.</p>
         <p>Let's see if the dbs are up and running:</p>
         <ul>
