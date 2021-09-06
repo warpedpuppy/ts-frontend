@@ -1,6 +1,6 @@
 .hsl-container {
     min-height: 100vh;
-    padding-top: 20px;
+    padding: 20px 0 1000px;
 }
 
 .hsl-controls {
@@ -9,7 +9,6 @@
     background-color: rgba(255, 255, 255, 0.5);
     border: 3px solid lightgrey;
     border-radius: 10px;
-    margin: 0 100px;
 }
 
 .hsl-controls fieldset {
@@ -67,5 +66,8 @@
 @media (min-width: 800px) {
     .hsl-controls fieldset legend {
         font-size: 30px;
+    }
+    .hsl-controls {
+        margin: 0 100px;
     }
 }

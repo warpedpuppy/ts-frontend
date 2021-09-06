@@ -77,6 +77,7 @@
 
 .flex-control-panel {
     display: flex;
+    flex-direction: column;
     justify-content: space-evenly;
 }
 
@@ -92,4 +93,10 @@
 
 .table.table-striped.table-bordered {
     max-width: 100%;
+}
+
+@media (min-width: 768px) {
+    .flex-control-panel {
+        flex-direction: row;
+    }
 }

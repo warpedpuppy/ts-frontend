@@ -34,9 +34,39 @@
 
 .grid-controls {
     display: flex;
+    flex-direction: column;
 }
 
 .grid-controls>* {
     width: 50%;
     margin: 10px;
+}
+
+.form-group {
+    width: calc(100vw - 20px);
+}
+
+.form-group .input-group {
+    flex-wrap: nowrap;
+}
+
+.form-group .input-group .form-control {
+    flex-wrap: nowrap;
+    min-width: 100px;
+}
+
+@media (min-width: 768px) {
+    .grid-controls {
+        flex-direction: row;
+    }
+    .grid-controls>* {
+        width: 50%;
+        margin: 10px;
+    }
+    .form-group {
+        width: auto;
+    }
+    .form-group .input-group {
+        flex-wrap: wrap;
+    }
 }

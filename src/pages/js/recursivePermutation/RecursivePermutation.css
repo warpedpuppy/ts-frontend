@@ -19,17 +19,27 @@
 
 .permutation-controls+div {
     text-align: center;
+    width: 100%;
+    padding: 0 10px;
+    word-break: break-all;
 }
 
 .recursivePermutation-page {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    padding: 20px;
+    padding: 0;
     align-items: flex-start;
 }
 
 .recursivePermutation-page pre {
-    margin: 0 30px;
+    margin: 0;
+    width: 100%;
+}
+
+.recursivePermutation-page pre code {
+    width: 100%;
+    font-size: 70%;
 }
 
 .highlight {
@@ -41,11 +51,11 @@
 
 table.rp {
     /* display: block; */
-    width: 60%;
+    width: 100%;
     font-size: 12px;
     /* border: 1px solid black; */
     table-layout: fixed;
-    margin: 0 30px;
+    margin: 0;
 }
 
 table.rp tr {
@@ -68,7 +78,6 @@ span.calling.function {
     font-size: 15px;
     display: inline-block;
     margin: 3px;
-    ;
 }
 
 table.rp td.wiggle {
@@ -140,4 +149,22 @@ table.rp th {
 
 table.rp td.final {
     text-align: center;
+}
+
+@media all and (min-width: 768px) {
+    .recursivePermutation-page {
+        flex-direction: row;
+        padding: 20px;
+    }
+    .recursivePermutation-page pre {
+        margin: 0 30px;
+        width: auto;
+    }
+    .recursivePermutation-page pre code {
+        font-size: inherit;
+    }
+    table.rp {
+        width: 60%;
+        margin: 0 30px;
+    }
 }
