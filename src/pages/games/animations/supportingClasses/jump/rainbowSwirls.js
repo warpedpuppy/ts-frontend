@@ -121,12 +121,12 @@ export default function RainbowSwirls() {
         }
       } if (this.quadrant === 'BL') {
         return {
-          x: this.utils.canvasWidth * 0.75,
+          x: this.utils.canvasWidth * 0.25,
           y:  this.utils.canvasHeight * 0.75
         }
       } if (this.quadrant === 'BR') {
         return {
-          x: this.utils.canvasWidth * 0.25,
+          x: this.utils.canvasWidth * 0.75,
           y:  this.utils.canvasHeight * 0.75
         }
       }
