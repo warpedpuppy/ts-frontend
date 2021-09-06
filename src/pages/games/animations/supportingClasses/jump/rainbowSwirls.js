@@ -22,6 +22,7 @@ export default function RainbowSwirls() {
     customHeight: undefined,
     colors: [0xfff0f5, 0xe6e6fa, 0xff7575, 0xffb775, 0xfff175, 0xc3ff76, 0x7bffb8, 0x7de8ff, 0x799fff, 0xff93f7],
     colorCounter: 0,
+    offsets: {TR: {x: 0.75, y: 0.25}},
     init (parentCont, quadrant, cw, ch) {
       this.customHeight = ch;
       this.customWidth = cw;
@@ -58,8 +59,8 @@ export default function RainbowSwirls() {
       const s = Assets.Sprite('tile.png')
       s.counter = 0
       s.curveCounter = 0;
-      s.width = this.customWidth ? this.customWidth : s.width;
-      s.height = this.customHeight ? this.customHeight : s.height;
+      s.width = s.storeWidth = this.customWidth ? this.customWidth : s.width;
+      s.height = s.storeHeight = this.customHeight ? this.customHeight : s.height;
       this.brickHeight = s.height
       s.anchor.x = 0.5
       s.anchor.y = 1
@@ -76,7 +77,7 @@ export default function RainbowSwirls() {
       }
 
       this.curveCounter++;
-      this.curve *= 1.05
+      this.curve *= 1.05;
       const deg = this.utils.deg2rad(this.curve)
       s.rotation = deg
       if (this.curveCounter > this.curveQ) {
@@ -116,8 +117,8 @@ export default function RainbowSwirls() {
         }
       } if (this.quadrant === 'TR') {
         return {
-          x: this.utils.canvasWidth * 0.75,
-          y:  this.utils.canvasHeight * 0.25
+          x: this.utils.canvasWidth * this.offsets.TR.x,
+          y:  this.utils.canvasHeight * this.offsets.TR.y
         }
       } if (this.quadrant === 'BL') {
         return {
@@ -137,8 +138,35 @@ export default function RainbowSwirls() {
     removeFromStage () {
       this.parentCont.removeChild(this.cont)
     },
-    resize () {
+    resize (w) {
+      if (w < 768) {
+        if (this.quadrant !== 'TR') {
+          this.cont.visible = false;
+        } else {
+          this.cont.visible = true;
+          this.cont.alpha = 0.5;
+          this.offsets.TR = {x: 0.75, y: 0.05};
 
+          this.objectPool.forEach( item => {
+            item.width = 10;
+            item.height = 5;
+          })
+        }
+      } else {
+        if (this.quadrant !== 'BR') {
+          this.cont.visible = false;
+        } else {
+          this.cont.visible = true;
+          this.cont.alpha = 1;
+          this.offsets.TR = {x: 0.75, y: 0.25};
+
+          this.objectPool.forEach( item => {
+            item.width = item.storeWidth;
+            item.height = item.storeHeight;
+          })
+        }
+        
+      }
     },
     animate () {
       this.testCounter++;

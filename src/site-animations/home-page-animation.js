@@ -27,29 +27,15 @@ const HomePageAnimation = {
           this.tileColumn.addToStage()
           this.rainbowSwirlInstances.push(this.tileColumn)
         }
-        this.adjustScaleAndAlpha(w);
         // Listen for animate update
         app.ticker.add(this.ticker.bind(this));
-        
+        this.resize(w,h)
 
     },
-    adjustScaleAndAlpha: function (w) {
-        if (w < 768) {
-            this.container.alpha = 0.35;
-            this.container.scale.set(0.4)
-            for (let i = 1; i < 4; i++) {
-                this.rainbowSwirlInstances[i].cont.alpha = 0;
-              }
-        } else {
-            this.container.alpha = 1;
-            this.container.scale.set(1);
-            for (let i = 1; i < 4; i++) {
-                this.rainbowSwirlInstances[i].cont.alpha = 1;
-              }
-        }
-    },
     resize: function (w, h) {
-        this.adjustScaleAndAlpha(w);
+        for (let i = 0; i < 4; i++) {
+            this.rainbowSwirlInstances[i].resize(w);
+          }
         Utils.setWidthAndHeight(w, h);
         this.app.renderer.resize(w, h)
     },
