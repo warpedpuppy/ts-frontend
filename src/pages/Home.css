@@ -1,17 +1,29 @@
 #main-text {
     text-align: left;
-    padding: 100px 10px;
+    padding: 100px 20px;
 }
 
-#main-text p {
+#main-text p,
+#main-text li {
     font-weight: bold;
     line-height: 2em;
     font-size: 1.5em;
     color: #999;
 }
 
+#main-text p a {
+    color: #333;
+    text-decoration: underline;
+    transition: color 0.25s;
+}
+
+#main-text p a:hover {
+    color: #ccc;
+}
+
 #main-text ul {
     list-style-type: none;
+    text-indent: 50px;
 }
 
 .on {
@@ -45,5 +57,9 @@
     }
     #home-canvas {
         position: fixed;
+    }
+    #main-text ul {
+        list-style-type: none;
+        text-indent: 100px;
     }
 }

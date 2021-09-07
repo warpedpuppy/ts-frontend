@@ -2,8 +2,18 @@
         width: 90%;
         margin: 50px auto;
         position: relative;
+    }
+    
+    #about-text p {
         line-height: 2em;
         font-size: 1.5em;
+        color: #999;
+    }
+    
+    #about-text li {
+        line-height: 2em;
+        font-size: 1.5rem;
+        color: #999;
     }
     /* 0xfff0f5, 0xe6e6fa, 0xff7575, 0xffb775, 0xfff175, 0xc3ff76, 0x7bffb8, 0x7de8ff, 0x799fff, 0xff93f7 */
     
@@ -63,9 +73,9 @@
     
     @media all and (min-width: 768px) {
         #about-text {
-            width: 40%;
+            width: 60%;
         }
         #about-text ul {
-            margin-left: 100px;
+            margin-left: 50px;
         }
     }

@@ -23,7 +23,7 @@ export default function RainbowSwirls() {
     colors: [0xfff0f5, 0xe6e6fa, 0xff7575, 0xffb775, 0xfff175, 0xc3ff76, 0x7bffb8, 0x7de8ff, 0x799fff, 0xff93f7],
     colorCounter: 0,
     offsets: {TR: {x: 0.75, y: 0.25}},
-    init (parentCont, quadrant, cw, ch) {
+    init (parentCont, quadrant, cw, ch, homePage=false) {
       this.customHeight = ch;
       this.customWidth = cw;
       this.quadrant = quadrant
@@ -35,6 +35,10 @@ export default function RainbowSwirls() {
 
       this.tileQ =  150 ;
       this.cont = Assets.ParticleContainer(this.tileQ)
+
+      if (homePage) {
+        this.resize(this.utils.returnCanvasWidth())
+      }
 
       for (let i = 0; i < this.tileQ; i++) {
         const s = this.brick()
@@ -140,9 +144,11 @@ export default function RainbowSwirls() {
     },
     resize (w) {
       if (w < 768) {
+
         if (this.quadrant !== 'TR') {
           this.cont.visible = false;
         } else {
+
           this.cont.visible = true;
           this.cont.alpha = 0.5;
           this.offsets.TR = {x: 0.75, y: 0.05};

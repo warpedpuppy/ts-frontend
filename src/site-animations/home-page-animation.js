@@ -23,7 +23,8 @@ const HomePageAnimation = {
         this.startXs = ['TL', 'BL', 'TR', 'BR']
         for (let i = 0; i < this.rainbowSwirlsQ; i++) {
           this.tileColumn = RainbowSwirls();
-          this.tileColumn.init(this.container, this.startXs[i], 30, 15)
+          this.tileColumn.init(this.container, this.startXs[i], 30, 15, true);
+         
           this.tileColumn.addToStage()
           this.rainbowSwirlInstances.push(this.tileColumn)
         }
