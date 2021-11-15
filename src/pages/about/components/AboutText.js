@@ -3,10 +3,10 @@ export default function AboutText(props) {
     return (
         <>
         <section id="about-text">
-          <div className="animation-container animation-container-1"></div>
+          {/* <div className="animation-container animation-container-1"></div>
           <div className="animation-container animation-container-2"></div>
           <div className="animation-container animation-container-3"></div>
-          <div className="animation-container animation-container-4"></div>
+          <div className="animation-container animation-container-4"></div> */}
           <h3>about me</h3>
           <p>My name is Ted, and I'm a  webdev.</p>
           <p>In 2004 I was the most miserable lawyer that existed on the planet, so I said "fuck it" and went and bought all the webdev software that existed at the time and enrolled in a trade school in San Francisco.</p>
