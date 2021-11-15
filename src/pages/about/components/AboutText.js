@@ -8,11 +8,8 @@ export default function AboutText(props) {
           <div className="animation-container animation-container-3"></div>
           <div className="animation-container animation-container-4"></div> */}
           <h3>about me</h3>
-          <p>My name is Ted, and I'm a  webdev.</p>
-          <p>In 2004 I was the most miserable lawyer that existed on the planet, so I said "fuck it" and went and bought all the webdev software that existed at the time and enrolled in a trade school in San Francisco.</p>
-          <p>And I've never regretted it for a minute.</p>
-          <p>Now, <span id="years-working">{props.yearsWorking}</span> years later I have worked at big companies and small companies.  And perhaps most interestingly I worked with two companies that went from tiny to super successful while I was there (coincidence? most definitely).</p>
-          <p>But just for more details, here are some things about me:</p>
+
+          <p>here are some things about me:</p>
           <ul>
           <li>Graduated from U.C. Berkeley with Honors.</li>
           <li>Graduated from U.C. Hastings, College of the Law.  
@@ -26,7 +23,8 @@ export default function AboutText(props) {
           <li>Worked for an app development company and coded 6 mobile apps.</li>
           <li>Worked for The Dodo and coded the front end viewed by 17 million people per month.</li>
           <li>Managed a subscription based ecommerce site built in VueJS.</li>
-          <li>Mentor at multiple coding academies.</li>
+          <li>Created 8 instructional videos for an international coding academy.</li>
+          <li>Taught sponsored JavaScript webinars.</li>
           </ul>
         </section>
         
