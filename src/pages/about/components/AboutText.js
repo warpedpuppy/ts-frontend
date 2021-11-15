@@ -12,7 +12,6 @@ export default function AboutText(props) {
           <p>In 2004 I was the most miserable lawyer that existed on the planet, so I said "fuck it" and went and bought all the webdev software that existed at the time and enrolled in a trade school in San Francisco.</p>
           <p>And I've never regretted it for a minute.</p>
           <p>Now, <span id="years-working">{props.yearsWorking}</span> years later I have worked at big companies and small companies.  And perhaps most interestingly I worked with two companies that went from tiny to super successful while I was there (coincidence? most definitely).</p>
-          <p>I'm currently winding down a little professionally and am mostly mentoring through a company and creating my own shit.  Both of which I love.</p>
           <p>But just for more details, here are some things about me:</p>
           <ul>
           <li>Graduated from U.C. Berkeley with Honors.</li>
