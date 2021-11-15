@@ -1,3 +1,9 @@
+.homePageShell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #main-text {
     text-align: left;
     padding: 100px 20px;
@@ -5,9 +11,7 @@
 
 #main-text p,
 #main-text li {
-    font-weight: bold;
-    line-height: 2em;
-    font-size: 1.5em;
+    font-size: 1em;
     color: #999;
 }
 
@@ -41,7 +45,7 @@
     height: calc(100vh - 67px);
     position: absolute;
     z-index: -1;
-    top: 46px;
+    top: 0;
     left: 0;
 }
 
@@ -51,7 +55,7 @@
 
 @media all and (min-width: 768px) {
     #main-text {
-        width: 90%;
+        display: inline-block;
         margin: 30px auto;
         padding: 20px;
     }
