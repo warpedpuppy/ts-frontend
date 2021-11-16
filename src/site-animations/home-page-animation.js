@@ -70,10 +70,11 @@ const HomePageAnimation = {
         }
     },
     resize: function () {
-        // Utils.getWidthAndHeight();
+        Utils.getWidthAndHeight();
         this.container.removeChildren();
-        // console.log(this.app, this.app.renderer)
-        // this.app.renderer.resize(Utils.canvasWidth, Utils.canvasHeight);
+        // console.log(this.app, this.app.renderer.resize)
+        // console.log(this, Utils.canvasWidth, Utils.canvasHeight)
+        this.app.renderer.resize(Utils.canvasWidth, Utils.canvasHeight);
         this.createLines();
         this.createBalls();
     },
