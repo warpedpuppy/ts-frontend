@@ -57,7 +57,7 @@ export default class Home extends Component {
       <section id="main-text">
         <div id="home-canvas"></div>
         <p>Hi, I'm Ted.</p>
-        <p>This is my new site, but I sure do still love my <a href="https://warpedpuppy.com"rel="noopener noreferrer">old site</a>.</p>
+        <p>This is my new site, but I sure do still love my <a href="https://warpedpuppy.com" target="_blank" rel="noopener noreferrer">old site</a>.</p>
         <p>I'm a webdev with {diff} years experience!</p>
         <p>Here is my <a href="https://github.com/warpedpuppy" rel="noopener noreferrer" target="_blank">github</a>, and here is my <a href="https://www.linkedin.com/in/edward-ted-walther-98926a8/" rel="noopener noreferrer" target="_blank">linkedin</a>.</p>
         <p>This site ties into three different dbs in order to let me experiment, let's see if they are up and running:</p>
