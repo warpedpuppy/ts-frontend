@@ -41,9 +41,11 @@ const HomePageAnimation = {
             dot.radius = 20 * scale;
             dot.x = Math.random() * Utils.canvasWidth * 0.1;
             dot.y = Math.random() * -500;
-            dot.mass =  Math.floor(Math.random()*0.5) + 0.25;
-            dot.vx = dot.storeVX = Math.floor(Math.random()*4) + 1;
-            dot.vy = dot.storeVY = Math.floor(Math.random()*0.5) + 0.25;
+            // dot.x = 0;
+            // dot.y = 0;
+            dot.mass =  Math.random()*0.5 + 0.25;
+            dot.vx = dot.storeVX = (Math.random()*4) + 1;
+            dot.vy = dot.storeVY =  (Math.random()*0.5) + 0.25;
             dot.tint = 0xFF00FF;
             this.container.addChild(dot);
             this.balls.push(dot)
@@ -72,8 +74,6 @@ const HomePageAnimation = {
     resize: function () {
         Utils.getWidthAndHeight();
         this.container.removeChildren();
-        // console.log(this.app, this.app.renderer.resize)
-        // console.log(this, Utils.canvasWidth, Utils.canvasHeight)
         this.app.renderer.resize(Utils.canvasWidth, Utils.canvasHeight);
         this.createLines();
         this.createBalls();
@@ -90,7 +90,6 @@ const HomePageAnimation = {
             dot.y += (dot.vy) * 0.1;
             dot.x += dot.vx;
             if (dot.y > Utils.canvasHeight) {
-                dot.y -= 5;
                 dot.vy  = dot.storeVY;
             }
             if (dot.x > Utils.canvasWidth) {
