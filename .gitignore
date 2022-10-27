@@ -25,3 +25,5 @@ yarn-error.log*
 /aws-api
 /aws-api/serverless.yml
 /aws-api/config.js
+
+.env

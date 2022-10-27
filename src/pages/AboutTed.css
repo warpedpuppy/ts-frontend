@@ -1,0 +1,10 @@
+#payoneer-requirements {
+	font-size: 24px;
+	width: 60%;
+	margin: 20px auto;
+}
+
+#payoneer-requirements ul {
+	list-style-type: none;
+	margin-left: 200px;
+}

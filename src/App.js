@@ -6,6 +6,7 @@ import NotFound from './pages/NotFound';
 import Menu from './components/Menu';
 import CSS from './pages/css/CSS';
 import DBS from './pages/dbs/DBS';
+import AboutTed from './pages/AboutTed';
 import JS from './pages/js/JS';
 import Games from './pages/games/Games';
 import Art from './pages/art/Art';
@@ -99,6 +100,7 @@ class App extends React.Component {
                <Route exact path="/js" component={ JS } />
                <Route exact path="/art" component={ Art } />
                <Route exact path="/about" component={ About } />
+			   <Route exact path="/about-ted" component={ AboutTed } />
                {/* <Route exact path="/games" render={({ history }) => <Games history={history} />}  /> */}
                <Route path="/games" render={({ history, match }) => <Games history={history} match={match} />} />
                   {/* <Games match={/>
