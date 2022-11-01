@@ -100,7 +100,6 @@ class App extends React.Component {
                <Route exact path="/js" component={ JS } />
                <Route exact path="/art" component={ Art } />
                <Route exact path="/about" component={ About } />
-			   <Route exact path="/about-ted" component={ AboutTed } />
                {/* <Route exact path="/games" render={({ history }) => <Games history={history} />}  /> */}
                <Route path="/games" render={({ history, match }) => <Games history={history} match={match} />} />
                   {/* <Games match={/>
