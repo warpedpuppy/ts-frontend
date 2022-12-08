@@ -1,6 +1,6 @@
 const Config = {
   API_ENDPOINT_NOT: 'http://localhost:8080/api',
-  API_ENDPOINT: 'https://young-fjord-11847.herokuapp.com/api',
+  API_ENDPOINT: 'https://trying-something-backend.herokuapp.com/api/tugtug/',
   TOKEN_KEY: 'MAZE_BUILDER'
 }
 export default Config;
