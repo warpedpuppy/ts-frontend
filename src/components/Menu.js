@@ -34,7 +34,7 @@ class Menu extends Component {
                 <div onClick={this.clickHandler}>css</div> 
                 <div onClick={this.clickHandler}>js</div>
                 <div onClick={this.clickHandler}>dbs</div>
-                {/* <div onClick={this.clickHandler}>games</div> */}
+                <div onClick={this.clickHandler}>games</div>
                 {/* <div >art</div> */}
                 <div onClick={this.clickHandler}>about</div>
             </div>

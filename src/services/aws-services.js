@@ -7,6 +7,7 @@ const AWSServices = {
         this.userid = userid;
     },
     create: async function (q) {
+		console.log('create fired')
         let obj = {character_name: `Fish ${q+1}`, character_color: Utils.randomHex(), userid: this.userid};
         let result = await axios.post(`${Config.AWS_ENDPOINT}/create`, obj, {
             headers: {
@@ -14,6 +15,7 @@ const AWSServices = {
             }
         })
         let { character, query } =  result.data;
+		console.log(result.data)
         return { character: character[0], query, response:  character[0]};
     },
     read: async function () {
