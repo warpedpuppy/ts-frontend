@@ -29,7 +29,7 @@ export default class Home extends Component {
       this.setState({postresql:true})
     }
     result = await AWS.getTotalRecords();
-	console.log('result', RESULT)
+	console.log('result', result)
 
     if (result) {
       this.setState({aws:true})
