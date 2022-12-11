@@ -62,9 +62,9 @@ export default class Home extends Component {
         <p>Here is my <a href="https://github.com/warpedpuppy" rel="noopener noreferrer" target="_blank">github</a>, and here is my <a href="https://www.linkedin.com/in/edward-ted-walther-98926a8/" rel="noopener noreferrer" target="_blank">linkedin</a>.</p>
         <p>This site ties into three different dbs in order to let me experiment, let's see if they are up and running:</p>
         <ul>
-          <li>remote mongo: <span className={this.state.mongo ? 'on' : 'off'}>{this.state.mongo.toString()}</span></li>
-          <li>remote postrgresql: <span className={this.state.postresql ? 'on' : 'off'}>{this.state.postresql.toString()}</span></li>
-          <li>aws postrgresql: <span className={this.state.aws ? 'on' : 'off'}>{this.state.aws.toString()}</span></li>
+          <li>express &rarr; mongo: <span className={this.state.mongo ? 'on' : 'off'}>{this.state.mongo.toString()}</span></li>
+          <li>express &rarr;  postrgresql: <span className={this.state.postresql ? 'on' : 'off'}>{this.state.postresql.toString()}</span></li>
+          <li>lambda &rarr; postrgresql: <span className={this.state.aws ? 'on' : 'off'}>{this.state.aws.toString()}</span></li>
         </ul>
       </section>
       </div>
