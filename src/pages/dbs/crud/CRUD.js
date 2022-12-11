@@ -5,11 +5,11 @@ import Mongo from './mongo/Mongo';
 import PostgresQL from './postresql/PostgresQL';
 import AWS from './aws/AWS';
 
-// , 'serverless - aws'
+// 
 export default class CRUD extends React.Component {
     state = {
         active: 'graphql',
-        buttons: ['graphql', 'postgresql', 'mongo']
+        buttons: ['graphql', 'postgresql', 'mongo', 'serverless - aws']
       }
       onChange = (active) => {   
        this.setState({active})
