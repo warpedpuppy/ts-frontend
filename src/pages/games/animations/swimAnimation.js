@@ -50,13 +50,9 @@ export default function SwimAnimations() {
     resize: Resize(),
     orientationChange: OrientationChange(),
     showFPS: false,
-    init (isMobile, isMobileOnly, id, parent) {
-      this.id = id
+	id: 0,
+    init (isMobile, isMobileOnly, parent) {
 
-      if (!this.id) {
-        parent.redirectHome()
-        return
-      }
 
       this.utils.root = this
       this.activeMode = this.mode[this.activeModeIndex]

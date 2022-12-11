@@ -48,12 +48,9 @@ export default function FlyAnimation() {
     resize: Resize(),
     flyAnimate: FlyAnimate(),
     showFPS: false,
-    init (isMobile, isMobileOnly, id, parent) {
-      this.id = id
-      if (!this.id) {
-        parent.redirectHome()
-        return
-      }
+	id: 0,
+    init (isMobile, isMobileOnly, parent) {
+     
 
       this.utils.root = this
       this.activeMode = this.mode[this.activeModeIndex]

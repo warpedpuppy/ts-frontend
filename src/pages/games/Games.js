@@ -32,8 +32,8 @@ export default class Games extends React.Component {
     MazeService.load_ids()
       .then((ids) => {
         if (this.mounted) {
-           const activeMazeId = (ids[0]) ? ids[0].id : 0
-        this.setState({ ids, activeMazeId })
+           const activeMazeId =  ids.length === 0 ? ids[0].id : 0
+        	this.setState({ ids, activeMazeId })
         }
        
       })

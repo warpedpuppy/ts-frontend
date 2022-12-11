@@ -3,9 +3,6 @@ import './AllCanvas.css'
 import { isMobile, isMobileOnly } from 'react-device-detect'
 import swim_game from '../animations/swimAnimation'
 import SiteContext from '../GamesContext'
-import AllGrids from '../pages/Admin/AllMazes/AllGrids'
-import MazeService from '../services/maze-service';
-import Spinners from './Spinners';
 
 export default class CanvasSwim extends React.Component {
     static contextType = SiteContext;
@@ -40,17 +37,20 @@ export default class CanvasSwim extends React.Component {
       this.context.setMazeGameAction(true)
       this.context.mazeGameHandler('swim')
       this.swim_game = swim_game()
-      if (this.context.activeMazeId) {
-        this.swim_game.init(isMobile, isMobileOnly, this.context.activeMazeId, this)
-      } else {
-        MazeService.load_ids()
-        .then((ids) => {
-          const activeMazeId = (ids[0]) ? ids[0].id : 0
-          this.context.setIdsAndActiveMazeId(ids, activeMazeId )
-          this.swim_game.init(isMobile, isMobileOnly, activeMazeId, this)
-        })
-        .catch(error => error)
-      }
+
+	  this.swim_game.init(isMobile, isMobileOnly, this)
+
+    //   if (this.context.activeMazeId) {
+    //     this.swim_game.init(isMobile, isMobileOnly, this.context.activeMazeId, this)
+    //   } else {
+    //     MazeService.load_ids()
+    //     .then((ids) => {
+    //       const activeMazeId = ids.length === 0 ? ids[0].id : 0
+    //       this.context.setIdsAndActiveMazeId(ids, activeMazeId )
+    //       this.swim_game.init(isMobile, isMobileOnly, activeMazeId, this)
+    //     })
+    //     .catch(error => error)
+    //   }
       
     }
 
@@ -103,26 +103,12 @@ export default class CanvasSwim extends React.Component {
       this.pauseGame(this.context.mazeGameAction)
 
       const canvasClass = (isMobile) ? 'canvasParent isMobileOnly' : 'canvasParent'
-      if (this.context.activeMazeId) {
-          if (!this.context.inGameMazeEdit) {
-            return (
-              <div className={canvasClass}>
-                <div id="homeCanvas" className="flyCanvas" />
-              </div>
 
-            )
-          }
-          this.changeGrid(this.context.activeMazeId)
-          return (
-            <div className={canvasClass}>
-              <div id="homeCanvas" className="flyCanvas" />
-              <div className="inGameAllGrids"><AllGrids /></div>
-            </div>
-          )
-        } else {
-          return (
-            <Spinners />
-            )
-        }
+	  return (
+		<div className={canvasClass}>
+		  <div id="homeCanvas" className="flyCanvas" />
+		</div>
+
+	  )
     }
 }
