@@ -1,9 +1,10 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import Menu from './components/Menu';
+import Color from './pages/css/color/Color';
 import CSS from './pages/css/CSS';
 import DBS from './pages/dbs/DBS';
 import JS from './pages/js/JS';
@@ -90,26 +91,23 @@ class App extends React.Component {
      return (
         <AppContext.Provider value={contextValue}>
          <BrowserRouter>
+
             <header><Menu /></header>
             <main>
-               <Switch>
-               <Route exact path="/" component={ Home } />
-               <Route exact path="/css" render={ history => <CSS history={history} />} />
-               <Route exact path="/dbs" component={ DBS } />
-               <Route exact path="/js" component={ JS } />
+			<Routes>
+               <Route index element={ Home } />
+			  
+               <Route path="css/*" element={ <CSS /> } />
+			   <Route path="js/*" element={ <JS /> } />
+               <Route path="dbs/*" element={ <DBS /> } />
+              {/*  <Route exact path="/js" component={ JS } />
                <Route exact path="/art" component={ Art } />
                <Route exact path="/about" component={ About } />
-               {/* <Route exact path="/games" render={({ history }) => <Games history={history} />}  /> */}
-               <Route path="/games" render={({ history, match }) => <Games history={history} match={match} />} />
-                  {/* <Games match={/>
-               </Route> */}
-                {/* <Route exact path="/games/test" component={Test} /> */}
-               {/* <Route exact path="/games/jump-game" component={CanvasJump} />
-               <Route exact path="/games/fly-game" render={({ history }) => <CanvasFly history={history} />} />
-               <Route exact path="/games/swim-game" render={({ history }) => <CanvasSwim history={history} />} />
-               <Route exact path="/games/admin" component={Admin} /> */}
-               <Route path="*" component={ NotFound } /> 
-               </Switch>
+
+               <Route path="/games" render={({ history, match }) => <Games history={history} match={match} />} /> */}
+
+               <Route path="*" element={ NotFound } />  
+ </Routes>
             </main>
             <footer></footer>
          </BrowserRouter>

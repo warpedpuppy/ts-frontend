@@ -1,6 +1,6 @@
 import React from 'react'
 import './Games.css'
-import { Switch, Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import GamesContext from './GamesContext'
 import Home from './pages/Home'
 import Menu from './components/GamesMenu'
@@ -112,14 +112,14 @@ export default class Games extends React.Component {
       <GamesContext.Provider value={contextValue}>
           <header><Menu /></header>
           <section id="games-wrapper">
-            <Switch>
+            <Routes>
               <Route exact path="/games" render={ () => <Home history={this.props.history} /> }/>
               <Route path="/games/jump-game" component={CanvasJump} />
               <Route exact path="/games/jump-game" component={CanvasJump} />
               <Route exact path="/games/fly-game" render={({ history }) => <CanvasFly history={history} />} />
               <Route exact path="/games/swim-game" render={({ history }) => <CanvasSwim history={history} />} />
               <Route exact path="/games/admin" component={Admin} />
-            </Switch>
+            </Routes>
           </section>
       </GamesContext.Provider>
     )

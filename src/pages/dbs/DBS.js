@@ -1,31 +1,27 @@
-import React, { Component } from 'react';
+import { useState } from 'react';
+import { Routes, Route } from 'react-router-dom'
 import Submenu from '../../components/layout-templates/SubMenu';
 import CRUD from './crud/CRUD';
 import JoinPopulate from './JoinPopulate';
 import CORS from './cors/CORS';
-export default class DBS extends Component {
-  state = {
-    active: 'crud',
-    categories: ['crud'] //, 'cors', 'join/populate', 'relational / non relational', 'performance', 'browser storage']
-  }
-
-  onChange = (e) => {   
-   this.setState({active: e.target.innerHTML})
-  }
-  render() {
-    let active;
-    if (this.state.active === 'crud') {
-      active = <CRUD />
-    } else if (this.state.active === 'join/populate') {
-      active = <JoinPopulate />
-    } else if (this.state.active === 'cors') {
-      active = <CORS />
-    }
-    return (
-      <>
-      <Submenu title={`dbs - ${this.state.active}`} menuItems={this.state.categories} onChange={this.onChange} />
-      { active }
-      </>
-    );
-  }
+import NotFound from '../NotFound';
+const DBS = () => {
+	const [ active, setActive ] = useState('crud')
+	const categories = ['crud'];
+	return (
+		<section className="css-page">
+			<Submenu 
+				active={ active }
+				title={`dbs - ${ active }`} 
+				setActive={ setActive }
+				menuItems={ categories } 
+			/>
+			<Routes>
+				<Route index element={ <></> } />
+				<Route path='crud/*' element={ <CRUD /> } />
+				<Route path='*' element={ <NotFound /> }/>
+			</Routes>
+		</section>
+	);
 }
+export default DBS;

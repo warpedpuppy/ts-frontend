@@ -1,23 +1,24 @@
-import React from 'react'
+import { useState } from 'react';
 import PageLayout from '../../../components/layout-templates/PageLayout';
 import FallingSigns from './experiments/FallingSigns';
 import Rainbow from './experiments/Rainbow';
-export default class CSS_Experiments extends React.Component {
-    state = {
-        active: 'rainbow',
-        buttons: ['rainbow', 'falling signs']
-    }
-    onChange = (string) => {   
-        this.setState({active: string})
-    }
-    render() {
-    
-        let activeComponent;
-        if (this.state.active === 'rainbow') {
-            activeComponent = <Rainbow />
-        } else {
-            activeComponent = <FallingSigns />
-        }
-        return  <PageLayout activeString={this.state.active} buttons={this.state.buttons} activeComponent={activeComponent} onChange={this.onChange} />
-    }
-    }
+import { Routes, Route } from 'react-router-dom';
+import NotFound from '../../NotFound';
+
+const CSS_Experiments = () =>  {
+   
+	const [ active, setActive ] = useState('rainbow')
+	const categories = ['rainbow', 'falling-signs'];
+
+	return (
+		<Routes>
+			<Route path="/" element={ <PageLayout active={active} categories={categories} setActive={setActive} /> } >
+				<Route path='rainbow' element={ <Rainbow /> }/>
+				<Route path='falling-signs' element={ <FallingSigns /> }/>
+				<Route path='*' element={ <NotFound /> }/>
+			</Route>
+		</Routes>
+	)
+
+}
+export default CSS_Experiments;

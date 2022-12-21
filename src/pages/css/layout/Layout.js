@@ -1,23 +1,22 @@
-import React, { Component } from 'react';
+import { useState } from 'react';
 import Grid from './grid/Grid';
 import Flex from './flex/Flex';
+import { Routes, Route } from 'react-router-dom';
 import PageLayout from '../../../components/layout-templates/PageLayout';
-export default class Layout extends Component {
-  state = {
-    active: 'grid',
-    buttons: ['flex', 'grid']
-  }
-  onChange = (string) => {   
-   this.setState({active: string})
-  }
-  render() {
+import NotFound from '../../NotFound';
+const Layout = props => {
+  
+	const [ active, setActive ] = useState('grid')
+	const categories = ['flex', 'grid'];
 
-    let activeComponent;
-    if (this.state.active === 'flex') {
-      activeComponent = <Flex />
-    } else {
-      activeComponent = <Grid />
-    }
-    return  <PageLayout activeString={this.state.active} buttons={this.state.buttons} activeComponent={activeComponent} onChange={this.onChange} />
-  }
+	return (
+		<Routes>
+			<Route path="/" element={ <PageLayout active={active} categories={categories} setActive={setActive} /> } >
+				<Route path='flex' element={ <Flex /> }/>
+				<Route path='grid' element={ <Grid /> }/>
+				<Route path='*' element={ <NotFound /> }/>
+			</Route>
+		</Routes>
+	)
 }
+export default Layout;

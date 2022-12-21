@@ -1,27 +1,25 @@
 import React, { Component } from 'react'
-import { Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Menu.css';
-// import UserContext from '../UserContext';
 import TokenService from '../services/TokenService';
-import { withRouter } from 'react-router-dom';
-class Menu extends Component {
-
+import { useNavigate } from "react-router-dom";
+const Menu = () => {
+	const navigate = useNavigate();
   
     
-    logOutHandler = (e) => {
+    const logOutHandler = (e) => {
         e.preventDefault();
         TokenService.deleteToken();
         this.props.history.push('/')
     }
-    clickHandler = (e) => {
+
+    const clickHandler = (e) => {
         let route = e.target.innerText;
-        this.props.history.push(`/${route}`)
+        navigate(`/${route}`);
         document.getElementById('main-checkbox').checked = false;
     }
 
-    render() {
-
-        return (
+    return (
         <nav className="nav-wrapper">
             <Link to="/" className="nav-brand">trying something</Link>
             <input className="nav-hamburger" id="main-checkbox" type="checkbox" />
@@ -31,15 +29,15 @@ class Menu extends Component {
                 <span></span>
             </div>
             <div className="nav-links">
-                <div onClick={this.clickHandler}>css</div> 
-                <div onClick={this.clickHandler}>js</div>
-                <div onClick={this.clickHandler}>dbs</div>
-                <div onClick={this.clickHandler}>games</div>
+                <div onClick={clickHandler}>css</div> 
+                <div onClick={clickHandler}>js</div>
+                <div onClick={clickHandler}>dbs</div>
+                <div onClick={clickHandler}>games</div>
                 {/* <div >art</div> */}
-                <div onClick={this.clickHandler}>about</div>
+                <div onClick={clickHandler}>about</div>
             </div>
         </nav>
-        )
-    }
+    )
+
 }
-export default withRouter(Menu); 
+export default Menu; 

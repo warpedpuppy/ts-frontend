@@ -1,5 +1,4 @@
 import React from 'react'
-import { withRouter } from 'react-router-dom'
 import './GamesMenu.css'
 import SiteContext from '../GamesContext'
 
@@ -37,4 +36,4 @@ class Menu extends React.Component {
     } 
   
 }
-export default withRouter(Menu)
+export default Menu

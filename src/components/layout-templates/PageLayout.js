@@ -1,50 +1,32 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import { useEffect } from 'react';
 import './PageLayout.css';
-import { withRouter } from 'react-router-dom';
-import Utils from '../../services/Utils';
-class PageLayout extends React.Component {
+import { useNavigate, Outlet } from "react-router-dom";
+const PageLayout = props => {
+	const navigate = useNavigate();
+  
+	useEffect(() => {
+		navigate(`${props.active}`);
+	}, [])
 
-    componentDidMount = () => {
-        let obj = Utils.parseURLVars(this.props.history.location.search)
-        if (obj['sub-category']) {
-            this.props.onChange(obj['sub-category'].replace(/%20/g, ' '))
-        } else {
-             this.props.history.push({ search: `?category=${obj.category}&sub-category=${this.props.activeString}` })
-        }
-       
-    }
-    clickHandler = (e) => {
+    const clickHandler = (e) => {
         e.preventDefault();
-        let obj = Utils.parseURLVars(this.props.history.location.search)
-        this.active = e.target.innerHTML;
-        this.props.history.push({
-            search: `?category=${obj.category}&sub-category=${e.target.innerHTML}`
-          })
-        this.props.onChange(e.target.innerHTML)
+		navigate(`${e.target.innerHTML}`);
+		props.setActive(e.target.innerHTML)
     }
-    render () {
-         return (
-            <div className="page"> 
-            <aside className="page-menu">
-                {
-                    this.props.buttons.map( (item, index) => {
-                        return <div key={index} className={ item === this.props.activeString ? `active` : `` } onClick={this.clickHandler}>{item}</div>
-                    })
-                }
-            </aside>
-            <main className="page-content">
-            { this.props.activeComponent }
-            </main>
-        </div>
-        )
-    }
+
+	return (
+		<div className="page"> 
+		<aside className="page-menu">
+		{
+		props.categories.map( (item, index) => <div key={index} className={ item === props.active ? `active` : `` } onClick={clickHandler}>{item}</div>)
+		}
+		</aside>
+		<main className="page-content">
+			<Outlet />
+		</main>
+		</div>
+	)
    
 }
 
-export default withRouter(PageLayout);
-PageLayout.propTypes = {
-    activeString: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired,
-    buttons: PropTypes.array.isRequired,
-  }
+export default PageLayout;

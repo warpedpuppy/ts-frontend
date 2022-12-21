@@ -1,26 +1,24 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import PageLayout from '../../../components/layout-templates/PageLayout';
 import AbsoluteUnits from './absolute/AbsoluteUnits';
 import RelativeUnits from './relative/RelativeUnits';
 import FontSpecific from './font-specific/FontSpecific';
-export default class UnitsOfMeasurement extends Component {
-  state = {
-    active: 'absolute units',
-    buttons: ['font-specific', 'absolute units', 'relative units']
-  }
-  onChange = (active) => {   
-   this.setState({active})
-  }
-  render() {
+import NotFound from '../../NotFound';
+import { Routes, Route } from 'react-router-dom';
+const UnitsOfMeasurement = props => {
 
-    let activeComponent;
-    if (this.state.active === 'absolute units') {
-      activeComponent = <AbsoluteUnits />
-    } else if (this.state.active === 'relative units') {
-      activeComponent = <RelativeUnits />
-    } else {
-      activeComponent = <FontSpecific />
-    }
-    return  <PageLayout activeString={this.state.active} buttons={this.state.buttons} activeComponent={activeComponent} onChange={this.onChange} />
-  }
+  const [ active, setActive ] = useState('absolute-units')
+  const categories = ['font-specific', 'absolute-units', 'relative-units'];
+
+	return (
+		<Routes>
+			<Route path="/" element={ <PageLayout active={active} categories={categories} setActive={setActive} /> } >
+				<Route path='absolute-units' element={ <AbsoluteUnits /> }/>
+				<Route path='relative-units' element={ <RelativeUnits /> }/>
+				<Route path='font-specific' element={ <FontSpecific /> }/>
+				<Route path='*' element={ <NotFound /> }/>
+			</Route>
+		</Routes>
+	)
 }
+export default UnitsOfMeasurement;
