@@ -187,7 +187,7 @@ export default function JumpAnimation() {
         background.scale.set(1)
         this.jump.addToStage()
       }
-      this.app.stage.addChild(this.fpsCounter)
+    //   this.app.stage.addChild(this.fpsCounter)
     },
     reset () {
       this.tokens.reset()

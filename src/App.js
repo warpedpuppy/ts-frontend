@@ -4,12 +4,10 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import Menu from './components/Menu';
-import Color from './pages/css/color/Color';
 import CSS from './pages/css/CSS';
 import DBS from './pages/dbs/DBS';
 import JS from './pages/js/JS';
 import Games from './pages/games/Games';
-import Art from './pages/art/Art';
 import AppContext from './AppContext';
 import About from './pages/about/About';
 import TokenService from './services/TokenService';
@@ -91,23 +89,17 @@ class App extends React.Component {
      return (
         <AppContext.Provider value={contextValue}>
          <BrowserRouter>
-
             <header><Menu /></header>
             <main>
-			<Routes>
-               <Route index element={ Home } />
-			  
-               <Route path="css/*" element={ <CSS /> } />
-			   <Route path="js/*" element={ <JS /> } />
-               <Route path="dbs/*" element={ <DBS /> } />
-              {/*  <Route exact path="/js" component={ JS } />
-               <Route exact path="/art" component={ Art } />
-               <Route exact path="/about" component={ About } />
-
-               <Route path="/games" render={({ history, match }) => <Games history={history} match={match} />} /> */}
-
-               <Route path="*" element={ NotFound } />  
- </Routes>
+				<Routes>
+					<Route index element={ Home } />
+					<Route path="css/*" element={ <CSS /> } />
+					<Route path="js/*" element={ <JS /> } />
+					<Route path="dbs/*" element={ <DBS /> } />
+					<Route path="games/*" element={ <Games /> } />
+					<Route path="about" component={ <About /> } />
+					<Route path="*" element={ NotFound } />  
+				</Routes>
             </main>
             <footer></footer>
          </BrowserRouter>

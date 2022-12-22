@@ -113,12 +113,11 @@ export default class Games extends React.Component {
           <header><Menu /></header>
           <section id="games-wrapper">
             <Routes>
-              <Route exact path="/games" render={ () => <Home history={this.props.history} /> }/>
-              <Route path="/games/jump-game" component={CanvasJump} />
-              <Route exact path="/games/jump-game" component={CanvasJump} />
-              <Route exact path="/games/fly-game" render={({ history }) => <CanvasFly history={history} />} />
-              <Route exact path="/games/swim-game" render={({ history }) => <CanvasSwim history={history} />} />
-              <Route exact path="/games/admin" component={Admin} />
+              <Route index element={ <Home /> }/>
+              <Route path="jump-game" element={ <CanvasJump />} />
+              <Route path="fly-game" element={ <CanvasFly />} />
+              <Route path="swim-game" element={ <CanvasSwim /> } />
+              <Route path="admin" element={<Admin />} />
             </Routes>
           </section>
       </GamesContext.Provider>

@@ -1,40 +1,32 @@
-import React from 'react'
+import { useEffect } from 'react'
 import './Home.css'
 import HomeButtons from '../animations/homeAnimations/home_buttons'
 import Spinners from '../components/Spinners';
 import Assets from '../animations/utils/assetCreation';
-export default class Home extends React.Component {
+import { useNavigate } from "react-router-dom";
 
+const Home = () =>  {
 
-  componentDidMount () {
-   Assets.init();
-    this.home_buttons = HomeButtons(this.showButtons)
-    this.home_buttons.init()
-  }
-  showButtons () {
-    document.getElementById('home_page').style.display = "block";
-    document.getElementById('home-page-spinners').style.display = "none";
-  }
+	const navigate = useNavigate();
+	let home_buttons;
+	useEffect (() => {
+		Assets.init();
+		home_buttons = HomeButtons(showButtons)
+		home_buttons.init()
+	}, [])
 
-  componentWillUnmount () {
-    this.home_buttons.stop()
-  }
+	const showButtons = () => {
+		document.getElementById('home_page').style.display = "block";
+		document.getElementById('home-page-spinners').style.display = "none";
+	}
 
-  gotoGame = (e, game) => {
-    e.preventDefault();
-    const { history } = this.props;
-    history.push(game);
-  }
+	const gotoGame = (game) => {
+		// home_buttons.stop();
+		navigate(game);
+	}
 
-  keyHitHandler = (e, game) => {
-    if (e.key === 'Enter') {
-      this.gotoGame(game)
-    }
-  }
-  
-  render () {
     return (
-      <React.Fragment>
+      <>
       <div id="home-page-spinners"><Spinners /></div>
       <div className="general-page-layout" id="home_page">
       
@@ -45,8 +37,8 @@ export default class Home extends React.Component {
             role="button"
             aria-controls="tabpanel_1"
             className="home-button-cont"
-            onKeyPress={(e) => this.keyHitHandler(e, 'fly-game')}
-           onClick={(e) => this.gotoGame(e, '/games/fly-game')}
+            // onKeyPress={(e) => keyHitHandler(e, 'fly-game')}
+           	onClick={(e) => gotoGame('/games/fly-game')}
           >
             <div className="gameShell fly" id="fly-home" />
             <div className="screen" />
@@ -58,8 +50,8 @@ export default class Home extends React.Component {
             role="button"
             aria-controls="tabpanel_2"
             className="home-button-cont"
-            onKeyPress={(e) => this.keyHitHandler(e, 'jump-game')}
-           onClick={(e) => this.gotoGame(e, '/games/jump-game')}
+            // onKeyPress={(e) => keyHitHandler(e, 'jump-game')}
+           onClick={(e) => gotoGame('/games/jump-game')}
           >
             <div className="gameShell jump" id="jump-home" />
             <div className="screen" />
@@ -73,8 +65,8 @@ export default class Home extends React.Component {
             role="button"
             aria-controls="tabpanel_3"
             className="home-button-cont"
-            onKeyPress={(e) => this.keyHitHandler(e, 'swim-game')}
-            onClick={(e) => this.gotoGame(e, '/games/swim-game')}
+            // onKeyPress={(e) => keyHitHandler(e, 'swim-game')}
+            onClick={(e) => gotoGame('/games/swim-game')}
           >
             <div className="gameShell swim" id="swim-home" />
             <div className="screen" />
@@ -83,7 +75,8 @@ export default class Home extends React.Component {
 
         </div>
       </div>
-      </React.Fragment>
+      </>
     )
-  }
+
 }
+export default Home;
