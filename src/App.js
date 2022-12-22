@@ -97,7 +97,7 @@ class App extends React.Component {
 					<Route path="js/*" element={ <JS /> } />
 					<Route path="dbs/*" element={ <DBS /> } />
 					<Route path="games/*" element={ <Games /> } />
-					<Route path="about" component={ <About /> } />
+					<Route path="about" element={ <About /> } />
 					<Route path="*" element={ NotFound } />  
 				</Routes>
             </main>
