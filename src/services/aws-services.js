@@ -26,8 +26,12 @@ const AWSServices = {
         return { characters, query, response: characters }; 
     },
     getTotalRecords: async function () {
-        let result = await axios(`${Config.AWS_ENDPOINT}/get-total`)
-        return result.data;
+		try {
+            let result =await axios(`${Config.AWS_ENDPOINT}/get-total`);
+            return result.data.success === true ? result.data : false ; 
+        } catch(e) {
+            return false; 
+        }
     },
     delete: async function (id) {
         let result = await axios.delete(`${Config.AWS_ENDPOINT}/delete`, {data: {id}}, {

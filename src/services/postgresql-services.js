@@ -29,8 +29,12 @@ const PostgresqlServices = {
       return {characters, query, response: JSON.stringify({characters, query }) };
     },
     getTotalRecords: async function () {
-      let response = await axios(`${Config.API_URL}/postgresql-restful/total`)
-      return await response.data;
+      	try {
+			let response =  await axios(`${Config.API_URL}/postgresql-restful/total`)
+			return response.statusText === "OK" ? response.data : false ; 
+		} catch(e) {
+			return false; 
+		}
     },
     update: async function (id, character_name, newColor) {
       let obj = {

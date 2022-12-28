@@ -92,13 +92,13 @@ class App extends React.Component {
             <header><Menu /></header>
             <main>
 				<Routes>
-					<Route index element={ Home } />
+					<Route index element={ <Home /> } />
 					<Route path="css/*" element={ <CSS /> } />
 					<Route path="js/*" element={ <JS /> } />
 					<Route path="dbs/*" element={ <DBS /> } />
 					<Route path="games/*" element={ <Games /> } />
 					<Route path="about" element={ <About /> } />
-					<Route path="*" element={ NotFound } />  
+					<Route path="*" element={ <NotFound /> } />  
 				</Routes>
             </main>
             <footer></footer>

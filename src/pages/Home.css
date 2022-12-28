@@ -30,16 +30,6 @@
     text-indent: 50px;
 }
 
-.on {
-    font-weight: bold;
-    color: green;
-}
-
-.off {
-    font-weight: bold;
-    color: red;
-}
-
 #home-canvas {
     width: 100vw;
     height: calc(100vh - 67px);

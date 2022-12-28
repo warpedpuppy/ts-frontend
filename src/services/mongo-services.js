@@ -39,7 +39,7 @@ const MongoServices = {
             let result = await axios(`${Config.API_URL}/mongo-restful/complete`)
             return result.statusText === "OK" ? result : false ; 
         } catch(e) {
-            
+            return false; 
         }
     },
     delete: async function (id) {
