@@ -58,8 +58,8 @@ export default class Home extends Component {
         <p>This site ties into three different dbs in order to let me experiment, let's see if they are up and running:</p>
         <ul>
           <li>express &rarr; mongo: <ConnectedToDB connected={ this.state.mongo } /></li>
-          <li>express &rarr;  postrgresql: <ConnectedToDB connected={ this.state.postresql } /></li>
-          <li>lambda &rarr; postrgresql: <ConnectedToDB connected={ this.state.aws }/></li>
+          {/* <li>express &rarr;  postrgresql: <ConnectedToDB connected={ this.state.postresql } /></li>
+          <li>lambda &rarr; postrgresql: <ConnectedToDB connected={ this.state.aws }/></li> */}
         </ul>
       </section>
       </div>
