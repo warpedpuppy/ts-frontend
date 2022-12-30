@@ -1,0 +1,12 @@
+.home-db {
+	font-weight: bold;
+}
+.db-loading {
+	color: #FF00FF;
+}
+.db-problem {
+	color: red;
+}
+.db-connected {
+	color: green;
+;}

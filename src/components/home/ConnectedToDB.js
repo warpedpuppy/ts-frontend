@@ -1,37 +1,39 @@
 import './ConnectedToDB.css';
 import { useEffect, useState } from 'react';
-const ConnectedToDB = ({connected}) => {
+const ConnectedToDB = ({ connected }) => {
 
-	const [ loading, setLoading ] = useState(false)
 	const [ loadingText, setLoadingText ] = useState('loading')
-	const [ timeoutObject, setTimeoutObject ] = useState(undefined)
-	
+	let counter = 0;
+	let str = 'loading ';
+	let obj;
 	useEffect(() => {
-		startTime();
+		obj = setInterval(addDot, 50);
 	}, [])
-	
 
-	const startTime = () => {
-		if (!loading) {
-			setLoading(true);
-			let temp = setInterval(addDot, 1000)
-			setTimeoutObject(temp);
+	useEffect(() => {
+		if (connected !== undefined) {
+			clearInterval(obj);
 		}
-		
-	}
-	function addDot() {
-		let ran = Math.random()*1000
-		setLoadingText(ran)
-		
-	}
-	return ( <span>{ loadingText }</span> );
+	}, [connected])
 	
+	function addDot() {
+		clearInterval(obj);
+		counter ++;
+		if (counter > 10) {
+			counter = 0;
+			str = 'loading ';
+		}
+		str += ". ";
+		setLoadingText(str);
+	}
+
 	if (connected === undefined) {
-		return ( <span>loading</span> );
+		return ( <span className='db-loading home-db'>{ loadingText }</span> );
 	} else if (connected === false) {
-		return ( <span>problem</span> );
+		return ( <span className='db-problem home-db'>problem</span> );
 	} 
-	return ( <span>connected</span> );
+
+	return ( <span className='db-connected home-db'>connected</span> );
 }
  
 export default ConnectedToDB;
