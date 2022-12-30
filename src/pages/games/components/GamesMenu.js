@@ -1,6 +1,4 @@
-import React from 'react'
-import './GamesMenu.css'
-import SiteContext from '../GamesContext'
+import './GamesMenu.css';
 import { useNavigate } from "react-router-dom";
 const Menu = () =>  {
 	const navigate = useNavigate();

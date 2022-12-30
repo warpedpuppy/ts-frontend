@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import './Home.css'
 import HomeButtons from '../animations/homeAnimations/home_buttons'
 import Spinners from '../components/Spinners';
@@ -8,11 +8,11 @@ import { useNavigate } from "react-router-dom";
 const Home = () =>  {
 
 	const navigate = useNavigate();
-	let home_buttons;
+	let home_buttons = useRef();
 	useEffect (() => {
 		Assets.init();
-		home_buttons = HomeButtons(showButtons)
-		home_buttons.init()
+		home_buttons.current = HomeButtons(showButtons)
+		home_buttons.current.init()
 	}, [])
 
 	const showButtons = () => {
@@ -21,7 +21,7 @@ const Home = () =>  {
 	}
 
 	const gotoGame = (game) => {
-		// home_buttons.stop();
+		home_buttons.current.stop();
 		navigate(game);
 	}
 

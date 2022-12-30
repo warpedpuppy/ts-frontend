@@ -1,18 +1,8 @@
-import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import './Menu.css';
-import TokenService from '../services/TokenService';
 import { useNavigate } from "react-router-dom";
 const Menu = () => {
 	const navigate = useNavigate();
-  
-    
-    const logOutHandler = (e) => {
-        e.preventDefault();
-        TokenService.deleteToken();
-        this.props.history.push('/')
-    }
-
     const clickHandler = (e) => {
         let route = e.target.innerText;
         navigate(`/${route}`);

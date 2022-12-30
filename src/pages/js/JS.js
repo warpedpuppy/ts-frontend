@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import PageLayout from '../../components/layout-templates/PageLayout';
 import MazeSolver from './mazeSolver/MazeSolver';
 import RecursivePermutation from './recursivePermutation/RecursivePermutation';
-import EveryCombo from './everyCombo/EveryCombo';
-import ObjectPooling from './objectPooling/ObjectPooling';
+// import EveryCombo from './everyCombo/EveryCombo';
+// import ObjectPooling from './objectPooling/ObjectPooling';
 import { Routes, Route } from 'react-router-dom';
 import NotFound from '../NotFound';
 const JS = props => {

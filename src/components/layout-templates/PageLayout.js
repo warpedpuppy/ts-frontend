@@ -6,7 +6,7 @@ const PageLayout = props => {
   
 	useEffect(() => {
 		navigate(`${props.active}`);
-	}, [])
+	})
 
     const clickHandler = (e) => {
         e.preventDefault();
