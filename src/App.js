@@ -95,7 +95,7 @@ class App extends React.Component {
                <Switch>
                <Route exact path="/" component={ Home } />
                <Route exact path="/css" render={ history => <CSS history={history} />} />
-               <Route exact path="/dbs" component={ DBS } />
+               {/* <Route exact path="/dbs" component={ DBS } /> */}
                <Route exact path="/js" component={ JS } />
                <Route exact path="/art" component={ Art } />
                <Route exact path="/about" component={ About } />
