@@ -5,7 +5,7 @@ import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import Menu from './components/Menu';
 import CSS from './pages/css/CSS';
-import DBS from './pages/dbs/DBS';
+// import DBS from './pages/dbs/DBS';
 import JS from './pages/js/JS';
 import Games from './pages/games/Games';
 import Art from './pages/art/Art';
